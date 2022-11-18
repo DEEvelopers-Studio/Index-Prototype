@@ -310,5 +310,8 @@
   <ItemGroup>
     <Folder Include="Pages\Subject\Recitation\" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Images\notes.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
