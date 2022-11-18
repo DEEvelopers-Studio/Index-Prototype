@@ -90,11 +90,43 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Pages\Add Section\AddSection.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Add Student\AddStudent.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Add Teacher\AddTeacher.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Section List\SectionList.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\Student List\StudentList.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\Subject List\SubjectList.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Subject\Add Student\AddStudent.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Subject\Attendance\Attendance.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Subject\Student List\StudentList.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Subject\Student\Student.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -108,11 +140,35 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Pages\Add Section\AddSection.xaml.cs">
+      <DependentUpon>AddSection.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Add Student\AddStudent.xaml.cs">
+      <DependentUpon>AddStudent.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Add Teacher\AddTeacher.xaml.cs">
+      <DependentUpon>AddTeacher.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Section List\SectionList.xaml.cs">
+      <DependentUpon>SectionList.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\Student List\StudentList.xaml.cs">
       <DependentUpon>StudentList.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\Subject List\SubjectList.xaml.cs">
       <DependentUpon>SubjectList.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Subject\Add Student\AddStudent.xaml.cs">
+      <DependentUpon>AddStudent.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Subject\Attendance\Attendance.xaml.cs">
+      <DependentUpon>Attendance.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Subject\Student List\StudentList.xaml.cs">
+      <DependentUpon>StudentList.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Subject\Student\Student.xaml.cs">
+      <DependentUpon>Student.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\Teacher List\TeacherList.xaml.cs">
       <DependentUpon>TeacherList.xaml</DependentUpon>
@@ -146,15 +202,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Pages\Add Section\" />
-    <Folder Include="Pages\Add Student\" />
-    <Folder Include="Pages\Add Teacher\" />
-    <Folder Include="Pages\Section List\" />
-    <Folder Include="Pages\Subject\Add Student\" />
-    <Folder Include="Pages\Subject\Attendance\" />
-    <Folder Include="Pages\Subject\Student List\" />
-    <Folder Include="Pages\Subject\Student\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
