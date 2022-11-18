@@ -16,9 +16,7 @@
                                 <Border.Background>
                                     <SolidColorBrush Color="#FFDDDDDD"/>
                                 </Border.Background>
-                                <ContentPresenter HorizontalAlignment="Center"
-                                          VerticalAlignment="Center"
-                                          TextElement.FontWeight="Bold">
+                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" TextElement.FontWeight="Bold">
                                 </ContentPresenter>
                             </Border>
 

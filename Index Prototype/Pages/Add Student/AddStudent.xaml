@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Index_Prototype.Pages.Add_Student"
         mc:Ignorable="d"
-        Title="AddStudent" Height="450" Width="800">
+        Title="AddStudent" Height="233" Width="393" WindowStyle="ToolWindow">
     <Grid>
         
     </Grid>
