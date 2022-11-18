@@ -8,7 +8,16 @@
       Title="TeacherLogin">
 
     <Grid >
-        <Border BorderBrush="Black" HorizontalAlignment="Center" Height="326" VerticalAlignment="Center" Width="290" CornerRadius="10,10,10,10">
+
+        <Grid.Background>
+            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                <GradientStop Color="#FF1E30A5" Offset="0"/>
+                <GradientStop Color="#FFECFF00" Offset="1"/>
+                <GradientStop Color="#FF2165BF" Offset="0"/>
+                <GradientStop Color="#FF153B94" Offset="0"/>
+            </LinearGradientBrush>
+        </Grid.Background>
+        <Border BorderBrush="Black" HorizontalAlignment="Left" Height="326" VerticalAlignment="Top" Width="290" CornerRadius="10,10,10,10" Margin="437,75,0,0">
             <Border.Effect>
                 <DropShadowEffect Direction="275" Opacity="0.345" ShadowDepth="3" BlurRadius="11" />
             </Border.Effect>
@@ -27,9 +36,11 @@
                         </StackPanel>
                     </Button>
                 </StackPanel>
+
                 <StackPanel VerticalAlignment="Center">
-                    <TextBlock TextWrapping="Wrap" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center" DockPanel.Dock="Top"><Run FontWeight="Bold" Text="Welcome"/></TextBlock>
-                    <TextBlock TextWrapping="Wrap" Text="Teacher Name" FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center" DockPanel.Dock="Top" Margin="0,0,0,10"/>
+
+                    <TextBlock TextWrapping="Wrap" Text="LOGIN" FontSize="18" ClipToBounds="True" Height="32" Width="202" FontWeight="Bold"/>
+
                     <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
                         <Label Content="Password" FontSize="10" Padding="0,0,0,0"/>
                         <PasswordBox FontSize="14" Width="196"/>
@@ -41,6 +52,16 @@
         <Button HorizontalAlignment="Left" VerticalAlignment="Top" Height="29" Width="30" Style="{DynamicResource RoundCorner}"  Margin="10,10,0,0">
             <fa:SvgAwesome Icon="Solid_ArrowLeft" VerticalAlignment="Center" Height="20" Width="20" HorizontalAlignment="Center" />
         </Button>
-        
+        <TextBlock TextWrapping="Wrap" FontSize="24" Margin="132,207,464,207" Foreground="White" Text="TEACHER NAME" FontWeight="Bold">
+            <TextBlock.Effect>
+                <DropShadowEffect BlurRadius="1" Direction="300" Opacity="0.5" ShadowDepth="3"/>
+            </TextBlock.Effect>
+        </TextBlock>
+        <TextBlock TextWrapping="Wrap" FontSize="36" Margin="101,137,433,264" Foreground="White" FontWeight="Bold">
+            <TextBlock.Effect>
+                <DropShadowEffect BlurRadius="1" Direction="300" Opacity="0.5" ShadowDepth="3"/>
+            </TextBlock.Effect><Run FontWeight="Bold" Text="Welcome Back"/></TextBlock>
+
+
     </Grid>
 </Page>
