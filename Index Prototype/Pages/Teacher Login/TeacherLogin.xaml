@@ -41,5 +41,6 @@
         <Button HorizontalAlignment="Left" VerticalAlignment="Top" Height="29" Width="30" Style="{DynamicResource RoundCorner}"  Margin="10,10,0,0">
             <fa:SvgAwesome Icon="Solid_ArrowLeft" VerticalAlignment="Center" Height="20" Width="20" HorizontalAlignment="Center" />
         </Button>
+        
     </Grid>
 </Page>
