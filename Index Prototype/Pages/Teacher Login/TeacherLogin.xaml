@@ -22,7 +22,7 @@
                 <DropShadowEffect Direction="275" Opacity="0.345" ShadowDepth="3" BlurRadius="11" />
             </Border.Effect>
             <Border.Background>
-                <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ControlColorKey}}"/>
+                <SolidColorBrush Color="#FFF0F0F0"/>
             </Border.Background>
             <DockPanel>
 
