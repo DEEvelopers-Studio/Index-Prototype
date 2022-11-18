@@ -196,7 +196,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Pages\Teacher List\images.png" />
+    <Resource Include="Assets\Images\images.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Images\default Image.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
