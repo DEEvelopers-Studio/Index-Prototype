@@ -27,21 +27,9 @@
                             <Trigger Property="IsPressed" Value="True">
                                 <Setter Property="Background" TargetName="border">
                                     <Setter.Value>
-                                        <RadialGradientBrush GradientOrigin="0.496,1.052">
-                                            <RadialGradientBrush.RelativeTransform>
-                                                <TransformGroup>
-                                                    <ScaleTransform CenterX="0.5" CenterY="0.5" ScaleX="1.5" ScaleY="1.5"/>
-                                                    <TranslateTransform X="0.02" Y="0.3"/>
-                                                </TransformGroup>
-                                            </RadialGradientBrush.RelativeTransform>
-                                            <GradientStop Color="#00000000" Offset="1"/>
-                                            <GradientStop Color="#FF303030" Offset="0.3"/>
-                                        </RadialGradientBrush>
+                                        <SolidColorBrush Color="#FFD6D6D6"/>
                                     </Setter.Value>
                                 </Setter>
-                            </Trigger>
-                            <Trigger Property="IsMouseOver" Value="True">
-                                <Setter Property="BorderBrush" TargetName="border" Value="#FF33962B"/>
                             </Trigger>
                             <Trigger Property="IsEnabled" Value="False">
                                 <Setter Property="Opacity" TargetName="grid" Value="0.25"/>
