@@ -302,13 +302,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Assets\Images\images.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Assets\Images\default Image.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Folder Include="Pages\Subject\Recitation\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Images\default-profile.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Assets\Images\notes.png" />
