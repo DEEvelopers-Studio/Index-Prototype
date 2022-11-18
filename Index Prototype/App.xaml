@@ -4,7 +4,7 @@
              xmlns:local="clr-namespace:Index_Prototype"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-        <Style x:Key="RoundCorner" TargetType="{x:Type Button}">
+        <Style x:Key="RoundCorner" TargetType="{x:Type Button}" >
             <Setter Property="HorizontalContentAlignment" Value="Center"/>
             <Setter Property="VerticalContentAlignment" Value="Center"/>
             <Setter Property="Padding" Value="1"/>
