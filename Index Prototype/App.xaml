@@ -4,39 +4,54 @@
              xmlns:local="clr-namespace:Index_Prototype"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-        <Style x:Key="RoundCorner" TargetType="{x:Type Button}" >
-            <Setter Property="HorizontalContentAlignment" Value="Center"/>
-            <Setter Property="VerticalContentAlignment" Value="Center"/>
-            <Setter Property="Padding" Value="1"/>
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="{x:Type Button}">
-                        <Grid x:Name="grid">
-                            <Border Padding="2,2" x:Name="border" CornerRadius="3" BorderBrush="Black" BorderThickness="0">
-                                <Border.Background>
-                                    <SolidColorBrush Color="#FFDDDDDD"/>
-                                </Border.Background>
-                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" TextElement.FontWeight="Bold">
-                                </ContentPresenter>
-                            </Border>
 
-                        </Grid>
-                        <ControlTemplate.Triggers>
-                            <Trigger Property="IsPressed" Value="True">
-                                <Setter Property="Background" TargetName="border">
-                                    <Setter.Value>
-                                        <SolidColorBrush Color="#FFD6D6D6"/>
-                                    </Setter.Value>
-                                </Setter>
-                            </Trigger>
-                            <Trigger Property="IsEnabled" Value="False">
-                                <Setter Property="Opacity" TargetName="grid" Value="0.25"/>
-                            </Trigger>
+        <ResourceDictionary>
 
-                        </ControlTemplate.Triggers>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
+            
+            <Style x:Key="RoundCorner" TargetType="{x:Type Button}" >
+                <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                <Setter Property="VerticalContentAlignment" Value="Center"/>
+                <Setter Property="Padding" Value="1"/>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type Button}">
+                            <Grid x:Name="grid">
+                                <Border Padding="2,2" x:Name="border" CornerRadius="3" BorderBrush="Black" BorderThickness="0">
+                                    <Border.Background>
+                                        <SolidColorBrush Color="#FFDDDDDD"/>
+                                    </Border.Background>
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" TextElement.FontWeight="Bold">
+                                    </ContentPresenter>
+                                </Border>
+
+                            </Grid>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsPressed" Value="True">
+                                    <Setter Property="Background" TargetName="border">
+                                        <Setter.Value>
+                                            <SolidColorBrush Color="#FFD6D6D6"/>
+                                        </Setter.Value>
+                                    </Setter>
+                                </Trigger>
+                                <Trigger Property="IsEnabled" Value="False">
+                                    <Setter Property="Opacity" TargetName="grid" Value="0.25"/>
+                                </Trigger>
+
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+            <Size x:Key="PageSize" Width="800" Height="450"/>
+            <SolidColorBrush x:Key="PrimaryBlue" Color="#274C77"></SolidColorBrush>
+            <SolidColorBrush x:Key="SecondaryBlue" Color="#124E78"></SolidColorBrush>
+            <SolidColorBrush x:Key="AccentBlue" Color="#427AA1"></SolidColorBrush>
+            <SolidColorBrush x:Key="GreyLighten70" Color="#EBF2FA"></SolidColorBrush>
+            <SolidColorBrush x:Key="GreyLighten60" Color="#E7ECEF"></SolidColorBrush>
+            <SolidColorBrush x:Key="PrimaryBtnColor" Color="#0d6efd"></SolidColorBrush>
+
+            
+        </ResourceDictionary>
+        
     </Application.Resources>
 </Application>

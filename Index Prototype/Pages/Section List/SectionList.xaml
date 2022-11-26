@@ -3,7 +3,7 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:fa6="http://schemas.fontawesome.com/icons/svg" x:Class="Index_Prototype.Pages.Section_List.SectionList" 
+      xmlns:fa6="http://schemas.fontawesome.com/icons/svg" xmlns:iconPacks="clr-namespace:MahApps.Metro.IconPacks;assembly=MahApps.Metro.IconPacks.FontAwesome" x:Class="Index_Prototype.Pages.Section_List.SectionList" 
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="SectionList">
@@ -18,8 +18,7 @@
 
         <Button HorizontalAlignment="Left" Padding="15,10,15,10" Style="{DynamicResource RoundCorner}" Height="30" Width="118" Margin="89,302,0,118" >
             <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
-
-                <fa6:SvgAwesome Icon="Solid_Plus" Width="18" Margin="0,0,5,0" VerticalAlignment="Center" />
+                <iconPacks:PackIconFontAwesome Kind="PlusSolid"  Width="18" Margin="0,0,5,0" VerticalAlignment="Center"/>
                 <TextBlock Text="Add Section" VerticalAlignment="Center" HorizontalAlignment="Center"/>
             </StackPanel>
         </Button>

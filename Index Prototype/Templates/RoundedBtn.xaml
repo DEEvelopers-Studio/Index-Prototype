@@ -3,12 +3,12 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:fa6="http://schemas.fontawesome.com/icons/svg" x:Class="Index_Prototype.Templates.RoundedBtn"
+             xmlns:fa6="http://schemas.fontawesome.com/icons/svg" xmlns:iconPacks="clr-namespace:MahApps.Metro.IconPacks;assembly=MahApps.Metro.IconPacks.FontAwesome" x:Class="Index_Prototype.Templates.RoundedBtn"
              mc:Ignorable="d" 
              d:DesignHeight="57" d:DesignWidth="128">
     <Button Style="{DynamicResource RoundCorner}" Margin="0,0,0,0">
         <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
-            <fa6:SvgAwesome Icon="Solid_RightFromBracket" Width="18" Margin="0,0,5,0" VerticalAlignment="Center" />
+            <iconPacks:PackIconFontAwesome Kind="SignInAltSolid" Width="18" Margin="0,0,5,0" VerticalAlignment="Center" />
             <TextBlock Text="Login" VerticalAlignment="Center" HorizontalAlignment="Center"/>
         </StackPanel>
     </Button>
