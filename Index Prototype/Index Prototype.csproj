@@ -333,5 +333,8 @@
   <ItemGroup>
     <Resource Include="Assets\Images\notes.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Pages\Add Teacher\BootstrapIcons-EyeSlash.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
