@@ -23,7 +23,7 @@
         </Border>
         <ListView x:Name="ListView" Margin="335,114,18,25" Foreground="Black" BorderBrush="#FFB5B5B5">
             <ListViewItem Background="White" Content="Prof, Beltran "  FontSize="14" BorderThickness="1" BorderBrush="LightGray" FontFamily="PT Sans"/>
-            <ListViewItem Background="White" Content="Prof, Dee" FontSize="14" BorderThickness="1" BorderBrush="LightGray" FontFamily="PT Sans"></ListViewItem>
+            <ListViewItem Background="White" Content="Prof, Dee" FontSize="14" BorderThickness="1" BorderBrush="LightGray" FontFamily="PT Sans" Selected="ListViewItem_Selected"></ListViewItem>
             <ListViewItem Background="White" Content="Prof, Galang" FontSize="14" BorderThickness="1" BorderBrush="LightGray" FontFamily="PT Sans"/>
             <ListViewItem Background="White" Content="Prof, Liwanag" FontSize="14" BorderThickness="1" BorderBrush="LightGray" FontFamily="PT Sans"/>
             <ListViewItem Background="White" Content="Prof, Macrol" FontSize="14" BorderThickness="1" BorderBrush="LightGray" FontFamily="PT Sans"/>

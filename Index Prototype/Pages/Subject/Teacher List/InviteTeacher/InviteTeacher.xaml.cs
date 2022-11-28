@@ -10,22 +10,21 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Index_Prototype.Pages.Teacher_List
+namespace Index_Prototype.Pages.Subject.Teacher_List.InviteTeacher
 {
     /// <summary>
-    /// Interaction logic for TeacherList.xaml
+    /// Interaction logic for InviteTeacher.xaml
     /// </summary>
-    public partial class TeacherList : Page
+    public partial class InviteTeacher : Window
     {
-        public TeacherList()
+        public InviteTeacher()
         {
             InitializeComponent();
         }
 
-        private void ListViewItem_Selected(object sender, RoutedEventArgs e)
+        private void RoundedBtn_Loaded(object sender, RoutedEventArgs e)
         {
 
         }
