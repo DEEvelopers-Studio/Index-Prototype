@@ -12,6 +12,8 @@
             <ColumnDefinition Width="9*"/>
             <ColumnDefinition Width="118*"/>
         </Grid.ColumnDefinitions>
+        <TextBlock Text="Teachers" Margin="0,18,313,181" FontSize="18" Grid.Column="1" Grid.ColumnSpan="2" FontFamily="PT Sans" />
+        <TextBlock Text="Last Name:" Margin="0,52,334,153" Grid.Column="1" Grid.ColumnSpan="2" FontFamily="PT Sans" FontSize="9" />
 
     </Grid>
 </Window>
