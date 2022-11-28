@@ -18,8 +18,27 @@ namespace Index_Prototype.Pages.Subject.Teacher_List
     /// <summary>
     /// Interaction logic for TeacherList.xaml
     /// </summary>
+    /// 
     public partial class TeacherList : Page
     {
+        public class Teacher
+        {
+            public string name;
+            public Teacher(string name)
+            {
+                this.name = name;
+            }
+        }
+        public class TeacherItem
+        {
+            public Teacher teacher;
+            public bool isSelected;
+            public TeacherItem(Teacher teacher)
+            {
+                this.teacher = teacher;
+            }
+        }
+        public static TeacherItem[] teacherList = { new TeacherItem(new Teacher("Carl")) };
         public TeacherList()
         {
             InitializeComponent();
