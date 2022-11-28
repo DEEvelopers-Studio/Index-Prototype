@@ -5,7 +5,6 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
@@ -14,18 +13,16 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Index_Prototype.Pages.StudentList
+namespace Index_Prototype.Pages.Subject.Teacher_List
 {
     /// <summary>
-    /// Interaction logic for StudentList.xaml
+    /// Interaction logic for TeacherList.xaml
     /// </summary>
-    public partial class StudentList : Page
+    public partial class TeacherList : Page
     {
-        public StudentList()
+        public TeacherList()
         {
             InitializeComponent();
         }
-
-       
     }
 }

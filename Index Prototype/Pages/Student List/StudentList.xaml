@@ -9,7 +9,6 @@
       Title="StudentList">
 
     <Grid>
-		<Button Content="Button" HorizontalAlignment="Left" Margin="204,131,0,0" VerticalAlignment="Top" Height="106" Width="179"/>
-
-	</Grid>
+       
+    </Grid>
 </Page>

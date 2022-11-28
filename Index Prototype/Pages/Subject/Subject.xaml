@@ -12,13 +12,37 @@
         <ResourceDictionary>
             <Style x:Key="SidebarBtn" TargetType="{x:Type Button}" >
                 <Setter Property="Background" Value="Transparent"/>
+                <Setter Property="Margin" Value="0,0,0,5"/>
+                <Setter Property="FontSize" Value="14"/>
+                <Setter Property="FontFamily" Value="PT Sans"/>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type Button}">
+                            <Border Background="{TemplateBinding Background}"  Padding="10">
+                                <ContentPresenter HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+                            </Border>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+                <Style.Triggers>
+                    <Trigger Property="IsMouseOver" Value="True">
+                        <Setter Property="Background" Value="{Binding Mode=OneWay, Source={StaticResource GreyLighten60}}"/>
+                    </Trigger>
+                    <Trigger Property="IsFocused" Value="True">
+                        <Setter Property="Foreground" Value="White"/>
+                        <Setter Property="Background" Value="{Binding Mode=OneWay, Source={StaticResource PrimaryBtnColor}}"/>
+                    </Trigger>
+                </Style.Triggers>
+            </Style>
+            <Style x:Key="Btn" TargetType="{x:Type Button}" >
+                <Setter Property="Background" Value="Transparent"/>
                 <Setter Property="Margin" Value="0,0,0,3"/>
                 <Setter Property="FontSize" Value="14"/>
                 <Setter Property="FontFamily" Value="PT Sans"/>
                 <Setter Property="Template">
                     <Setter.Value>
                         <ControlTemplate TargetType="{x:Type Button}">
-                            <Border Background="{TemplateBinding Background}"  BorderThickness="1"  CornerRadius="3" Padding="7">
+                            <Border Background="{TemplateBinding Background}"  BorderThickness="0" Padding="10">
                                 <ContentPresenter HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
                             </Border>
                         </ControlTemplate>
@@ -42,13 +66,13 @@
             <RowDefinition Height="361*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="80*"/>
-            <ColumnDefinition Width="251*"/>
-            <ColumnDefinition Width="69*"/>
+            <ColumnDefinition Width="16*"/>
+            <ColumnDefinition Width="45*"/>
+            <ColumnDefinition Width="19*"/>
         </Grid.ColumnDefinitions>
-        <Border Background="White" Grid.Row="1" >
+        <Border Background="White" Margin="0,114,0,0" Grid.RowSpan="2" >
             <DockPanel>
-                <StackPanel DockPanel.Dock="Top" Margin="5">
+                <StackPanel DockPanel.Dock="Top" Margin="0,20,0,0">
                     <Button Style="{Binding Mode=OneWay, Source={StaticResource SidebarBtn}}">
 
                         <StackPanel Orientation="Horizontal">
@@ -74,8 +98,8 @@
                     </Button>
 
                 </StackPanel>
-                <Border DockPanel.Dock="Bottom" BorderBrush="#FF676767" VerticalAlignment="Bottom" BorderThickness="0,0.3,0,0">
-                    <StackPanel Margin="5" DockPanel.Dock="Bottom" >
+                <Border Padding="0,3" DockPanel.Dock="Bottom" BorderBrush="#FF676767" VerticalAlignment="Bottom" BorderThickness="0,0.3,0,0">
+                    <StackPanel DockPanel.Dock="Bottom" >
                         <Button VerticalAlignment="Center" Style="{Binding Mode=OneWay, Source={StaticResource SidebarBtn}}">
 
                             <StackPanel Orientation="Horizontal">
@@ -90,14 +114,14 @@
 
             </DockPanel>
         </Border>
-        <Grid Grid.Column="1" Background="#FFECECEC" Grid.ColumnSpan="2" Grid.RowSpan="2"/>
+        <Frame Grid.Column="1" Background="#FFECECEC" Grid.ColumnSpan="2" Grid.RowSpan="2" Source="/Pages/Subject/Student List/StudentList.xaml"/>
+
         <Grid Grid.Column="0" Background="White"></Grid>
         <Grid Grid.Column="0" Grid.ColumnSpan="2">
             <Border Background="{Binding Mode=OneWay, Source={StaticResource SecondaryBlue}}" CornerRadius="0,10,10,0" Padding="30,5,30,5" HorizontalAlignment="Left" VerticalAlignment="Center" Height="75.96">
                 <StackPanel HorizontalAlignment="Left">
                     <StackPanel>
                         <TextBlock TextWrapping="WrapWithOverflow" Text="Subject Name " Foreground="White" FontSize="36" HorizontalAlignment="Left" ClipToBounds="True" TextTrimming="CharacterEllipsis" Height="50"/>
-
                     </StackPanel>
                     <TextBlock TextWrapping="WrapWithOverflow" Text="Section/Section/Section" VerticalAlignment="Bottom" Foreground="White" HorizontalAlignment="Left" TextTrimming="CharacterEllipsis" Height="15.96"/>
                 </StackPanel>
