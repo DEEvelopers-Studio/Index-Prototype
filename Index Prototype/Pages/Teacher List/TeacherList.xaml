@@ -4,7 +4,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Index_Prototype.Pages.Teacher_List"
-      xmlns:fa6="http://schemas.fontawesome.com/icons/svg" xmlns:iconPacks="clr-namespace:MahApps.Metro.IconPacks;assembly=MahApps.Metro.IconPacks.FontAwesome" x:Class="Index_Prototype.Pages.Teacher_List.TeacherList"
+      xmlns:fa6="http://schemas.fontawesome.com/icons/svg" xmlns:iconPacks="clr-namespace:MahApps.Metro.IconPacks;assembly=MahApps.Metro.IconPacks.FontAwesome" xmlns:iconPacks1="http://metro.mahapps.com/winfx/xaml/iconpacks" x:Class="Index_Prototype.Pages.Teacher_List.TeacherList"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="TeacherList">
@@ -17,35 +17,44 @@
 
             <Button HorizontalAlignment="Left" VerticalAlignment="Top" Height="33" Width="44" Style="{DynamicResource RoundCorner}" Margin="31,25,0,0">
                 <iconPacks:PackIconFontAwesome Kind="ArrowLeftSolid" VerticalAlignment="Center" Height="20" Width="20" HorizontalAlignment="Center"/>
+               
             </Button>
 
         </Border>
         <ListView x:Name="ListView" Margin="335,114,18,25" Foreground="Black" BorderBrush="#FFB5B5B5">
-            <ListViewItem Background="White" Content="Prof, Beltran "  FontSize="20" BorderThickness="1" BorderBrush="LightGray"/>
-            <ListViewItem Background="White" Content="Prof, Dee" FontSize="20" BorderThickness="1" BorderBrush="LightGray"></ListViewItem>
-            <ListViewItem Background="White" Content="Prof, Galang" FontSize="20" BorderThickness="1" BorderBrush="LightGray"/>
-            <ListViewItem Background="White" Content="Prof, Liwanag" FontSize="20" BorderThickness="1" BorderBrush="LightGray"/>
-            <ListViewItem Background="White" Content="Prof, Macrol" FontSize="20" BorderThickness="1" BorderBrush="LightGray"/>
-            <ListViewItem Background="White" Content="Prof, Marabe" FontSize="20" BorderThickness="1" BorderBrush="LightGray"/>
-            <ListViewItem Background="White" Content="Prof, Omandam" FontSize="20" BorderThickness="1" BorderBrush="LightGray"/>
-            <ListViewItem Background="White" Content="Prof, Suyat" FontSize="20" BorderThickness="1" BorderBrush="LightGray"/>
-            <ListViewItem Background="White" Content="Prof, Tandayo" FontSize="20" BorderThickness="1" BorderBrush="LightGray"/>
-            <ListViewItem Background="White" Content="Prof, Unknown" FontSize="20" BorderThickness="1" BorderBrush="LightGray"/>
-            <ListViewItem Background="White" Content="Prof, Unknown 2" FontSize="20" BorderThickness="1" BorderBrush="LightGray"/>
+            <ListViewItem Background="White" Content="Prof, Beltran "  FontSize="14" BorderThickness="1" BorderBrush="LightGray" FontFamily="PT Sans"/>
+            <ListViewItem Background="White" Content="Prof, Dee" FontSize="14" BorderThickness="1" BorderBrush="LightGray" FontFamily="PT Sans"></ListViewItem>
+            <ListViewItem Background="White" Content="Prof, Galang" FontSize="14" BorderThickness="1" BorderBrush="LightGray" FontFamily="PT Sans"/>
+            <ListViewItem Background="White" Content="Prof, Liwanag" FontSize="14" BorderThickness="1" BorderBrush="LightGray" FontFamily="PT Sans"/>
+            <ListViewItem Background="White" Content="Prof, Macrol" FontSize="14" BorderThickness="1" BorderBrush="LightGray" FontFamily="PT Sans"/>
+            <ListViewItem Background="White" Content="Prof, Marabe" FontSize="14" BorderThickness="1" BorderBrush="LightGray" FontFamily="PT Sans"/>
+            <ListViewItem Background="White" Content="Prof, Omandam" FontSize="14" BorderThickness="1" BorderBrush="LightGray" FontFamily="PT Sans"/>
+            <ListViewItem Background="White" Content="Prof, Suyat" FontSize="14" BorderThickness="1" BorderBrush="LightGray" FontFamily="PT Sans"/>
+            <ListViewItem Background="White" Content="Prof, Tandayo" FontSize="14" BorderThickness="1" BorderBrush="LightGray" FontFamily="PT Sans"/>
+            <ListViewItem Background="White" Content="Prof, Unknown" FontSize="14" BorderThickness="1" BorderBrush="LightGray" FontFamily="PT Sans"/>
+            <ListViewItem Background="White" Content="Prof, Unknown 2" FontSize="14" BorderThickness="1" BorderBrush="LightGray" FontFamily="PT Sans"/>
+            <ListViewItem Background="White" Content="Prof, Unknown 3" FontSize="14" BorderThickness="1" BorderBrush="LightGray" FontFamily="PT Sans"/>
+            <ListViewItem Background="White" Content="Prof, Unknown 4" FontSize="14" BorderThickness="1" BorderBrush="LightGray" FontFamily="PT Sans"/>
+            <ListViewItem Background="White" Content="Prof, Unknown 5" FontSize="14" BorderThickness="1" BorderBrush="LightGray" FontFamily="PT Sans"/>
+            <ListViewItem Background="White" Content="Prof, Unknown 6" FontSize="14" BorderThickness="1" BorderBrush="LightGray" FontFamily="PT Sans"/>
+            <ListViewItem Background="White" Content="Prof, Unknown 7" FontSize="14" BorderThickness="1" BorderBrush="LightGray" FontFamily="PT Sans"/>
+
+            <ListViewItem/>
         </ListView>
         <Image Source="/Assets/Images/notes.png" Margin="48,61,494,218"/>
-        <TextBlock Text="Teachers" Margin="336,61,318,343" FontSize="36" FontWeight="Bold" />
+        <TextBlock Text="Teachers" Margin="336,61,318,343" FontSize="36" FontWeight="Bold" FontFamily="PT Sans" />
+        
         <TextBlock Text="TITLE" Margin="154,240,582,180" FontSize="20" FontWeight="Bold"/>
         <Button HorizontalAlignment="Left" VerticalAlignment="Top" Padding="15,10,15,10" Style="{DynamicResource RoundCorner}" Height="38" Margin="123,301,0,0" Width="108" >
             <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
                 <iconPacks:PackIconFontAwesome Kind="ChalkboardTeacherSolid"  Width="18" Margin="0,0,5,0" VerticalAlignment="Center" />
-                <TextBlock Text="Add Teacher" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                <TextBlock Text="Add Teacher" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="PT Sans"/>
             </StackPanel>
         </Button>
         <Button HorizontalAlignment="Left" VerticalAlignment="Top" Padding="15,10,15,10" Style="{DynamicResource RoundCorner}" Height="38" Margin="123,358,0,0" Width="108" >
             <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
                 <iconPacks:PackIconFontAwesome Kind="ToolsSolid" Width="18" Margin="0,0,5,0" VerticalAlignment="Center"/>
-                <TextBlock Text="Settings" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                <TextBlock Text="Settings" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="PT Sans"/>
             </StackPanel>
         </Button>
     </Grid>
