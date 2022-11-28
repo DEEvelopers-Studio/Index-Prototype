@@ -7,6 +7,11 @@
         mc:Ignorable="d"
         Title="AddTeacher" Height="233" Width="393" WindowStyle="ToolWindow">
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="4*"/>
+            <ColumnDefinition Width="9*"/>
+            <ColumnDefinition Width="118*"/>
+        </Grid.ColumnDefinitions>
+
     </Grid>
 </Window>
