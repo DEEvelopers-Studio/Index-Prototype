@@ -187,6 +187,9 @@
     <Compile Include="Pages\Subject\Subject.xaml.cs">
       <DependentUpon>Subject.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\Subject\Teacher List\InviteTeacher\InviteTeacher.xaml.cs">
+      <DependentUpon>InviteTeacher.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\Subject\Teacher List\TeacherList.xaml.cs">
       <DependentUpon>TeacherList.xaml</DependentUpon>
     </Compile>
@@ -250,6 +253,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\Subject\Subject.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Subject\Teacher List\InviteTeacher\InviteTeacher.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
