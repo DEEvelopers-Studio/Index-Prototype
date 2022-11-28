@@ -14,8 +14,8 @@
             <RowDefinition Height="361*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="251*"/>
-            <ColumnDefinition Width="69*"/>
+            <ColumnDefinition Width="45*"/>
+            <ColumnDefinition Width="19*"/>
         </Grid.ColumnDefinitions>
         <StackPanel>
             <!--do not put anything!!-->
