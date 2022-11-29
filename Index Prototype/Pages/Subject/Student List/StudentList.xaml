@@ -26,14 +26,14 @@
             <StackPanel Orientation="Horizontal">
                 <CheckBox Margin="5 8 5 0"></CheckBox>
                 <TextBlock Text="Students" Margin="5 5 0 0" FontWeight="Medium" FontSize="14"></TextBlock>
-                <Grid >
+                <Grid>
                     <TextBox Tag="Search"
                            HorizontalAlignment="Center"
                            VerticalAlignment="Top"
                            Margin="10 0 0 0"
-                           Style="{DynamicResource TextBoxStyle}"/>
-                </Grid>
-              
+                           Style="{DynamicResource TextBoxStyle}" Height="30.4"/>
+                 </Grid>
+
             </StackPanel>
             <Button HorizontalAlignment="Right" Width="30" Height="30" VerticalAlignment="Top" Margin="0 0 40 0">
                 <iconPacks:PackIconFontAwesome Kind="TrashSolid" />
@@ -44,7 +44,7 @@
                     <ListView.View>
                         <GridView>
                             <GridView.Columns>
-                                <GridViewColumn Header="Lastname" Width="120"/>
+                                <GridViewColumn Header="Lastname" Width="120" />
                                 <GridViewColumn Header="Firstname" Width="120"/>
                                 <GridViewColumn Header="Middle Initial" Width="120"/>
                                 <GridViewColumn Header="Student Number" Width="120"/>
@@ -53,17 +53,17 @@
                         </GridView>
                     </ListView.View>
                 </ListView>
-                
+
             </Grid>
 
 
-            
-                <Button Width="150" Height="30" Content="Do an Attendance" VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="10 0 5 5"></Button>
 
-            <ComboBox ItemsSource="{Binding mode}" Width="150" Height="30" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="10 0 40 5"></ComboBox>
-                
-            
+            <Button Width="150" Height="30" Content="Do an Attendance" VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="10 0 5 5"></Button>
+
+            <ComboBox ItemsSource="{Binding mode}" Width="150" Height="30" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="10 0 40 5" Text="test" SelectedIndex="0"></ComboBox>
+
+
         </Grid>
-        
+
     </Grid>
 </Page>
