@@ -8,7 +8,6 @@
       Title="Subject" Width="800" Height="450">
 
     <Page.Resources>
-
         <ResourceDictionary>
             <Style x:Key="SidebarBtn" TargetType="{x:Type Button}" >
                 <Setter Property="Background" Value="Transparent"/>
@@ -99,7 +98,7 @@
 
                 </StackPanel>
                 <Border Padding="0,3" DockPanel.Dock="Bottom" BorderBrush="#FF676767" VerticalAlignment="Bottom" BorderThickness="0,0.3,0,0">
-                    <StackPanel DockPanel.Dock="Bottom" >
+                    <StackPanel DockPanel.Dock="Bottom">
                         <Button VerticalAlignment="Center" Style="{Binding Mode=OneWay, Source={StaticResource SidebarBtn}}">
 
                             <StackPanel Orientation="Horizontal">
@@ -114,7 +113,7 @@
 
             </DockPanel>
         </Border>
-        <Frame Grid.Column="1" Background="#FFECECEC" Grid.ColumnSpan="2" Grid.RowSpan="2" Source="/Pages/Subject/Student List/StudentList.xaml"/>
+        <Frame Grid.Column="1" Background="#FFECECEC" Grid.ColumnSpan="2" Grid.RowSpan="2" Source="/Pages/Subject/Teacher List/TeacherList.xaml"/>
 
         <Grid Grid.Column="0" Background="White"></Grid>
         <Grid Grid.Column="0" Grid.ColumnSpan="2">

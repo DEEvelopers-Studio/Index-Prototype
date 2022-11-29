@@ -3,11 +3,30 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:Index_Prototype.Pages.Subject.Teacher_List"
+      xmlns:local="clr-namespace:Index_Prototype.Pages.Subject.Teacher_List" xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="640"
       Title="TeacherList">
-
+    <Page.Resources>
+        <Style TargetType="{x:Type TextBox}" x:Key="ExpandingTextBox">
+            <Setter Property="OverridesDefaultStyle" Value="True"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="TextBox">
+                        <Grid>
+                            <TextBox  Text="{TemplateBinding Text}"
+                                  VerticalAlignment="Stretch"
+                                  HorizontalAlignment="Stretch"
+                                  Margin="10"
+                                  MaxWidth="100" Padding="20,0,0,0"
+                         />
+                            <iconPacks:PackIconBoxIcons Kind="RegularSearchAlt2" Margin="14,0,0,0" VerticalAlignment="Center" Height="11" Width="12" />
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Page.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="123*"/>
@@ -20,5 +39,8 @@
         <StackPanel>
             <!--do not put anything!!-->
         </StackPanel>
+        <Grid Grid.Row="1" Grid.ColumnSpan="2">
+            <TextBox HorizontalAlignment="Left" Margin="289,62,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120" Style="{Binding Mode=OneWay, Source={StaticResource ExpandingTextBox}}"></TextBox>
+        </Grid>
     </Grid>
 </Page>
