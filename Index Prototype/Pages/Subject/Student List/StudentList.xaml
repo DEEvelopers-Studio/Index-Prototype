@@ -21,26 +21,51 @@
             <!--do not put anything!!-->
         </StackPanel>
 
-        <Button x:Name="addStudent" Grid.Column="2" Width="120" Height="30" Content="Add New Student" Margin="0 0 10 45"></Button>
-        <Grid Grid.Row="2" Grid.ColumnSpan="2">
+        <Button x:Name="addStudentBtn"
+                Grid.Column="2" 
+                Width="120"
+                Height="30" 
+                Content="Add New Student"
+                Margin="0 0 10 45">
+        </Button>
+
+        <Grid Grid.Row="2"
+              Grid.ColumnSpan="2">
+
             <StackPanel Orientation="Horizontal">
-                <CheckBox Margin="5 8 5 0"></CheckBox>
-                <TextBlock Text="Students" Margin="5 5 0 0" FontWeight="Medium" FontSize="14"></TextBlock>
+                
+                <CheckBox x:Name="allStudents"
+                          Margin="5 8 5 0">
+                </CheckBox>
+
+                <TextBlock Text="Students" 
+                           Margin="5 5 0 0"
+                           FontWeight="Medium"
+                           FontSize="14">
+                </TextBlock>
                 <Grid>
                     <TextBox x:Name="searhBar" Tag="Find Student"
                            HorizontalAlignment="Center"
                            VerticalAlignment="Top"
                            Margin="10 0 0 0"
                            Style="{DynamicResource TextBoxStyle}" Height="30.4"/>
-                 </Grid>
+                </Grid>
 
             </StackPanel>
-            <Button HorizontalAlignment="Right" Width="30" Height="30" VerticalAlignment="Top" Margin="0 0 40 0">
+
+            <Button x:Name="deleteBtn"
+                    HorizontalAlignment="Right"
+                    Width="30"
+                    Height="30"
+                    VerticalAlignment="Top"
+                    Margin="0 0 40 0">
                 <iconPacks:PackIconFontAwesome Kind="TrashSolid" />
             </Button>
 
             <Grid>
-                <ListView Width="auto" Height="250" Margin="10 0 40 0">
+                <ListView Width="auto"
+                          Height="250"
+                          Margin="10 0 40 0">
                     <ListView.View>
                         <GridView>
                             <GridView.Columns>
@@ -56,14 +81,24 @@
 
             </Grid>
 
+            <Button x:Name="attendanceBtn"
+                    Width="150"
+                    Height="30"
+                    Content="Do an Attendance"
+                    VerticalAlignment="Bottom"
+                    HorizontalAlignment="Left"
+                    Margin="10 0 5 5"></Button>
 
-
-            <Button Width="150" Height="30" Content="Do an Attendance" VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="10 0 5 5"></Button>
-
-            <ComboBox ItemsSource="{Binding mode}" Width="150" Height="30" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="10 0 40 5" Text="test" SelectedIndex="0"></ComboBox>
-
+            <ComboBox ItemsSource="{Binding mode}"
+                      Width="150"
+                      Height="30"
+                      HorizontalAlignment="Right"
+                      VerticalAlignment="Bottom"
+                      Margin="10 0 40 5"
+                      SelectedIndex="0">
+            </ComboBox>
 
         </Grid>
-
+        
     </Grid>
 </Page>
