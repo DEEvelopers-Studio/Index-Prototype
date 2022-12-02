@@ -221,10 +221,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\Student List\StudentList.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Pages\Subject List\SubjectList.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -282,9 +278,6 @@
     </Compile>
     <Compile Include="Pages\Section List\SectionList.xaml.cs">
       <DependentUpon>SectionList.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Pages\Student List\StudentList.xaml.cs">
-      <DependentUpon>StudentList.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\Subject List\SubjectList.xaml.cs">
       <DependentUpon>SubjectList.xaml</DependentUpon>
