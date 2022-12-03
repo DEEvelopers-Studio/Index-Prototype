@@ -320,7 +320,7 @@
                         </GridView>
                     </ListView.View>
                 </ListView>
-                <StackPanel Margin="448,298,23,1" Orientation="Horizontal">
+                <StackPanel Margin="448,298,23,7" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
                     <Button Width="148" Height="30" VerticalAlignment="Bottom" BorderThickness="1,1,0,1" Content="{Binding SelectedItem, ElementName=comboBox}" />
                     <ComboBox x:Name="comboBox" Style="{DynamicResource ComboBoxGroup}" ItemsSource="{Binding mode}" Width="21" Height="30" VerticalAlignment="Bottom"  Text="test" SelectedIndex="0" BorderThickness="1,1,1,1"/>
                 </StackPanel>
@@ -330,16 +330,6 @@
 
 
             <Button Width="150" Height="30" Content="Do an Attendance" VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="10 0 5 5"/>
-
-
-            <ComboBox ItemsSource="{Binding mode}"
-                      Width="150"
-                      Height="30"
-                      HorizontalAlignment="Right"
-                      VerticalAlignment="Bottom"
-                      Margin="10 0 40 5"
-                      SelectedIndex="0">
-            </ComboBox>
 
         </Grid>
         
