@@ -114,7 +114,7 @@
 
             </DockPanel>
         </Border>
-        <Frame Grid.Column="1" Background="#FFECECEC" Grid.ColumnSpan="2" Grid.RowSpan="2" Source="/Pages/Student/Student.xaml" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" ScrollViewer.VerticalScrollBarVisibility="Disabled"/>
+        <Frame Grid.Column="1" Background="#FFECECEC" Grid.ColumnSpan="2" Grid.RowSpan="2" Source="/Pages/Subject/Student List/StudentList.xaml" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" ScrollViewer.VerticalScrollBarVisibility="Disabled"/>
 
         <Grid Grid.Column="0" Background="White"></Grid>
         <Grid Grid.Column="0" Grid.ColumnSpan="2">
