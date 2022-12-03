@@ -283,33 +283,32 @@
 
         <Button Grid.Column="2" Width="120" Height="30" Content="Add New Student" Margin="0 0 10 45"/>
         <Grid Grid.Row="2" Grid.ColumnSpan="2">
-            <StackPanel Orientation="Horizontal">
-                <CheckBox Margin="5 8 5 0"/>
-                <TextBlock Text="Students" Margin="5 5 0 0" FontWeight="Medium" FontSize="14"/>
-                <Grid>
-
-                    <TextBox Tag="Search"
+            <DockPanel  VerticalAlignment="Top" Margin="10,0,10,0">
+                <StackPanel Orientation="Horizontal">
+                    
+                <CheckBox Margin="5 8 5 0" Content="Students" FontWeight="Bold"/>
+                <TextBox Tag="Search"
                            HorizontalAlignment="Center"
                            VerticalAlignment="Top"
                            Margin="10 0 0 0"
                            Style="{Binding Mode=OneWay, Source={StaticResource TextBoxStyle}}" Height="30.4" BorderThickness="1,1,1,1"/>
-                </Grid>
 
-            </StackPanel>
-
-            <Button x:Name="deleteBtn"
+                </StackPanel>
+                <Button x:Name="deleteBtn"
                     HorizontalAlignment="Right"
                     Width="30"
                     Height="30"
-                    VerticalAlignment="Top"
-                    Margin="0 0 40 0">
-                <iconPacks:PackIconFontAwesome Kind="TrashSolid" />
-            </Button>
+                    VerticalAlignment="Top" DockPanel.Dock="Right">
+                    <iconPacks:PackIconFontAwesome Kind="TrashSolid" />
+                </Button>
+            </DockPanel>
+
+            
 
             <Grid>
                 <ListView Width="auto"
                           Height="250"
-                          Margin="10 0 40 0">
+                          Margin="10,43,10,43">
                     <ListView.View>
                         <GridView>
                             <GridViewColumn Header="Lastname" Width="120" />
