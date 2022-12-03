@@ -4,7 +4,8 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Index_Prototype.Pages.Subject.Student"
-      mc:Ignorable="d"
+      mc:Ignorable="d" 
+      Height="450" Width="640"
       Title="Student">
 
     <Grid>
@@ -19,7 +20,5 @@
         <StackPanel>
             <!--do not put anything!!-->
         </StackPanel>
-        <Border BorderBrush="Black" BorderThickness="1" Grid.Row="1"/>
-        <Border BorderBrush="Black" BorderThickness="1" Grid.Column="1"/>
     </Grid>
 </Page>
