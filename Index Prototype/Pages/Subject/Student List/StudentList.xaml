@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:Index_Prototype.Pages.Subject.Student_List" xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
       xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls" x:Class="Index_Prototype.Pages.Subject.Student_List.StudentList"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="640"
+      Height="450" Width="640"
       Title="StudentList"
     xmlns:theme="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero2">
     <Page.Resources>
