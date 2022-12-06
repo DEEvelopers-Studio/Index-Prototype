@@ -1,8 +1,9 @@
-﻿<Page x:Class="Index_Prototype.Pages.Teacher_Login.TeacherLogin"
+﻿<Page
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
+      xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls" x:Class="Index_Prototype.Pages.Teacher_Login.TeacherLogin"
       mc:Ignorable="d" 
       Height="450" Width="800"
       Title="TeacherLogin">
@@ -65,34 +66,34 @@
     <Grid >
 
         <Grid.Background>
-            <ImageBrush ImageSource="/Assets/Images/2021-bgvid.jpg" Stretch="UniformToFill"></ImageBrush>
+            <ImageBrush ImageSource="/Assets/Images/2021-bgvid.jpg" Stretch="UniformToFill"/>
         </Grid.Background>
-        <Border BorderBrush="Black" HorizontalAlignment="Left" Height="326" VerticalAlignment="Top" Width="290" CornerRadius="10,10,10,10" Margin="437,75,0,0">
+        <Button HorizontalAlignment="Left" VerticalAlignment="Top" Height="33" Width="35" Style="{DynamicResource RoundCorner}" Margin="10,10,0,0">
+            <iconPacks:PackIconFontAwesome Kind="CogSolid" VerticalAlignment="Center" Height="20" Width="20" HorizontalAlignment="Center"/>
+        </Button>
+        <Border BorderBrush="Black" HorizontalAlignment="Left" Height="326" VerticalAlignment="Top" Width="290" CornerRadius="10,10,10,10" Margin="437,75,0,0" Background="#FFF0F0F0">
             <Border.Effect>
                 <DropShadowEffect Direction="275" Opacity="0.345" ShadowDepth="3" BlurRadius="11" />
             </Border.Effect>
-            <Border.Background>
-                <SolidColorBrush Color="#FFF0F0F0"/>
-            </Border.Background>
             <DockPanel>
 
 
                 <StackPanel DockPanel.Dock="Bottom" VerticalAlignment="Bottom" Margin="0,0,0,30" Orientation="Horizontal" HorizontalAlignment="Center">
-                   <Label Content="dont have an account?" VerticalAlignment="Center" FontSize="9" Padding="0,0,0,0" />
-                    <Label Content="sign up" VerticalAlignment="Center" FontSize="9" Padding="0,0,0,0" Margin="5,0,0,0" Foreground="{Binding Mode=OneWay, Source={StaticResource PrimaryBtnColor}}" />
+                    <Label Content="dont have an account?" VerticalAlignment="Center" FontSize="11" Padding="0,0,0,0" />
+                    <Label Content="sign up" VerticalAlignment="Center" FontSize="11" Padding="0,0,0,0" Margin="5,0,0,0" Foreground="{Binding Mode=OneWay, Source={StaticResource PrimaryBtnColor}}" Cursor="Hand" />
                 </StackPanel>
 
                 <StackPanel VerticalAlignment="Center">
 
                     <TextBlock TextWrapping="Wrap" Text="LOGIN" FontSize="18" ClipToBounds="True" Height="32" Width="202" FontWeight="Bold"/>
                     <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,5">
-                        <Label Content="Username" FontSize="10"/>
+                        <Label Content="Username" FontSize="10" Padding="0,0,0,0"/>
                         <TextBox FontSize="14" Width="196"/>
                     </StackPanel>
                     <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,15" >
-                        <Label Content="Password" FontSize="10"/>
+                        <Label Content="Password" FontSize="10" Padding="0,0,0,0"/>
 
-                        <PasswordBox FontSize="14" Width="196"/>
+                        <PasswordBox FontSize="14" Width="196" />
                     </StackPanel>
                     <Button HorizontalAlignment="Center" Height="30" Width="72" >
                         <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
