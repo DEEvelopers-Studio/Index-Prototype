@@ -63,7 +63,7 @@
         </Style>
     </Page.Resources>
 
-    <Grid >
+    <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="171*"/>
             <ColumnDefinition Width="229*"/>
@@ -75,7 +75,7 @@
         <Button HorizontalAlignment="Left" VerticalAlignment="Top" Height="33" Width="35" Style="{DynamicResource RoundCorner}" Margin="10,10,0,0">
             <iconPacks:PackIconFontAwesome Kind="CogSolid" VerticalAlignment="Center" Height="20" Width="20" HorizontalAlignment="Center"/>
         </Button>
-        <Frame Source="/Pages/Home/Login.xaml" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" Grid.Column="1"/>
+        <Frame Source="/Pages/Home/Accounts.xaml" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" Grid.Column="1"/>
 
         <Image Source="/Assets/Images/notes.png" Margin="85,120,82,159"/>
         <TextBlock Text="TITLE" FontSize="24" FontWeight="Bold" VerticalAlignment="Top" HorizontalAlignment="Center" Foreground="White" Margin="0,296,0,0" Height="32" Width="60"/>

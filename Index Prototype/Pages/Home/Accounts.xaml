@@ -1,0 +1,53 @@
+﻿<Page x:Class="Index_Prototype.Pages.Home.Accounts"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Index_Prototype.Pages.Home"
+      mc:Ignorable="d" 
+      Width="458" Height="450"
+      Title="TeacherList" ScrollViewer.VerticalScrollBarVisibility="Disabled" DataContext="{Binding RelativeSource={RelativeSource Self}}">
+    <Grid>
+        <Border BorderBrush="Black" HorizontalAlignment="Center" Height="366" VerticalAlignment="Center" CornerRadius="10,10,10,10" Background="#FFF0F0F0" Width="365">
+            <Border.Effect>
+                <DropShadowEffect Direction="275" Opacity="0.345" ShadowDepth="3" BlurRadius="11" />
+            </Border.Effect>
+            <DockPanel Margin="0,10,0,10">
+                <StackPanel  Orientation="Horizontal" DockPanel.Dock="Bottom" HorizontalAlignment="Center" VerticalAlignment="Bottom">
+                    <Label Content="dont have an account?" VerticalAlignment="Center" FontSize="11" Padding="0,0,0,0" />
+                    <Label Content="sign up" VerticalAlignment="Center" FontSize="11" Padding="0,0,0,0" Margin="5,0,0,0" Foreground="{Binding Mode=OneWay, Source={StaticResource PrimaryBtnColor}}" Cursor="Hand" />
+                </StackPanel>
+                <TextBlock DockPanel.Dock="Top" Margin="0,0,0,5" FontSize="16" FontWeight="Bold" HorizontalAlignment="Center" Text="Teachers"/>
+                <ListView  ItemsSource="{Binding teachers}" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" ScrollViewer.VerticalScrollBarVisibility="Auto" DockPanel.Dock="Top" Margin="15,0,15,10" Background="{x:Null}" d:ItemsSource="{d:SampleData ItemCount=5}">
+                    <ListView.ItemContainerStyle>
+                        <Style TargetType="ListViewItem">
+                            <Setter Property="BorderBrush" Value="#FFC8C8C8"/>
+                            <Setter Property="BorderThickness" Value="0,0.5,0,0.5"/>
+                        </Style>
+                    </ListView.ItemContainerStyle>
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <Grid Margin="5" VerticalAlignment="Center">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition/>
+                                </Grid.ColumnDefinitions>
+                                <Border Margin="0,0,10,0" Background="White" BorderThickness="0.4" BorderBrush="Black">
+                                    <Image Source="/Assets/Images/default-profile.png" Width="20" />
+                                </Border>
+                                <StackPanel Orientation="Horizontal" Grid.Column="1" VerticalAlignment="Center">
+
+                                    <TextBlock Text="{Binding lastName}" Grid.Column="2" VerticalAlignment="Center"/>
+                                    <TextBlock Text=", "></TextBlock>
+                                    <TextBlock Text="{Binding firstName}"/>
+
+                                </StackPanel>
+                            </Grid>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+                
+            </DockPanel>
+        </Border>
+    </Grid>
+</Page>

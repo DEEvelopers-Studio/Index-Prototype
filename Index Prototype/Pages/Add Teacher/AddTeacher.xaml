@@ -14,13 +14,13 @@
             <ColumnDefinition Width="9*"/>
             <ColumnDefinition Width="118*"/>
         </Grid.ColumnDefinitions>
-        <TextBlock Text="Teachers" Margin="0,7,313,192" FontSize="18" Grid.Column="1" Grid.ColumnSpan="2" FontFamily="PT Sans" />
+        <TextBlock Text="Sign Up" Margin="0,7,313,189" FontSize="18" Grid.Column="1" Grid.ColumnSpan="2" FontFamily="PT Sans" />
         <TextBlock Text="Last Name" Margin="0,37,334,168" Grid.Column="1" Grid.ColumnSpan="2" FontFamily="PT Sans" FontSize="9" />
-        <TextBlock Text="First Name" Margin="48,37,259,168" Grid.Column="2" FontFamily="PT Sans" FontSize="9" />
-        <PasswordBox FontSize="14" Grid.ColumnSpan="2" Margin="0,47,313,152" Grid.Column="1"/>
-        <PasswordBox FontSize="14" Margin="46,47,177,152" Grid.Column="2"/>
-        <PasswordBox FontSize="14" Margin="85,83,177,116" Grid.Column="2"/>
-        <TextBlock Text="Middle Initial" Margin="85,73,216,132" Grid.Column="2" FontFamily="PT Sans" FontSize="9" />
+        <TextBlock Text="First Name" Margin="0,70,334,135" Grid.Column="1" FontFamily="PT Sans" FontSize="9" Grid.ColumnSpan="2" />
+        <PasswordBox FontSize="14" Grid.ColumnSpan="2" Margin="0,47,274,152" Grid.Column="1"/>
+        <PasswordBox FontSize="14" Margin="0,84,177,115" Grid.Column="1" Grid.ColumnSpan="2"/>
+        <PasswordBox FontSize="14" Margin="85,47,177,152" Grid.Column="2"/>
+        <TextBlock Text="Middle Name" Margin="85,35,212,170" Grid.Column="2" FontFamily="PT Sans" FontSize="9" RenderTransformOrigin="0.643,0.614" />
         <PasswordBox FontSize="14" Margin="0,118,177,81" Grid.Column="1" Grid.ColumnSpan="2"/>
         <PasswordBox FontSize="14" Margin="0,151,177,48" Grid.Column="1" Grid.ColumnSpan="2"/>
         <TextBlock Text="Password" Margin="0,108,341,97" Grid.Column="1" FontFamily="PT Sans" FontSize="9" Grid.ColumnSpan="2" />
@@ -38,9 +38,6 @@
                 </Button>
             </Grid>
         </Border>
-
-        <ComboBox Grid.Column="1" Grid.ColumnSpan="2" HorizontalAlignment="Left" Margin="0,83,0,0" VerticalAlignment="Top" Width="98" Height="18"/>
-        <TextBlock Text="Honorific" Margin="0,73,334,132" Grid.ColumnSpan="2" FontFamily="PT Sans" FontSize="9" Grid.Column="1" />
 
 
 

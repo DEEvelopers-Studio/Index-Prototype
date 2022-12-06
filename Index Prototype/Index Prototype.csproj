@@ -185,8 +185,8 @@
     <Compile Include="Pages\Home\Login.xaml.cs">
       <DependentUpon>Login.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\Home\TeacherList.xaml.cs">
-      <DependentUpon>TeacherList.xaml</DependentUpon>
+    <Compile Include="Pages\Home\Accounts.xaml.cs">
+      <DependentUpon>Accounts.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\Subject\Configuration\Configuration.xaml.cs">
       <DependentUpon>Configuration.xaml</DependentUpon>
@@ -228,7 +228,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\Home\TeacherList.xaml">
+    <Page Include="Pages\Home\Accounts.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
