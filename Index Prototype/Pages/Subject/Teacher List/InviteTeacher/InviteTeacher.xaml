@@ -30,13 +30,10 @@
 
         </ListView>
         <TextBlock Text="Teachers" Margin="20,30,634,358" FontSize="36" FontWeight="Bold" FontFamily="PT Sans" />
-        <Button Padding="15,10,15,10" Style="{DynamicResource RoundCorner}" Margin="709,394,20,10" FontFamily="PT Sans" FontSize="14" >
-            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
-                <TextBlock Text="Invite" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="PT Sans"/>
-            </StackPanel>
+        <Button Margin="709,394,20,10" FontFamily="PT Sans" FontSize="14" Content="Invite">
         </Button>
 
-        <Button HorizontalAlignment="Left" VerticalAlignment="Top" Height="39" Width="44" Style="{DynamicResource RoundCorner}"  Margin="736,34,0,0">
+        <Button HorizontalAlignment="Left" VerticalAlignment="Top" Height="39" Width="44"  Margin="736,34,0,0">
             <iconPacks:PackIconFontAwesome Kind="TrashSolid" VerticalAlignment="Center" Height="20" Width="20" HorizontalAlignment="Center" />
         </Button>
 
