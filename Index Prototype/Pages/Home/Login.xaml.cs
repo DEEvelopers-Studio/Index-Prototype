@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using static Index_Prototype.Pages.Add_Teacher.AddTeacher;
 
 namespace Index_Prototype.Pages.Home
 {
@@ -23,6 +24,21 @@ namespace Index_Prototype.Pages.Home
         public Login()
         {
             InitializeComponent();
+        }
+        Action<Teacher> onLoginSucess;
+        Action onExit;
+        internal void OnLoginSucess(Action<Teacher> value)
+        {
+            onLoginSucess = value;
+        }
+        internal void OnExit(Action value)
+        {
+            onExit = value;
+        }
+
+        private void Label_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            onExit.Invoke();
         }
     }
 }

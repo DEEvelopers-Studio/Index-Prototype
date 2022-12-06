@@ -27,5 +27,16 @@ namespace Index_Prototype.Pages.Home
         {
             InitializeComponent();
         }
+        Action<Teacher> onAccSelect;
+        internal void OnAccountSelect(Action<Teacher> value)
+        {
+            onAccSelect = value;
+        }
+        private Teacher _selectedAcc;
+        public Teacher SelectedAccount
+        {
+            get { return _selectedAcc; }
+            set { _selectedAcc = value; onAccSelect?.Invoke(value); }
+        }
     }
 }

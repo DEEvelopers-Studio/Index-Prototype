@@ -182,6 +182,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Directory\Converters\PasswordVisibleConverter.cs" />
+    <Compile Include="Directory\RelayCommand.cs" />
     <Compile Include="Pages\Home\Login.xaml.cs">
       <DependentUpon>Login.xaml</DependentUpon>
     </Compile>

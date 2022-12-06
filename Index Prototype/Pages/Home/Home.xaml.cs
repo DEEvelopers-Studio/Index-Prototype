@@ -24,6 +24,17 @@ namespace Index_Prototype.Pages.Home
         public Home()
         {
             InitializeComponent();
+            Accounts Accounts = new Accounts();
+            routerView.Navigate(Accounts);
+            Accounts.OnAccountSelect(acc =>
+            {
+                Login login = new Login();
+                routerView.Navigate(login);
+                login.OnExit(() =>
+                {
+                    routerView.Navigate(Accounts);
+                });
+            });
         }
     }
 }

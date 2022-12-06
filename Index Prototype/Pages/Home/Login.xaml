@@ -35,7 +35,7 @@
 
                 <StackPanel  Orientation="Horizontal" DockPanel.Dock="Bottom" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,245,0,0">
                     <Label Content="not you?" VerticalAlignment="Center" FontSize="11" Padding="0,0,0,0" />
-                    <Label Content="click here" VerticalAlignment="Center" FontSize="11" Padding="0,0,0,0" Margin="5,0,0,0" Foreground="{Binding Mode=OneWay, Source={StaticResource PrimaryBtnColor}}" Cursor="Hand" />
+                    <Label MouseDown="Label_MouseDown" Content="click here" VerticalAlignment="Center" FontSize="11" Padding="0,0,0,0" Margin="5,0,0,0" Foreground="{Binding Mode=OneWay, Source={StaticResource PrimaryBtnColor}}" Cursor="Hand" />
                 </StackPanel>
             </Grid>
         </Border>
