@@ -28,7 +28,7 @@
 
 
                 <StackPanel DockPanel.Dock="Bottom" VerticalAlignment="Bottom" Margin="0,0,0,30">
-                    <Button HorizontalAlignment="Center" Padding="15,10,15,10" Style="{DynamicResource RoundCorner}" Height="30" Width="72" >
+                    <Button HorizontalAlignment="Center"  Height="30" Width="72" >
                         <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
                             <iconPacks:PackIconFontAwesome Kind="SignInAltSolid" Width="18" Margin="0,0,5,0" VerticalAlignment="Center" />
                             <TextBlock Text="Login" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="PT Sans"/>
@@ -48,7 +48,7 @@
                 </StackPanel>
             </DockPanel>
         </Border>
-        <Button HorizontalAlignment="Left" VerticalAlignment="Top" Height="29" Width="30" Style="{DynamicResource RoundCorner}"  Margin="10,10,0,0">
+        <Button HorizontalAlignment="Left" VerticalAlignment="Top" Height="29" Width="30"  Margin="10,10,0,0">
             <iconPacks:PackIconFontAwesome Kind="ArrowLeftSolid" VerticalAlignment="Center" Height="20" Width="20" HorizontalAlignment="Center" />
         </Button>
         <TextBlock TextWrapping="Wrap" FontSize="24" Margin="132,207,464,207" Foreground="White" Text="TEACHER NAME" FontWeight="Bold" FontFamily="PT Sans">
