@@ -181,6 +181,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Directory\Converters\PasswordVisibleConverter.cs" />
     <Compile Include="Pages\Subject\Configuration\Configuration.xaml.cs">
       <DependentUpon>Configuration.xaml</DependentUpon>
     </Compile>
@@ -332,12 +333,17 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Directory\ViewModels\" />
+  </ItemGroup>
   <ItemGroup>
     <Resource Include="Assets\Images\default-profile.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Assets\Images\notes.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Images\2021-bgvid.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

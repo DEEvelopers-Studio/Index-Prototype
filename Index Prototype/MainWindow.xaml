@@ -4,6 +4,6 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
-        Title="IndexPrototype"  Icon="/Assets/Images/notes.png" Width="800" Height="490.96" ScrollViewer.VerticalScrollBarVisibility="Disabled" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch" ResizeMode="NoResize" SizeToContent="WidthAndHeight">
-    <Frame Content="Frame" Source="/Pages/Subject/Subject.xaml" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" ScrollViewer.VerticalScrollBarVisibility="Disabled" />
+        Title="IndexPrototype"  Icon="/Assets/Images/notes.png" Width="800" Height="490.96" ScrollViewer.VerticalScrollBarVisibility="Disabled" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch" ResizeMode="CanMinimize" SizeToContent="WidthAndHeight" WindowStartupLocation="CenterScreen">
+    <Frame Content="Frame" Source="/Pages/Teacher Login/TeacherLogin.xaml" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" ScrollViewer.VerticalScrollBarVisibility="Disabled" />
 </Window>
