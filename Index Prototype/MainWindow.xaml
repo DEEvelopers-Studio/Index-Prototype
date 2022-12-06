@@ -5,5 +5,5 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
         Title="IndexPrototype" ResizeMode="NoResize" Icon="/Assets/Images/notes.png" Width="800" Height="490.96">
-    <Frame Content="Frame" Source="/Pages/Subject/Subject.xaml" Width="800" />
+    <Frame Content="Frame" Source="/Pages/Subject/Subject.xaml" Width="800"/>
 </Window>
