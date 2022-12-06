@@ -182,6 +182,12 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Directory\Converters\PasswordVisibleConverter.cs" />
+    <Compile Include="Pages\Home\Login.xaml.cs">
+      <DependentUpon>Login.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Home\TeacherList.xaml.cs">
+      <DependentUpon>TeacherList.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\Subject\Configuration\Configuration.xaml.cs">
       <DependentUpon>Configuration.xaml</DependentUpon>
     </Compile>
@@ -215,6 +221,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\Add Teacher\AddTeacher.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Home\Login.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Home\TeacherList.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -258,7 +272,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\Teacher Login\TeacherLogin.xaml">
+    <Page Include="Pages\Home\Home.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -298,8 +312,8 @@
     <Compile Include="Pages\Teacher List\TeacherList.xaml.cs">
       <DependentUpon>TeacherList.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\Teacher Login\TeacherLogin.xaml.cs">
-      <DependentUpon>TeacherLogin.xaml</DependentUpon>
+    <Compile Include="Pages\Home\Home.xaml.cs">
+      <DependentUpon>Home.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>

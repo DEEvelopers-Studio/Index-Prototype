@@ -13,14 +13,15 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Index_Prototype.Pages.Teacher_Login
+namespace Index_Prototype.Pages.Home
 {
     /// <summary>
-    /// Interaction logic for TeacherLogin.xaml
+    /// Interaction logic for TeacherList.xaml
     /// </summary>
-    public partial class TeacherLogin : Page
+    public partial class TeacherList : Page
     {
-        public TeacherLogin()
+        
+        public TeacherList()
         {
             InitializeComponent();
         }
