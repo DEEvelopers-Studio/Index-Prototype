@@ -8,6 +8,12 @@
       Title="TeacherLogin">
 
     <Grid >
+        <Grid.OpacityMask>
+            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                <GradientStop Color="Black"/>
+                <GradientStop Color="White" Offset="1"/>
+            </LinearGradientBrush>
+        </Grid.OpacityMask>
 
         <Grid.Background>
             <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
@@ -49,6 +55,12 @@
             </DockPanel>
         </Border>
         <Button HorizontalAlignment="Left" VerticalAlignment="Top" Height="29" Width="30" Style="{DynamicResource RoundCorner}"  Margin="10,10,0,0">
+            <Button.OpacityMask>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="Black"/>
+                    <GradientStop Color="White" Offset="1"/>
+                </LinearGradientBrush>
+            </Button.OpacityMask>
             <iconPacks:PackIconFontAwesome Kind="ArrowLeftSolid" VerticalAlignment="Center" Height="20" Width="20" HorizontalAlignment="Center" />
         </Button>
         <TextBlock TextWrapping="Wrap" FontSize="24" Margin="132,207,464,207" Foreground="White" Text="TEACHER NAME" FontWeight="Bold" FontFamily="PT Sans">

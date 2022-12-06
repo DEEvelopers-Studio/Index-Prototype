@@ -63,6 +63,8 @@
                 <ImageBrush ImageSource="/Pages/Add Teacher/BootstrapIcons-EyeSlash.png"/>
             </Button.Background>
         </Button>
+        <ComboBox HorizontalAlignment="Left" Margin="0,83,0,0" VerticalAlignment="Top" Width="92" Grid.ColumnSpan="2" Height="18" Grid.Column="1"/>
+        <TextBlock Text="Honorific" Margin="0,74,334,131" FontFamily="PT Sans" FontSize="9" Grid.ColumnSpan="2" Grid.Column="1" />
 
 
 
