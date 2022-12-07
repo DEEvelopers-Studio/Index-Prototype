@@ -20,9 +20,14 @@ namespace Index_Prototype.Pages.Subject.Configuration
     /// </summary>
     public partial class Configuration : Page
     {
+
+        public String[] menu { get; set; }
         public Configuration()
         {
             InitializeComponent();
+
+            menu = new String[] { "Next Student", "Random Student", "Next Random Student" };
+            DataContext = this;
         }
     }
 }

@@ -3,37 +3,119 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:Index_Prototype.Pages.Student_Info"
+             xmlns:local="clr-namespace:Index_Prototype.Pages.Student_Info" 
              mc:Ignorable="d" 
+             xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
+        
              Height="450" Width="800" UseLayoutRounding="False">
 
 
     <Grid>
+
         <Grid.ColumnDefinitions>
-            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition Width="350"/>
+            <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
-        <Grid.RowDefinitions>
-            <RowDefinition Height="150"></RowDefinition>
-            <RowDefinition></RowDefinition>
-        </Grid.RowDefinitions>
 
-        <StackPanel Orientation="Horizontal">
-            <Image Source="\Assets\Images\default-profile.png" Width="200"/>
-
-            <StackPanel VerticalAlignment="Center">
-                <TextBlock Text="Marabe, Jermaine Benedict Pineda" Margin="5" FontSize="25" FontWeight="Bold"/>
-                <TextBlock Text="02000272755" Margin="5" FontSize="18" FontWeight="Medium"/>
-                <TextBlock Text="BS301" Margin="5" FontSize="18" FontWeight="Medium"/>
-                <TextBlock Text="Computer Programming 3" Margin="5" FontSize="18" FontWeight="Medium"/>
-            </StackPanel>
-            <Button>
-            </Button>
-            <Button Width="50" Height="50">
-                
+        <StackPanel Orientation="Vertical" Grid.Column="0">
+            <Image Source="/Assets/Images/default-profile.png" Width="200" Height="200" Margin="0 10 0 0"/>
+            <TextBlock x:Name="studentName"
+                       Text="Student Name"
+                       HorizontalAlignment="Center"
+                       Margin="0 10 0 0"
+                       FontSize="20"
+                       FontWeight="Bold"
+                       TextWrapping="WrapWithOverflow"/>
+            
+            <TextBlock x:Name="studentNumber"
+                       Text="Student Number"
+                       HorizontalAlignment="Center"
+                       Margin="0 5 0 0"
+                       FontWeight="Medium"
+                       FontSize="18"/>
+            
+            <TextBlock x:Name="studentSection"
+                       Text="Section"
+                       HorizontalAlignment="Center"
+                       Margin="0 5 0 0"
+                       FontWeight="Medium"
+                       FontSize="18" />
+            
+            <TextBlock x:Name="subject"
+                       Text="Subject"
+                       HorizontalAlignment="Center"
+                       Margin="0 5 0 0"
+                       FontWeight="Medium"
+                       FontSize="18"/>
+            
+            <Button Width="100" Height="30" Margin="0 10 0 0">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="Edit Info" FontWeight="Medium" Padding="10 0 0 0"/>
+                    <iconPacks:PackIconControl Kind="{x:Static iconPacks:PackIconBoxIconsKind.SolidEditAlt}"
+                                               Width="30" 
+                                               Height="15"
+                                               VerticalAlignment="Center"
+                                               HorizontalAlignment="Right" />
+                </StackPanel>
             </Button>
         </StackPanel>
 
+            <ListView Grid.Column="1" Margin="10 10 10 60">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Attendance" Width="100"/>
+                    <GridViewColumn Header="Recitation" Width="100"/>
+                    <GridViewColumn Header="Task Performance" Width="150"/>
+                </GridView>
 
-    </Grid>
+            </ListView.View>
+        </ListView>
+
+        <Grid Grid.Column="1">
+            <Button x:Name="previousBtn"
+                    Width="125"
+                    Height="35"
+                    VerticalAlignment="Bottom"
+                    HorizontalAlignment="Left"
+                    Margin="10">
+                <StackPanel Orientation="Horizontal">
+                    <iconPacks:PackIconControl Kind="{x:Static iconPacks:PackIconVaadinIconsKind.ArrowLeft}"
+                                               Width="30"
+                                               Height="15"
+                                               VerticalAlignment="Center"
+                                               HorizontalAlignment="Left"/>
+                    <TextBlock Text="Previous"
+                               FontWeight="Medium"
+                               Padding="3"
+                               FontSize="14"
+                               HorizontalAlignment="Center"
+                               Margin="0 0 5 0"/>
+                </StackPanel>
+            </Button>
+            <Button x:Name="nextBtn"
+                    Width="125"
+                    Height="35"
+                    VerticalAlignment="Bottom"
+                    HorizontalAlignment="Right"
+                    Margin="10">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="Next"
+                               FontWeight="Medium"
+                               Padding="3"
+                               FontSize="14"
+                               HorizontalAlignment="Center"
+                               Margin="5 0 0 0"/>
+                    <iconPacks:PackIconControl Kind="{x:Static iconPacks:PackIconVaadinIconsKind.ArrowRight}"
+                                               Width="30"
+                                               Height="15"
+                                               VerticalAlignment="Center"
+                                               HorizontalAlignment="Right"/>
+                </StackPanel>
+            </Button>
+
+        </Grid>
+
+        </Grid>
+ 
 </Window>

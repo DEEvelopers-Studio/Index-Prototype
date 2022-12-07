@@ -9,6 +9,98 @@
       Title="Configuration">
 
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="123*"/>
+            <RowDefinition Height="361*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="45*"/>
+            <ColumnDefinition Width="19*"/>
+        </Grid.ColumnDefinitions>
+        <StackPanel>
+            <!--do not put anything!!-->
+        </StackPanel>
+
+
+        <StackPanel Orientation="Vertical" Grid.Row="1">
+            <TextBlock Text="Subject Name"
+                       Margin="15 0 0 0"
+                       FontWeight="Regular"/>
+            
+            <TextBox x:Name="subjectTxtBox"
+                     Width="250"
+                     Height="30"
+                     Margin="15 0 0 0"
+                     HorizontalAlignment="Left"
+                     FontSize="16" Padding="3"/>
+
+            <TextBlock Text="Section" Margin="15 5 5 0" FontWeight="Regular"/>
+            
+            <TextBox x:Name="sectionTxtBox"
+                     Width="175"
+                     Height="30"
+                     Margin="15 0 0 0"
+                     HorizontalAlignment="Left"
+                     FontSize="16"
+                     Padding="3"/>
+
+
+            <TextBlock Text="Default Student Selection"
+                       VerticalAlignment="Center"
+                       Margin="15 50 0 0"
+                       Grid.Row="1"/>
+
+            <StackPanel Orientation="Horizontal">
+                <ComboBox x:Name="selection"
+                    Width="150" 
+                    Height="30" 
+                    HorizontalAlignment="Left" 
+                    Margin="15 0 0 0"
+                    ItemsSource="{Binding menu}" 
+                    SelectedIndex="0"
+                    FontSize="12">
+                </ComboBox>
+                
+                <CheckBox 
+                    x:Name="attendanceCheckBox"
+                    HorizontalAlignment="Right"
+                    Margin="15 10 0 0"/>
+
+                <TextBlock Text="Attendance on Start"
+                           FontWeight="Medium"
+                           Margin="3 7 0 0"
+                           FontSize="14" />
+            </StackPanel>
+
+
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" Grid.Row="1">
+            <Button x:Name="importBtn"
+                    Width="100"
+                    Height="30"
+                    Margin="15"
+                    Content="Import Data">
+            </Button>
+
+            <Button x:Name="exportBtn"
+                    Width="100"
+                    Height="30"
+                    Margin="1"
+                    Content="Export Data">
+            </Button>
+            
+        </StackPanel>
         
+        <Button x:Name="applyChangesBtn"
+                Width="100"
+                Height="30"
+                Margin="0,291,0,0"
+                Content="Apply Changes"
+                Grid.Column="1"
+                Grid.Row="1"
+                VerticalAlignment="Top"
+                HorizontalAlignment="Center"/>
+
     </Grid>
 </Page>
