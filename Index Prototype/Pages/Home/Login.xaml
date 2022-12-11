@@ -1,0 +1,44 @@
+﻿<Page x:Class="Index_Prototype.Pages.Home.Login"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Index_Prototype.Pages.Home" xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
+      mc:Ignorable="d" 
+      Width="458" Height="450"
+      Title="Login">
+
+    <Grid>
+        <Border BorderBrush="Black" HorizontalAlignment="Center" Height="276" VerticalAlignment="Center" Width="290" CornerRadius="10,10,10,10" Background="#FFF0F0F0">
+            <Border.Effect>
+                <DropShadowEffect Direction="275" Opacity="0.345" ShadowDepth="3" BlurRadius="11" />
+            </Border.Effect>
+            <Grid Margin="10,0,10,0" DataContext="{Binding teacher}">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,48,0,0" VerticalAlignment="Top">
+                    <Border Margin="0,0,10,0" Background="White" BorderThickness="0.5" BorderBrush="Black">
+                        <Image x:Name="TeacherProfile" Source="/Assets/Images/default-profile.png" Height="47" RenderTransformOrigin="0.5,0.5" Width="47"/>
+                    </Border>
+                    <TextBlock x:Name="teacherName" VerticalAlignment="Center" TextTrimming="WordEllipsis" Width="159" FontSize="14" Text="{Binding firstName}" d:Text="TeacherName"></TextBlock>
+                </StackPanel>
+
+                <StackPanel HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,121,0,0">
+                    <Label Content="Password" FontSize="10" Padding="0,0,0,0"/>
+                    <PasswordBox x:Name="passwordBox" FontSize="14" Width="196" PasswordChanged="passwordBox_PasswordChanged" />
+                    <Label x:Name="wrongPasswordHint" Content="Inavlid Password!" FontSize="8" Padding="0,0,0,0" Foreground="Red" Visibility="Hidden"/>
+                </StackPanel>
+                <Button HorizontalAlignment="Center" Height="30" Width="72" Margin="0,194,0,52" Click="OnLogin" >
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+                        <iconPacks:PackIconControl Kind="{x:Static iconPacks:PackIconFontAwesomeKind.SignInAltSolid}" Margin="0,0,5,0"/>
+                        <TextBlock Text="Login" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                    </StackPanel>
+                </Button>
+
+                <StackPanel  Orientation="Horizontal" DockPanel.Dock="Bottom" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,245,0,0">
+                    <Label Content="not you?" VerticalAlignment="Center" FontSize="11" Padding="0,0,0,0" />
+                    <Label MouseDown="Label_MouseDown" Content="choose account" VerticalAlignment="Center" FontSize="11" Padding="0,0,0,0" Margin="5,0,0,0" Foreground="{Binding Mode=OneWay, Source={StaticResource PrimaryBtnColor}}" Cursor="Hand" />
+                </StackPanel>
+            </Grid>
+        </Border>
+
+    </Grid>
+</Page>

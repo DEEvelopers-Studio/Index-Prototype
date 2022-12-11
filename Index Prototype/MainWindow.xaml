@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        mc:Ignorable="d"
-        Title="IndexPrototype" ResizeMode="NoResize" Icon="/Assets/Images/notes.png" Width="800" Height="490.96">
-    <Frame Content="Frame" Source="/Pages/Subject/Subject.xaml" Width="800" />
+        mc:Ignorable="d" Loaded="Window_Loaded"
+        Title="IndexPrototype"  Icon="/Assets/Images/notes.png" Width="800" Height="490.96" ScrollViewer.VerticalScrollBarVisibility="Disabled" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch" ResizeMode="CanMinimize" SizeToContent="WidthAndHeight" WindowStartupLocation="CenterScreen">
+    <Frame NavigationUIVisibility="Hidden" x:Name="routerView" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" ScrollViewer.VerticalScrollBarVisibility="Disabled" />
 </Window>

@@ -5,7 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Index_Prototype.Pages.Subject.Student"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="640"
+      Height="450" Width="640"
       Title="Student">
 
     <Grid>

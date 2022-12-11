@@ -20,9 +20,12 @@ namespace Index_Prototype.Pages.Subject.Student_List
     /// </summary>
     public partial class StudentList : Page
     {
+        public String[] mode { get; set; }
         public StudentList()
         {
             InitializeComponent();
+            mode = new String[] { "Pick Next Student", "Pick Random Student", "Pick Next Random Student" };
+            DataContext = this;
         }
     }
 }
