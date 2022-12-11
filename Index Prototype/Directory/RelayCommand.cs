@@ -6,19 +6,19 @@ using System.Windows.Input;
 
 namespace Index_Prototype
 {
-    internal class RelayCommand : ICommand
+    internal class RelayCommand<T> : ICommand
     {
         public event EventHandler CanExecuteChanged = (sender, e) => { };
-        private Action mAction;
+        private Action<T> mAction;
         public bool CanExecute(object parameter) => true;
-        public RelayCommand(Action action)
+        public RelayCommand(Action<T> action)
         {
-            mAction = action;
+            mAction = action ;
         }
 
         public void Execute(object parameter)
         {
-            mAction();
+            mAction((T)parameter);
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WpfApp2;
 using static Index_Prototype.Pages.Add_Teacher.AddTeacher;
 
 namespace Index_Prototype.Pages.Home
@@ -21,22 +23,88 @@ namespace Index_Prototype.Pages.Home
     /// </summary>
     public partial class Accounts : Page
     {
-        public static List<Teacher> teachers { get; set; } = new List<Teacher> { new Teacher() { firstName = "Arvin John", lastName = "Suyat", middleName = "", password = "asd" }, new Teacher() { firstName = "Jermaine", lastName = "Marabe", middleName = "", password = "asd" }, new Teacher() { firstName = "John Rafael", lastName = "Dee", middleName = "M", password = "asd" }, new Teacher() { firstName = "asd", lastName = "dee", middleName = "M", password = "asd" }, new Teacher() { firstName = "asd", lastName = "dee", middleName = "M", password = "asd" }, };
+        public class User
+        {
+            public enum NameType { FIRST,LAST,MIDDLE,COMMA};
+            public string uid { get; set; }
+            public string firstName { get; set; }
+            public string lastName { get; set; }
+            public string middleName { get; set; }
+            public string profileLocation { get; set; }
+            public string getName(NameType[] format)
+            {
+
+                string name = "";
+
+                for (int i = 0; i < format.Length; i++)
+                {
+                    ///dont add space on start and when comma will be next
+                    if (!(format.Length == 0 || format[i] == NameType.COMMA)) name += " ";
+                    ///stitch the name according to the order
+                    switch (format[i])
+                    {
+                        case NameType.FIRST:
+                            name += firstName;
+                            break;
+                        case NameType.LAST:
+
+                            name += lastName;
+                            break;
+                        case NameType.MIDDLE:
+
+                            name += middleName;
+                            break;
+
+                        case NameType.COMMA:
+
+                            name += ",";
+                            break;
+                    }
+                }
+                return name;
+            }
+            /// <summary>
+            /// get the name of the account
+            /// </summary>
+            /// <returns>returns a name in LASTNAME, FIRSTNAME order</returns>
+            public string getName()
+            {
+                return getName(new NameType[] { NameType.LAST, NameType.COMMA, NameType.FIRST });
+            }
+        }
+        public ObservableCollection<User> accounts { get; set; } = new ObservableCollection<User>();
 
         public Accounts()
         {
             InitializeComponent();
+            DatabaseHelper.getTeachers().ForEach(teacher =>
+            {
+                accounts.Add(teacher);
+            });
+            
         }
-        Action<Teacher> onAccSelect;
-        internal void OnAccountSelect(Action<Teacher> value)
+        Action<User> onAccSelect;
+        /// <summary>
+        /// fires when an account gets selected
+        /// </summary>
+        /// <param name="uid">account id on the database</param>
+        internal void OnAccountSelect(Action<User> account)
         {
-            onAccSelect = value;
+            onAccSelect = account;
         }
-        private Teacher _selectedAcc;
-        public Teacher SelectedAccount
+        private void SelectedAccount(object sender, MouseButtonEventArgs e)
         {
-            get { return _selectedAcc; }
-            set { _selectedAcc = value; onAccSelect?.Invoke(value); }
+            onAccSelect(((sender as ListViewItem)?.Content as User));
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            accounts.Add(new User() { firstName = "Arvin John", lastName = "Suyat", middleName = "" });
+        }
+
+        private void ListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
         }
     }
 }
