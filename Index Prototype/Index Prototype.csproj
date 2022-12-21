@@ -62,9 +62,6 @@
     <Reference Include="DynamicExpresso.Core, Version=2.3.1.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\DynamicExpresso.Core.2.3.1\lib\net461\DynamicExpresso.Core.dll</HintPath>
     </Reference>
-    <Reference Include="MahApps.Metro, Version=2.0.0.0, Culture=neutral, PublicKeyToken=51482d6f650b2b3f, processorArchitecture=MSIL">
-      <HintPath>..\packages\MahApps.Metro.2.4.9\lib\net47\MahApps.Metro.dll</HintPath>
-    </Reference>
     <Reference Include="MahApps.Metro.IconPacks, Version=4.0.0.0, Culture=neutral, PublicKeyToken=0c0d510f9915137a, processorArchitecture=MSIL">
       <HintPath>..\packages\MahApps.Metro.IconPacks.4.11.0\lib\net47\MahApps.Metro.IconPacks.dll</HintPath>
     </Reference>
@@ -202,10 +199,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Directory\AccountAuth.cs" />
+    <Compile Include="Directory\Converters\NavActiveConverter.cs" />
     <Compile Include="Directory\Converters\PasswordVisibleConverter.cs" />
     <Compile Include="Directory\DatabaseHelper.cs" />
+    <Compile Include="Directory\NavigationHelper.cs" />
     <Compile Include="Directory\RelayCommand.cs" />
     <Compile Include="Directory\ViewModels\BaseViewModel.cs" />
+    <Compile Include="Directory\ViewModels\NavButton.cs" />
     <Compile Include="Pages\Home\Login.xaml.cs">
       <DependentUpon>Login.xaml</DependentUpon>
     </Compile>
@@ -218,14 +219,17 @@
     <Compile Include="Pages\Subject\Configuration\Configuration.xaml.cs">
       <DependentUpon>Configuration.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\Subject\Subject.xaml.cs">
-      <DependentUpon>Subject.xaml</DependentUpon>
+    <Compile Include="Pages\Subject\SubjectView.xaml.cs">
+      <DependentUpon>SubjectView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\Subject\Teacher List\InviteTeacher\InviteTeacher.xaml.cs">
       <DependentUpon>InviteTeacher.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\Subject\Teacher List\TeacherList.xaml.cs">
       <DependentUpon>TeacherList.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Teacher\TeacherView.xaml.cs">
+      <DependentUpon>TeacherView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Templates\RoundedBtn.xaml.cs">
       <DependentUpon>RoundedBtn.xaml</DependentUpon>
@@ -270,7 +274,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\Subject List\SubjectList.xaml">
+    <Page Include="Pages\Teacher\Subject List\SubjectList.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -294,7 +298,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\Subject\Subject.xaml">
+    <Page Include="Pages\Subject\SubjectView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -306,11 +310,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\Teacher List\TeacherList.xaml">
+    <Page Include="Pages\Home\Home.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\Home\Home.xaml">
+    <Page Include="Pages\Teacher\TeacherView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -332,7 +336,7 @@
     <Compile Include="Pages\Section List\SectionList.xaml.cs">
       <DependentUpon>SectionList.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\Subject List\SubjectList.xaml.cs">
+    <Compile Include="Pages\Teacher\Subject List\SubjectList.xaml.cs">
       <DependentUpon>SubjectList.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\Subject\Add Student\AddStudent.xaml.cs">
@@ -346,9 +350,6 @@
     </Compile>
     <Compile Include="Pages\Student\Student.xaml.cs">
       <DependentUpon>Student.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Pages\Teacher List\TeacherList.xaml.cs">
-      <DependentUpon>TeacherList.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\Home\Home.xaml.cs">
       <DependentUpon>Home.xaml</DependentUpon>
@@ -393,6 +394,7 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DependentUpon>Database.mdf</DependentUpon>
     </Content>
+    <Resource Include="FodyWeavers.xml" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Assets\Images\default-profile.png" />
@@ -415,6 +417,7 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\Fody.6.6.4\build\Fody.targets" Condition="Exists('..\packages\Fody.6.6.4\build\Fody.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

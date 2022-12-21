@@ -27,14 +27,14 @@ namespace Index_Prototype
             InitializeComponent();
         }
         public static NavigationService navigationService;
-        private async void Window_Loaded(object sender, RoutedEventArgs e)
+        private void Window_Loaded(object sender, RoutedEventArgs e)
         {
 
             navigationService = routerView.NavigationService;
-            DatabaseHelper.Initialize(connection =>
-            {
-                navigationService.Navigate(new Home());
-            });
+            //DatabaseHelper.Initialize(connection =>
+            //{
+            //    navigationService.Navigate(new Home());
+            //});
         }
     }
 }

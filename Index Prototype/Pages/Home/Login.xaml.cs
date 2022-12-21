@@ -36,7 +36,7 @@ namespace Index_Prototype.Pages.Home
         Action onLoginSucess;
         Action onExit;
 
-        public event PropertyChangedEventHandler PropertyChanged = (sender, e) => { };
+        public event PropertyChangedEventHandler PropertyChanged;
 
         public void setAccount(User teacher)
         {

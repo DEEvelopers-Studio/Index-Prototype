@@ -7,6 +7,62 @@
     xmlns:theme="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero2">
     <Application.Resources>
         <SolidColorBrush x:Key="{x:Static DataGrid.FocusBorderBrushKey}" Color="#FF000000"/>
+        <Size x:Key="PageSize" Width="800" Height="450"/>
+        <SolidColorBrush x:Key="PrimaryBlue" Color="#274C77"></SolidColorBrush>
+        <SolidColorBrush x:Key="SecondaryBlue" Color="#124E78"></SolidColorBrush>
+        <SolidColorBrush x:Key="AccentBlue" Color="#427AA1"></SolidColorBrush>
+        <SolidColorBrush x:Key="GreyLighten70" Color="#EBF2FA"></SolidColorBrush>
+        <SolidColorBrush x:Key="GreyLighten60" Color="#E7ECEF"></SolidColorBrush>
+        <SolidColorBrush x:Key="PrimaryBtnColor" Color="#0d6efd"></SolidColorBrush>
+
+        <Style x:Key="SidebarBtn" TargetType="{x:Type Button}" >
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Margin" Value="0,0,0,5"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="FontFamily" Value="PT Sans"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border Background="{TemplateBinding Background}"  Padding="10">
+                            <ContentPresenter HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="{Binding Mode=OneWay, Source={StaticResource GreyLighten60}}"/>
+                </Trigger>
+                <Trigger Property="IsFocused" Value="True">
+                    <Setter Property="Foreground" Value="White"/>
+                    <Setter Property="Background" Value="{Binding Mode=OneWay, Source={StaticResource PrimaryBtnColor}}"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <Style x:Key="SidebarToggleBtn" TargetType="{x:Type ToggleButton}" >
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Margin" Value="0,0,0,5"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="FontFamily" Value="PT Sans"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type ToggleButton}">
+                        <Border Background="{TemplateBinding Background}"  Padding="10">
+                            <ContentPresenter HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="{Binding Mode=OneWay, Source={StaticResource GreyLighten60}}"/>
+                </Trigger>
+                <Trigger Property="IsChecked" Value="True">
+                    <Setter Property="Foreground" Value="White"/>
+                    <Setter Property="Background" Value="{Binding Mode=OneWay, Source={StaticResource PrimaryBtnColor}}"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
         <Style x:Key="DataGridCellStyle2" TargetType="{x:Type DataGridCell}">
             <Setter Property="Background" Value="Transparent"/>
             <Setter Property="BorderBrush" Value="Transparent"/>
@@ -247,13 +303,6 @@
                     </Setter.Value>
                 </Setter>
             </Style>
-            <Size x:Key="PageSize" Width="800" Height="450"/>
-            <SolidColorBrush x:Key="PrimaryBlue" Color="#274C77"></SolidColorBrush>
-            <SolidColorBrush x:Key="SecondaryBlue" Color="#124E78"></SolidColorBrush>
-            <SolidColorBrush x:Key="AccentBlue" Color="#427AA1"></SolidColorBrush>
-            <SolidColorBrush x:Key="GreyLighten70" Color="#EBF2FA"></SolidColorBrush>
-            <SolidColorBrush x:Key="GreyLighten60" Color="#E7ECEF"></SolidColorBrush>
-            <SolidColorBrush x:Key="PrimaryBtnColor" Color="#0d6efd"></SolidColorBrush>
 
 
         <Style x:Key="TextBoxStyle" TargetType="{x:Type TextBox}">

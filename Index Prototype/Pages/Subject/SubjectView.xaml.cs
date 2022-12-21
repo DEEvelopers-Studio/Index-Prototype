@@ -18,11 +18,18 @@ namespace Index_Prototype.Pages.Subject
     /// <summary>
     /// Interaction logic for Subject.xaml
     /// </summary>
-    public partial class Subject : Page
+    public partial class SubjectView : Page
     {
-        public Subject()
+        
+        public SubjectView()
         {
             InitializeComponent();
         }
+    }
+    public class Subject
+    {
+        public string id { get; set; }
+        public string title { get; set; }
+        public string section { get; set; }
     }
 }

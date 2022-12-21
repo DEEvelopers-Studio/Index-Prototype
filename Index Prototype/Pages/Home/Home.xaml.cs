@@ -1,5 +1,4 @@
 ﻿using ControlzEx.Standard;
-using Index_Prototype.Pages.Subject_List;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -39,7 +38,7 @@ namespace Index_Prototype.Pages.Home
             });
             login.OnLoginSucess(() =>
             {
-                NavigationService.Navigate(new SubjectList());
+                NavigationService.Navigate(new Teacher.TeacherView());
             });
             routerView.Navigate(Accounts);
             Accounts.OnAccountSelect(account =>
