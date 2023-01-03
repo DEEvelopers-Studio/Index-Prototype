@@ -4,6 +4,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Index_Prototype.Pages.Home"
+      
       mc:Ignorable="d" 
       Width="458" Height="450"
       Title="TeacherList" ScrollViewer.VerticalScrollBarVisibility="Disabled" DataContext="{Binding RelativeSource={RelativeSource Self}}">

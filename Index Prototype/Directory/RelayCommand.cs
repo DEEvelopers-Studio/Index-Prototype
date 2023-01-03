@@ -6,7 +6,7 @@ using System.Windows.Input;
 
 namespace Index_Prototype
 {
-    internal class RelayCommand<T> : ICommand
+    public class RelayCommand<T> : ICommand
     {
         public event EventHandler CanExecuteChanged = (sender, e) => { };
         private Action<T> mAction;

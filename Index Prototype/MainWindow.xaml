@@ -5,5 +5,5 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d" Loaded="Window_Loaded"
         Title="IndexPrototype"  Icon="/Assets/Images/notes.png" Width="800" Height="490.96" ScrollViewer.VerticalScrollBarVisibility="Disabled" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch" ResizeMode="CanMinimize" SizeToContent="WidthAndHeight" WindowStartupLocation="CenterOwner">
-    <Frame NavigationUIVisibility="Hidden" x:Name="routerView" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" ScrollViewer.VerticalScrollBarVisibility="Disabled" Source="/Pages/Teacher/TeacherView.xaml" />
+    <Frame NavigationUIVisibility="Hidden" x:Name="routerView" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" ScrollViewer.VerticalScrollBarVisibility="Disabled" Source="/Pages/Home/Home.xaml" />
 </Window>

@@ -6,6 +6,7 @@
              xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
     xmlns:theme="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero2">
     <Application.Resources>
+        <local:MainWindow x:Key="AccountAuth"></local:MainWindow>
         <SolidColorBrush x:Key="{x:Static DataGrid.FocusBorderBrushKey}" Color="#FF000000"/>
         <Size x:Key="PageSize" Width="800" Height="450"/>
         <SolidColorBrush x:Key="PrimaryBlue" Color="#274C77"></SolidColorBrush>

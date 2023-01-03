@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,6 +15,8 @@ namespace Index_Prototype.Directory.ViewModels
 {
     internal class NavButton:ToggleButton
     {
+        [Bindable(true)]
+        [Category("Navigation")]
         public Uri Navlink
         {
             get { return (Uri)GetValue(NavlinkProperty); }

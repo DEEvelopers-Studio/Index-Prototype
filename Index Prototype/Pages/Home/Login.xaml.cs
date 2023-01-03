@@ -1,22 +1,12 @@
-﻿using PropertyChanged;
+﻿using Index_Prototype.Directory;
+using PropertyChanged;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using WpfApp2;
-using static Index_Prototype.Pages.Add_Teacher.AddTeacher;
-using static Index_Prototype.Pages.Home.Accounts;
+using static Index_Prototype.Directory.DataTemplates;
 
 namespace Index_Prototype.Pages.Home
 {
@@ -58,20 +48,26 @@ namespace Index_Prototype.Pages.Home
 
         private void OnLogin(object sender, RoutedEventArgs e)
         {
-            /* verify account and passowrd to database*/
-            switch (DatabaseHelper.Login(teacher.uid, passwordBox.Password))
+            AccountAuth.Login(teacher.uid, passwordBox.Password, (User account) =>
             {
-                case DatabaseHelper.LoginState.SUCCESS:
-                    onLoginSucess.Invoke();
-                    break;
-                case DatabaseHelper.LoginState.PASSWORDFAIL:
-                    wrongPasswordHint.Visibility = Visibility.Visible;
-                    break;
-                case DatabaseHelper.LoginState.UIDFAIL:
-                    break;
-                case DatabaseHelper.LoginState.DBFAIL:
-                    break;
-            }
+                onLoginSucess.Invoke();
+            }, (LoginExeption err) =>
+            {
+                switch (err)
+                {
+                    case LoginExeption.PASSWORDFAIL:
+                        wrongPasswordHint.Visibility = Visibility.Visible;
+                        break;
+                    case LoginExeption.UIDFAIL:
+                        MessageBox.Show("User does not Exist","ok");
+                        break;
+                    case LoginExeption.DBFAIL:
+                        MessageBox.Show("Problem Authenticating, please try again", "ok");
+                        break;
+                }
+            });
+            /* verify account and passowrd to database*/
+            
             
         }
 

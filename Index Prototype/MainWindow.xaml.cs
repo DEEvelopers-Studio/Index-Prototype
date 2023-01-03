@@ -24,17 +24,22 @@ namespace Index_Prototype
     {
         public MainWindow()
         {
-            InitializeComponent();
+            DatabaseHelper.Initialize(connection =>
+            {
+                InitializeComponent();
+            });
         }
-        public static NavigationService navigationService;
+        public static NavigationService MainNavigationService;
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
 
-            navigationService = routerView.NavigationService;
-            //DatabaseHelper.Initialize(connection =>
+            MainNavigationService = routerView.NavigationService;
+            //MainNavigationService.LoadCompleted += (object sndr, NavigationEventArgs a) =>
             //{
+            //    string str = (string)a.ExtraData;
+            //    MessageBox.Show(str);
+            //};
             //    navigationService.Navigate(new Home());
-            //});
         }
     }
 }

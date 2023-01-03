@@ -1,0 +1,2 @@
+﻿INSERT INTO Subjects (id,title,section,attendanceOnStart,defaultStudentSelection) VALUES ('84cd2e3a-f898-4bbf-ade4-921ee59abe37','Math','BS301',1,0);
+SELECT * from Subjects where id='84cd2e3a-f898-4bbf-ade4-921ee59abe37';

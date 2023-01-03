@@ -6,11 +6,12 @@
              xmlns:local="clr-namespace:Index_Prototype.Pages.Teacher" xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
              xmlns:Converters="clr-namespace:Index_Prototype.Directory.Converters" x:Class="Index_Prototype.Pages.Teacher.TeacherView"
              mc:Ignorable="d" 
-             Height="450" Width="800">
+      xmlns:dir="clr-namespace:Index_Prototype.Directory"
+             Height="450" Width="800" DataContext="{Binding RelativeSource={RelativeSource Self}}" >
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="53*"/>
-            <RowDefinition Height="97*"/>
+            <RowDefinition Height="123*"/>
+            <RowDefinition Height="361*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="16*"/>
@@ -39,8 +40,7 @@
                 </StackPanel>
                 <Border Padding="0,3" DockPanel.Dock="Bottom" BorderBrush="#FF676767" VerticalAlignment="Bottom" BorderThickness="0,0.3,0,0">
                     <StackPanel DockPanel.Dock="Bottom">
-                        <Button VerticalAlignment="Center" Style="{Binding Mode=OneWay, Source={StaticResource SidebarBtn}}">
-
+                        <Button x:Name="LogoutButton" VerticalAlignment="Center" Style="{Binding Mode=OneWay, Source={StaticResource SidebarBtn}}" Click="LogoutButton_Click">
                             <StackPanel Orientation="Horizontal">
                                 <iconPacks:PackIconFontAwesome Kind="SignOutAltSolid" Margin="0,0,5,0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
                                 <TextBlock><Run Text="Sign Out"/></TextBlock>
@@ -56,11 +56,13 @@
         <Frame x:Name="routerView" Grid.Column="1" Background="#FFECECEC" Grid.ColumnSpan="2" Grid.RowSpan="2"  Source="/Pages/Teacher/Subject List/SubjectList.xaml" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" ScrollViewer.VerticalScrollBarVisibility="Disabled" NavigationUIVisibility="Hidden" Navigated="Frame_Navigated"/>
 
         <Grid Grid.Column="0" Background="White">
-            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Margin="15,0,15,0">
+            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Margin="15,0,15,0" DataContext="{Binding Source={x:Static dir:AccountAuth.account}}">
                 <Border Background="White" BorderThickness="0.4" BorderBrush="Black" Width="70" Height="70" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,5">
                     <Image Source="/Assets/Images/default-profile.png"/>
                 </Border>
-                <TextBlock TextAlignment="Center" TextTrimming="CharacterEllipsis" TextWrapping="Wrap" MaxHeight="33"/>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                    <TextBlock Text="{Binding name,FallbackValue='Teacher'}"/>
+                </StackPanel>
             </StackPanel>
         </Grid>
     </Grid>

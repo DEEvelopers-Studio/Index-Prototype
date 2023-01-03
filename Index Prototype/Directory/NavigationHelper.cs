@@ -8,9 +8,8 @@ using System.Windows.Navigation;
 
 namespace Index_Prototype.Directory
 {
-    internal class NavigationHelper
+    static class NavigationHelper
     {
-        public NavigationService navigationService;
-        public ToggleButton navigationButtons;
+        
     }
 }

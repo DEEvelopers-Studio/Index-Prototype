@@ -1,4 +1,6 @@
-﻿using Newtonsoft.Json.Linq;
+﻿using ControlzEx.Theming;
+using Index_Prototype.Pages.Home;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -15,6 +17,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WpfApp2;
 using static Index_Prototype.Pages.Home.Accounts;
 
 namespace Index_Prototype.Pages.Subject_List
@@ -24,45 +27,50 @@ namespace Index_Prototype.Pages.Subject_List
     /// </summary>
     public partial class SubjectList : Page, INotifyPropertyChanged
     {
-        public class SubjectVM : Subject.Subject
+        public class SubjectVM : Subject.Subject, INotifyPropertyChanged
         {
             public bool isSelected { get; set; } = false;
+
+            public event PropertyChangedEventHandler PropertyChanged;
         }
-        public ObservableCollection<SubjectVM> subjects { get; set; } = new ObservableCollection<SubjectVM>() { new SubjectVM() {isSelected = true,title="Math",section="CS301"} };
+        public ObservableCollection<SubjectVM> subjects { get; set; } = new ObservableCollection<SubjectVM>();
         private bool? _isAllSelected { get; set; } = false;
         public bool? isAllSelected
         {
             get { return _isAllSelected; }
             set
             {
-                if (value != null)
-                {
+                _isAllSelected = value;
+                deleteBtn.Visibility = value != false?Visibility.Visible:Visibility.Hidden;
+                if (value == null) return;
                     for (int i = 0; i < subjects.Count; i++)
                     {
                         subjects[i].isSelected = (bool)value;
                     }
-                    
-                }
-                _isAllSelected = value;
             }
         }
-
         public SubjectList()
         {
             InitializeComponent();
+            DatabaseHelper.getSubjects().ForEach(subject =>
+            {
+                if (subject == null) return;
+                subjects.Add(new SubjectVM() { attendanceOnStart = subject.attendanceOnStart,id = subject.id,defaultStudentSelection = subject.defaultStudentSelection,section = subject.section,title = subject.title});
+            });
         }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        private void ListViewItem_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        Action<Subject.Subject> onSelectSubject;
+        public void OnSelectSubject(Action<Subject.Subject> action)
         {
-
+            onSelectSubject = action;
         }
+        public event PropertyChangedEventHandler PropertyChanged;
 
         private void SelectedSubject(object sender, MouseButtonEventArgs e)
         {
-            MessageBox.Show(((sender as Border)?.Content as SubjectVM)?.isSelected+"");
-            subjects.Add(new SubjectVM() { isSelected = true, title = "Math", section = "CS301" });
+            SubjectVM selectedSubj = (sender as Border)?.Tag as SubjectVM;
+            if (selectedSubj == null) return;
+            MainWindow.MainNavigationService.Navigate(new Subject.SubjectView(selectedSubj));
+            //onSelectSubject?.Invoke(selectedSubj);
         }
 
         private void ItemToggle(object sender, RoutedEventArgs e)
@@ -77,5 +85,9 @@ namespace Index_Prototype.Pages.Subject_List
             else isAllSelected = false;
         }
 
+        private void SearchChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
     }
 }

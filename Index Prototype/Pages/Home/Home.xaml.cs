@@ -1,22 +1,7 @@
-﻿using ControlzEx.Standard;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Security;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
-using System.Windows.Shapes;
-using WpfApp2;
-using static Index_Prototype.Pages.Add_Teacher.AddTeacher;
-using static Index_Prototype.Pages.Home.Accounts;
+using static Index_Prototype.Directory.DataTemplates;
 
 namespace Index_Prototype.Pages.Home
 {
@@ -38,7 +23,7 @@ namespace Index_Prototype.Pages.Home
             });
             login.OnLoginSucess(() =>
             {
-                NavigationService.Navigate(new Teacher.TeacherView());
+                MainWindow.MainNavigationService.Navigate(new Teacher.TeacherView(), account);
             });
             routerView.Navigate(Accounts);
             Accounts.OnAccountSelect(account =>
