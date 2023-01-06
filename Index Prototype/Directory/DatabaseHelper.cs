@@ -10,6 +10,7 @@ using System.Web.UI.WebControls;
 using FastMember;
 using System.Linq;
 using System.Security.Cryptography;
+using System.Drawing;
 
 public enum LoginExeption { PASSWORDFAIL, UIDFAIL, DBFAIL }
 namespace WpfApp2
@@ -42,80 +43,27 @@ namespace WpfApp2
 
             }
         }
-        public static Subject getSubject(string id)
-        {
-            //   84cd2e3a - f898 - 4bbf - ade4 - 921ee59abe37
-            Subject subject = null;
-            try
-            {
-                connection.Open();
-                SqlCommand cmd = new SqlCommand($"SELECT * from Subjects where id='{id}'", connection);
-                SqlDataReader sdr = cmd.ExecuteReader();
-                //sdr.Read();
-                subject = ConvertToObject<Subject>(sdr);                
-            }
-            catch (Exception r)
-            {
-                MessageBox.Show("" + r);
-            }
-            finally
-            {
-
-                //insertData(myConn);
-                if (connection.State == ConnectionState.Open)
-                {
-                    connection.Close();
-                }
-
-            }
-            return subject;
-        }
-        public static List<User> getTeachers()
-        {
-            List<User> accounts = new List<User>();
-            try
-            {
-                connection.Open();
-                SqlCommand cmd = new SqlCommand("Select * from Teachers", connection);
-                SqlDataReader sdr = cmd.ExecuteReader();
-                while (sdr.Read())
-                {
-                    accounts.Add(ConvertToObject<User>(sdr));
-                }
-            }
-            catch (Exception r)
-            {
-                MessageBox.Show("" + r);
-            }
-            finally
-            {
-
-                //insertData(myConn);
-                if (connection.State == ConnectionState.Open)
-                {
-                    connection.Close();
-                }
-
-            }
-            return accounts;
-        }
         public static bool BitToBool(int? num) => num == 1;
         public static List<Subject> getSubjects() => getDocumentsInTable<Subject>("Subjects");
+        public static List<User> getTeachers() => getDocumentsInTable<User>("Teachers");
         public static List<User> getStudents() => getDocumentsInTable<User>("Students");
-
+        public static List<Student> getStudentsInSubject(string subjectId) => getDocumentsInTable<Student>(new SqlCommand($"select Students.* from Students LEFT JOIN StudentSubjectData ON Students.uid = StudentSubjectData.uid where StudentSubjectData.subjectId = '{subjectId}'"));
         public static User getStudent(string uid) => getDocument<User>(uid, "Students");
+        public static Subject getSubject(string uid) => getDocument<Subject>(uid, "Subjects");
         public static User getTeacher(string uid) => getDocument<User>(uid, "Teachers");
         public enum UserType { Teacher ,Student};
         private static string[] _userType = { "Teachers", "Students" };
         public static User getUser(string uid,UserType userType) => getDocument<User>(uid, _userType[(int)userType]);
-        public static List<T> getDocumentsInTable<T>(string Table, string query = "") where T : class, new()
+
+        public static List<T> getDocumentsInTable<T>(string Table, string query = "") where T : class, new() => getDocumentsInTable<T>(new SqlCommand($"SELECT * from {Table} {query}"));
+        public static List<T> getDocumentsInTable<T>(SqlCommand command) where T : class, new()
         {
             List<T> items = new List<T>();
             try
             {
                 connection.Open();
-                SqlCommand cmd = new SqlCommand($"SELECT * from {Table} {query}", connection);
-                SqlDataReader sdr = cmd.ExecuteReader();
+                command.Connection = connection;
+                SqlDataReader sdr = command.ExecuteReader();
                 //sdr.Read();
 
                 while (sdr.Read())
@@ -149,8 +97,7 @@ namespace WpfApp2
                 connection.Open();
                 SqlCommand cmd = new SqlCommand($"SELECT * from {Table} where id='{id}'", connection);
                 SqlDataReader sdr = cmd.ExecuteReader();
-                //sdr.Read();
-
+                if(!sdr.Read())return null;
                 return ConvertToObject<T>(sdr);
                 //user = new User() { firstName = sdr?["firstName"] as string, lastName = sdr?["lastName"] as string, middleName = sdr?["middleName"] as string, uid = sdr?["uid"] as string };
 
@@ -219,6 +166,83 @@ namespace WpfApp2
             }
 
             return t;
+        }
+        class SqllErrorNumbers
+        {
+            public const int BadObject = 208;
+            public const int DupKey = 2627;
+        }
+        public static void AddStudent(Student student)
+        {
+            string table = "Students";
+            try
+            {
+                connection.Open();
+                SqlCommand sqlcmd = new SqlCommand() {Connection = connection, CommandText = $"insert into {table} (uid,firstName,lastName,middleName,section) values('{student.uid}','{student.firstName}','{student.lastName}','{student.middleName}','{student.section}')" };
+                SqlDataReader sqlrdr = sqlcmd.ExecuteReader();
+            }
+            catch (SqlException r)
+            {
+                switch (r.Number)
+                {
+                    case SqllErrorNumbers.DupKey:
+                        MessageBox.Show("Duplicate Key");
+                        break;
+                    case SqllErrorNumbers.BadObject:
+                        MessageBox.Show("Bad Obj");
+                        break;
+                    default:
+
+                        MessageBox.Show("" + r);
+                        break;
+                }
+            }
+            finally
+            {
+
+                //insertData(myConn);
+                if (connection.State == ConnectionState.Open)
+                {
+                    connection.Close();
+                }
+
+            }
+        }
+        public static void AddStudenttoSubject(string studentUid,string subjectUid)
+        {
+            string table = "StudentSubjectData";
+            try
+            {
+                connection.Open();
+                SqlCommand sqlcmd = new SqlCommand() { Connection = connection, CommandText = $"insert into {table} (subjectId,uid) values('{studentUid}','{subjectUid}')" };
+                SqlDataReader sqlrdr = sqlcmd.ExecuteReader();
+            }
+            catch (SqlException r)
+            {
+                switch (r.Number)
+                {
+                    case SqllErrorNumbers.DupKey:
+                        MessageBox.Show("Duplicate Key");
+                        break;
+                    case SqllErrorNumbers.BadObject:
+                        MessageBox.Show("Bad Obj");
+                        break;
+                    default:
+
+                        MessageBox.Show("" + r);
+                        break;
+                }
+            }
+            finally
+            {
+
+                //insertData(myConn);
+                if (connection.State == ConnectionState.Open)
+                {
+                    connection.Close();
+                }
+
+            }
         }
         //public class Data
         //{

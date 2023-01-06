@@ -69,7 +69,8 @@ namespace Index_Prototype.Pages.Subject_List
         {
             SubjectVM selectedSubj = (sender as Border)?.Tag as SubjectVM;
             if (selectedSubj == null) return;
-            MainWindow.MainNavigationService.Navigate(new Subject.SubjectView(selectedSubj));
+            //MainWindow.MainNavigationService.Navigate(new Subject.SubjectView(selectedSubj));
+            MainWindow.MainNavigationService.Navigate(new Uri($"Pages/Subject/SubjectView.xaml?id={selectedSubj.id}", UriKind.Relative));
             //onSelectSubject?.Invoke(selectedSubj);
         }
 

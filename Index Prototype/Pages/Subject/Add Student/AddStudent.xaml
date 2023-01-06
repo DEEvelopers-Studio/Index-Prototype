@@ -4,9 +4,16 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Index_Prototype.Pages.Subject.Add_Student"
+        Closing="Window_Closing"
+        SizeToContent="WidthAndHeight"
+        ResizeMode="NoResize"
         mc:Ignorable="d"
         Title="AddStudent" Height="233" Width="393" WindowStyle="ToolWindow">
     <Grid>
-        
+        <TextBox HorizontalAlignment="Left" Margin="21,29,0,0" TextWrapping="Wrap" Text="FirstName" VerticalAlignment="Top" Width="120"/>
+        <Button x:Name="AddStudentBtn" Content="Add Student" HorizontalAlignment="Left" Margin="312,187,0,0" VerticalAlignment="Top" Click="AddStudentBtn_Click"/>
+        <TextBox HorizontalAlignment="Left" Margin="21,52,0,0" TextWrapping="Wrap" Text="LastName" VerticalAlignment="Top" Width="120"/>
+        <TextBox HorizontalAlignment="Left" Margin="21,75,0,0" TextWrapping="Wrap" Text="MiddleName" VerticalAlignment="Top" Width="120"/>
+
     </Grid>
 </Window>

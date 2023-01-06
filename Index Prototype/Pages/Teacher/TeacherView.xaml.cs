@@ -40,11 +40,6 @@ namespace Index_Prototype.Pages.Teacher
         private void Frame_Navigated(object sender, NavigationEventArgs e)
         {
         }
-        void NavigationService_LoadCompleted(object sender, NavigationEventArgs e)
-        {
-            string msg = string.Format("{0} loaded.", e.Uri.OriginalString);
-            MessageBox.Show(msg);
-        }
 
         private void Hyperlink_RequestNavigate(object sender, RequestNavigateEventArgs e)
         {

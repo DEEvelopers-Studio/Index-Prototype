@@ -254,10 +254,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\Add Student\AddStudent.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Pages\Add Teacher\AddTeacher.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -298,10 +294,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\Student\Student.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Pages\Subject\SubjectView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -331,9 +323,6 @@
     <Compile Include="Pages\Add Section\AddSection.xaml.cs">
       <DependentUpon>AddSection.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\Add Student\AddStudent.xaml.cs">
-      <DependentUpon>AddStudent.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Pages\Add Teacher\AddTeacher.xaml.cs">
       <DependentUpon>AddTeacher.xaml</DependentUpon>
     </Compile>
@@ -351,9 +340,6 @@
     </Compile>
     <Compile Include="Pages\Subject\Student List\StudentList.xaml.cs">
       <DependentUpon>StudentList.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Pages\Student\Student.xaml.cs">
-      <DependentUpon>Student.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\Home\Home.xaml.cs">
       <DependentUpon>Home.xaml</DependentUpon>
@@ -398,6 +384,7 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DependentUpon>Database.mdf</DependentUpon>
     </Content>
+    <Content Include="SqlQueryTest.sql" />
     <Resource Include="FodyWeavers.xml" />
   </ItemGroup>
   <ItemGroup>

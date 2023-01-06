@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:Index_Prototype.Pages.Subject.Student_List" xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
       xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls" x:Class="Index_Prototype.Pages.Subject.Student_List.StudentList"
       mc:Ignorable="d" 
-      Height="450" Width="640"
+      Height="450" Width="640" Loaded="Page_Loaded"
       Title="StudentList" DataContext="{Binding RelativeSource={RelativeSource Self}}"
     xmlns:theme="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero2">
     <Page.Resources>
@@ -277,7 +277,7 @@
             <ColumnDefinition Width="45*"/>
             <ColumnDefinition Width="19*"/>
         </Grid.ColumnDefinitions>
-        <Button Grid.Column="1" Width="120" Height="30" Content="Add New Student" Margin="60,10,10,74"/>
+        <Button x:Name="AddNewStudentButton" Grid.Column="1" Width="120" Height="30" Content="Add New Student" Margin="60,10,10,74" Click="Button_Click"/>
         <Grid Grid.Row="2" Grid.ColumnSpan="2">
             <DockPanel  VerticalAlignment="Top" Margin="10,0,10,0">
                 <StackPanel Orientation="Horizontal">
@@ -340,11 +340,14 @@
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>
-
+                <StackPanel Margin="448,298,10,7" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Right">
+                    <Button Width="148" Height="30" VerticalAlignment="Bottom" BorderThickness="1,1,0,1" Content="{Binding SelectedItem, ElementName=comboBox}" />
+                    <ComboBox x:Name="comboBox" Style="{DynamicResource ComboBoxGroup}" ItemsSource="{Binding mode}" Width="21" Height="30" VerticalAlignment="Bottom"  Text="test" SelectedIndex="0" BorderThickness="1,1,1,1"/>
+                </StackPanel>
 
             </Grid>
 
-
+            
 
             <Button Width="150" Height="30" Content="Do an Attendance" VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="10 0 5 5"/>
 

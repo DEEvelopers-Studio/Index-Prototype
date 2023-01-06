@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Index_Prototype.Directory;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -8,6 +9,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
+using System.Windows.Forms;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
@@ -28,13 +30,8 @@ namespace Index_Prototype.Pages.Subject.Student_List
         
         public StudentList()
         {
-            DatabaseHelper.getStudents().ForEach((student)=>
-            {
-                students.Add(new UserListVM(student));
-            });
             InitializeComponent();
             mode = new String[] { "Pick Next Student", "Pick Random Student", "Pick Next Random Student" };
-            DataContext = this;
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -47,6 +44,24 @@ namespace Index_Prototype.Pages.Subject.Student_List
         private void SelectedSubject(object sender, MouseButtonEventArgs e)
         {
 
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            Add_Student.AddStudent form = new Add_Student.AddStudent();
+            if(form.ShowDialog() == true)
+            {
+                DatabaseHelper.AddStudent(new Student("02000129457", "Arvin John", "I", "Suyat", "BSCS 301"));
+            }
+        }
+
+        private void Page_Loaded(object sender, RoutedEventArgs e)
+        {
+
+            DatabaseHelper.getStudentsInSubject(NavigationHelper.getParams(MainWindow.MainNavigationService)["id"]).ForEach((student) =>
+            {
+                students.Add(new UserListVM(student));
+            });
         }
     }
 }

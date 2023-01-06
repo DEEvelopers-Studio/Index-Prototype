@@ -19,10 +19,6 @@ namespace Index_Prototype.Pages.Home
         public Accounts()
         {
             InitializeComponent();
-            DatabaseHelper.getTeachers().ForEach(teacher =>
-            {
-                accounts.Add(teacher);
-            });
             
         }
         Action<User> onAccSelect;
@@ -47,6 +43,15 @@ namespace Index_Prototype.Pages.Home
         private void ListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
+        }
+
+        private void Page_Loaded(object sender, RoutedEventArgs e)
+        {
+
+            DatabaseHelper.getTeachers().ForEach(teacher =>
+            {
+                accounts.Add(teacher);
+            });
         }
     }
     

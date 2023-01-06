@@ -1,20 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Index_Prototype.Directory;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+
 using WpfApp2;
-using static Index_Prototype.Directory.DataTemplates;
 
 namespace Index_Prototype.Pages.Subject
 {
@@ -24,7 +13,15 @@ namespace Index_Prototype.Pages.Subject
     public partial class SubjectView : Page,INotifyPropertyChanged
     {
         public Subject subject { get; set; }
+        public SubjectView()
+        {
 
+            InitializeComponent();
+
+            StudentsNavButton.navigationService = routerView.NavigationService;
+            ConfigNavButton.navigationService = routerView.NavigationService;
+            TeacherNavButton.navigationService = routerView.NavigationService;
+        }
         public SubjectView(Subject subject)
         {
             InitializeComponent();
@@ -38,8 +35,7 @@ namespace Index_Prototype.Pages.Subject
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
-
-
+            this.subject = DatabaseHelper.getSubject(NavigationHelper.getParams(MainWindow.MainNavigationService)["id"]);
         }
 
         private void TeacherButton_Click(object sender, RoutedEventArgs e)

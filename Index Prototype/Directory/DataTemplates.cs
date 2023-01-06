@@ -22,6 +22,20 @@ namespace Index_Prototype.Directory
                 this.lastName = user.lastName;
                 this.middleName = user.middleName;
             }
+            
+        }
+        public class Student : User
+        {
+            public string section;
+            public Student()
+            {
+
+            }
+
+            public Student(string uid, string firstName, string lastName, string middleName,string section, string profileLocation = null) : base(uid, firstName, lastName, middleName, profileLocation)
+            {
+                this.section = section;
+            }
         }
         public class User
         {
@@ -32,6 +46,17 @@ namespace Index_Prototype.Directory
             public string middleName { get; set; }
             public string name { get { return getName(); }}
             public string profileLocation { get; set; }
+
+            public User(string uid, string firstName, string lastName, string middleName, string profileLocation = null)
+            {
+                this.uid = uid;
+                this.firstName = firstName;
+                this.lastName = lastName;
+                this.middleName = middleName;
+                this.profileLocation = profileLocation;
+            }
+            public User() { }
+
             public string getName(NameType[] format)
             {
 

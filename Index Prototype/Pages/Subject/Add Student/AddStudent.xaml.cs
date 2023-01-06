@@ -23,5 +23,16 @@ namespace Index_Prototype.Pages.Subject.Add_Student
         {
             InitializeComponent();
         }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+
+        }
+
+        private void AddStudentBtn_Click(object sender, RoutedEventArgs e)
+        {
+            DialogResult = true;
+            Close();
+        }
     }
 }
