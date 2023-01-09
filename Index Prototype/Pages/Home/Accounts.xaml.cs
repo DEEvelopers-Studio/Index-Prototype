@@ -35,10 +35,6 @@ namespace Index_Prototype.Pages.Home
             onAccSelect(((sender as ListViewItem)?.Content as User));
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            accounts.Add(new User() { firstName = "Arvin John", lastName = "Suyat", middleName = "" });
-        }
 
         private void ListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -52,6 +48,11 @@ namespace Index_Prototype.Pages.Home
             {
                 accounts.Add(teacher);
             });
+        }
+
+        private void SignUpBtn_PreviewMouseUp(object sender, MouseButtonEventArgs e)
+        {
+            accounts.Add(new User() { firstName = "Arvin John", lastName = "Suyat", middleName = "" });
         }
     }
     

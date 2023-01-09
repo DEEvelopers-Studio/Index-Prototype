@@ -12,7 +12,7 @@
         <DockPanel  VerticalAlignment="Top" Margin="15,10,15,0">
             <StackPanel Orientation="Horizontal">
 
-                <CheckBox x:Name="SelectSubjChkBox" Margin="5 8 5 0" Content="Subjects" FontWeight="Bold" IsChecked="{Binding isAllSelected,Mode=TwoWay}"/>
+                <CheckBox x:Name="SelectSubjChkBox" Content="Subjects" FontWeight="Bold" IsChecked="{Binding isAllSelected,Mode=TwoWay}" Margin="5,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Left"/>
                 <TextBox Tag="Search"
                            HorizontalAlignment="Center"
                            VerticalAlignment="Top"
@@ -41,9 +41,7 @@
             </ListView.ItemContainerStyle>
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    
                     <Grid VerticalAlignment="Stretch" ScrollViewer.VerticalScrollBarVisibility="Disabled">
-                        
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto"/>
                             <ColumnDefinition/>
@@ -56,21 +54,17 @@
                                 </Style>
                             </Border.Style>
                             <Grid >
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition/>
-                                <ColumnDefinition/>
-                            </Grid.ColumnDefinitions>
-                            <TextBlock Text="{Binding Path=title}" VerticalAlignment="Center" Margin="0,5,0,5"/>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition/>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Text="{Binding Path=title}" VerticalAlignment="Center" Margin="0,5,0,5"/>
                                 <TextBlock Text="{Binding Path=section}" Grid.Column="1" Margin="0,5,0,5"/>
-                        </Grid>
-
+                            </Grid>
                         </Border>
                     </Grid>
-
-
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-
     </Grid>
 </Page>

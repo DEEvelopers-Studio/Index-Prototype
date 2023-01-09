@@ -26,17 +26,13 @@
                             <TextBlock Text="Configuration"/>
                         </StackPanel>
                     </ViewModels:NavButton>
-
-
                     <ViewModels:NavButton x:Name="StudentsNavButton" VerticalAlignment="Center" Style="{Binding Mode=OneWay, Source={StaticResource SidebarToggleBtn}}" Navlink="/Pages/Subject/Student List/StudentList.xaml">
-
                         <StackPanel Orientation="Horizontal" Margin="0,0,5,0">
                             <iconPacks:PackIconFontAwesome Kind="UserGraduateSolid" Margin="0,0,5,0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
                             <TextBlock Text="Students" VerticalAlignment="Center"/>
                         </StackPanel>
                     </ViewModels:NavButton>
                     <ViewModels:NavButton x:Name="TeacherNavButton" VerticalAlignment="Center" Style="{Binding Mode=OneWay, Source={StaticResource SidebarToggleBtn}}" Navlink="/Pages/Subject/Teacher List/TeacherList.xaml">
-
                         <StackPanel Orientation="Horizontal" Margin="0,0,5,0">
                             <iconPacks:PackIconFontAwesome Kind="ChalkboardTeacherSolid" Margin="0,0,5,0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
                             <TextBlock Text="Teachers" VerticalAlignment="Center"/>
@@ -47,7 +43,6 @@
                 <Border Padding="0,3" DockPanel.Dock="Bottom" BorderBrush="#FF676767" VerticalAlignment="Bottom" BorderThickness="0,0.3,0,0">
                     <StackPanel DockPanel.Dock="Bottom">
                         <Button x:Name="TeacherButton" VerticalAlignment="Center" Style="{Binding Mode=OneWay, Source={StaticResource SidebarBtn}}" Click="TeacherButton_Click">
-
                             <StackPanel Orientation="Horizontal" DataContext="{Binding Source={x:Static dir:AccountAuth.account}}">
                                 <iconPacks:PackIconFontAwesome Kind="UserSolid" Margin="0,0,5,0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
                                 <TextBlock Text="{Binding name,FallbackValue='Teacher'}"></TextBlock>

@@ -24,17 +24,37 @@ namespace Index_Prototype.Directory
             }
             
         }
+        public class StudentListVM : Student, INotifyPropertyChanged
+        {
+            public event PropertyChangedEventHandler PropertyChanged;
+            public bool isSelected { get; set; } = false;
+            public StudentListVM(Student user)
+            {
+                this.uid = user.uid;
+                this.firstName = user.firstName;
+                this.lastName = user.lastName;
+                this.middleName = user.middleName;
+                this.section = user.section;
+            }
+        }
+        public static String[] StuddentSelectStr { get; set; } = new String[] { "Next Student", "Random Student", "Next Random Student" };
+        public class Subject :INotifyPropertyChanged
+        {
+            public string id { get; set; }
+            public string title { get; set; }
+            public string section { get; set; }
+            public int defaultStudentSelection { get; set; }
+            public bool attendanceOnStart { get; set; }
+
+            public event PropertyChangedEventHandler PropertyChanged;
+
+        }
         public class Student : User
         {
-            public string section;
+            public string section { get; set; }
             public Student()
             {
 
-            }
-
-            public Student(string uid, string firstName, string lastName, string middleName,string section, string profileLocation = null) : base(uid, firstName, lastName, middleName, profileLocation)
-            {
-                this.section = section;
             }
         }
         public class User
@@ -45,6 +65,7 @@ namespace Index_Prototype.Directory
             public string lastName { get; set; }
             public string middleName { get; set; }
             public string name { get { return getName(); }}
+            public string fullName { get { return getName(new NameType[]{NameType.LAST,NameType.COMMA,NameType.FIRST,NameType.MIDDLE }); }}
             public string profileLocation { get; set; }
 
             public User(string uid, string firstName, string lastName, string middleName, string profileLocation = null)
@@ -99,4 +120,5 @@ namespace Index_Prototype.Directory
             }
         }
     }
+
 }

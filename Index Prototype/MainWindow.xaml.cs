@@ -1,4 +1,5 @@
 ﻿using Index_Prototype.Pages.Home;
+using Index_Prototype.Pages.Student_Info;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -40,6 +41,15 @@ namespace Index_Prototype
             //    MessageBox.Show(str);
             //};
             //    navigationService.Navigate(new Home());
+        }
+        public void CloseAllWindow()
+        {
+            StudentInfo.Instance?.Close();
+        }
+
+        private void Window_Unloaded(object sender, RoutedEventArgs e)
+        {
+            CloseAllWindow();
         }
     }
 }

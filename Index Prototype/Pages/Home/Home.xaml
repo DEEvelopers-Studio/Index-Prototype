@@ -72,13 +72,13 @@
         <Grid.Background>
             <ImageBrush ImageSource="/Assets/Images/2021-bgvid.jpg" Stretch="UniformToFill"/>
         </Grid.Background>
-        <Button HorizontalAlignment="Left" VerticalAlignment="Top" Height="33" Width="35" Style="{DynamicResource RoundCorner}" Margin="10,10,0,0">
+        <Button Visibility="Hidden" HorizontalAlignment="Left" VerticalAlignment="Top" Height="33" Width="35" Style="{DynamicResource RoundCorner}" Margin="10,10,0,0">
             <iconPacks:PackIconFontAwesome Kind="CogSolid" VerticalAlignment="Center" Height="20" Width="20" HorizontalAlignment="Center"/>
         </Button>
         <Frame x:Name="routerView" Source="/Pages/Home/Accounts.xaml" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" Grid.Column="1" NavigationUIVisibility="Hidden"/>
 
         <Image Source="/Assets/Images/notes.png" Margin="85,120,82,159"/>
-        <TextBlock Text="TITLE" FontSize="24" FontWeight="Bold" VerticalAlignment="Top" HorizontalAlignment="Center" Foreground="White" Margin="0,296,0,0" Height="32" Width="60"/>
+        <TextBlock Text="Digital Marking System" FontSize="24" FontWeight="Bold" VerticalAlignment="Top" HorizontalAlignment="Center" Foreground="White" Margin="0,296,0,0" Height="33" Width="264"/>
         <!--<Button HorizontalAlignment="Left" VerticalAlignment="Top" Height="29" Width="30" Style="{DynamicResource RoundCorner}"  Margin="10,10,0,0">
             <iconPacks:PackIconFontAwesome Kind="ArrowLeftSolid" VerticalAlignment="Center" Height="20" Width="20" HorizontalAlignment="Center" />
         </Button>-->

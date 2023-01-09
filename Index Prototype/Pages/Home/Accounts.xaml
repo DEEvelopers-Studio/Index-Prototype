@@ -15,9 +15,8 @@
             </Border.Effect>
             <DockPanel Margin="0,10,0,10">
                 <StackPanel  Orientation="Horizontal" DockPanel.Dock="Bottom" HorizontalAlignment="Center" VerticalAlignment="Bottom">
-                    <Button Content="add" Margin="0,0,10,0" Click="Button_Click"></Button>
                     <Label Content="dont have an account?" VerticalAlignment="Center" FontSize="11" Padding="0,0,0,0" />
-                    <Label Content="sign up" VerticalAlignment="Center" FontSize="11" Padding="0,0,0,0" Margin="5,0,0,0" Foreground="{Binding Mode=OneWay, Source={StaticResource PrimaryBtnColor}}" Cursor="Hand" />
+                    <Label x:Name="SignUpBtn" Content="sign up" VerticalAlignment="Center" FontSize="11" Padding="0,0,0,0" Margin="5,0,0,0" Foreground="{Binding Mode=OneWay, Source={StaticResource PrimaryBtnColor}}" Cursor="Hand" PreviewMouseUp="SignUpBtn_PreviewMouseUp" />
                 </StackPanel>
                 <TextBlock DockPanel.Dock="Top" Margin="0,0,0,5" FontSize="16" FontWeight="Bold" HorizontalAlignment="Center" Text="Teachers"/>
                 <ListView  ItemsSource="{Binding accounts,Mode=TwoWay}" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" ScrollViewer.VerticalScrollBarVisibility="Auto" DockPanel.Dock="Top" Margin="15,0,15,10" Background="{x:Null}" d:ItemsSource="{d:SampleData ItemCount=5}">

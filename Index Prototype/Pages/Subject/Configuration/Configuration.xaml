@@ -1,12 +1,14 @@
-﻿<Page x:Class="Index_Prototype.Pages.Subject.Configuration.Configuration"
+﻿<Page
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+     xmlns:c="clr-namespace:CalcBinding;assembly=CalcBinding"
       xmlns:local="clr-namespace:Index_Prototype.Pages.Subject.Configuration"
+      xmlns:Converters="clr-namespace:Index_Prototype.Directory.Converters" xmlns:CalcBinding="clr-namespace:CalcBinding;assembly=CalcBinding" x:Class="Index_Prototype.Pages.Subject.Configuration.Configuration"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
-      Title="Configuration">
+      Height="450" Width="600"
+      Title="Configuration" Loaded="Page_Loaded"  DataContext="{Binding RelativeSource={RelativeSource Self}}">
 
     <Grid>
         <Grid.RowDefinitions>
@@ -22,55 +24,42 @@
         </StackPanel>
 
 
-        <StackPanel Orientation="Vertical" Grid.Row="1">
-            <TextBlock Text="Subject Name"
+        <StackPanel Orientation="Vertical" Grid.Row="1" >
+            <StackPanel DataContext="{Binding subject}">
+                <TextBlock Text="Subject Name"
                        Margin="15 0 0 0"
                        FontWeight="Regular"/>
-            
-            <TextBox x:Name="subjectTxtBox"
-                     Width="250"
-                     Height="30"
+
+                <TextBox x:Name="subjectTxtBox"
+                     Width="336"
                      Margin="15 0 0 0"
                      HorizontalAlignment="Left"
-                     FontSize="16" Padding="3"/>
+                     FontSize="14" Padding="3" Height="28" Text="{Binding Path=title,UpdateSourceTrigger=PropertyChanged}"/>
 
-            <TextBlock Text="Section" Margin="15 5 5 0" FontWeight="Regular"/>
-            
-            <TextBox x:Name="sectionTxtBox"
-                     Width="175"
-                     Height="30"
+                <TextBlock Text="Section" Margin="15 5 5 0" FontWeight="Regular" />
+
+                <TextBox x:Name="sectionTxtBox"
+                     Width="336"
                      Margin="15 0 0 0"
                      HorizontalAlignment="Left"
-                     FontSize="16"
-                     Padding="3"/>
+                     FontSize="14"
+                     Padding="3" Text="{Binding section,UpdateSourceTrigger=PropertyChanged}"/>
+                <TextBlock Text="Default Student Selection" Margin="15 5 5 0"
+                       />
 
 
-            <TextBlock Text="Default Student Selection"
-                       VerticalAlignment="Center"
-                       Margin="15 50 0 0"
-                       Grid.Row="1"/>
-
-            <StackPanel Orientation="Horizontal">
-                <ComboBox x:Name="selection"
-                    Width="150" 
-                    Height="30" 
-                    HorizontalAlignment="Left" 
-                    Margin="15 0 0 0"
-                    ItemsSource="{Binding menu}" 
-                    SelectedIndex="0"
-                    FontSize="12">
-                </ComboBox>
-                
-                <CheckBox 
-                    x:Name="attendanceCheckBox"
-                    HorizontalAlignment="Right"
-                    Margin="15 10 0 0"/>
-
-                <TextBlock Text="Attendance on Start"
-                           FontWeight="Medium"
-                           Margin="3 7 0 0"
-                           FontSize="14" />
             </StackPanel>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <ComboBox x:Name="defaultStdntSlctnBox" ItemsSource="{Binding Path=mode}" SelectedIndex="{Binding subject.defaultStudentSelection,UpdateSourceTrigger=PropertyChanged}" Height="30" VerticalAlignment="Center"  Text="test" BorderThickness="1,1,1,1" Margin="15,0,10,0" VerticalContentAlignment="Center"/>
+
+                <CheckBox DataContext="{Binding Path=subject,UpdateSourceTrigger=PropertyChanged}"
+                    x:Name="attendanceCheckBox"
+                    Content="Attendance on Start" FontWeight="DemiBold" Width="129" VerticalAlignment="Center" Grid.Column="1" HorizontalAlignment="Left" Height="16" />
+            </Grid>
 
 
         </StackPanel>
@@ -80,27 +69,34 @@
                     Width="100"
                     Height="30"
                     Margin="15"
-                    Content="Import Data">
-            </Button>
+                    Content="Import Data"/>
 
             <Button x:Name="exportBtn"
                     Width="100"
                     Height="30"
                     Margin="1"
-                    Content="Export Data">
-            </Button>
-            
+                    Content="Export Data"/>
+
         </StackPanel>
-        
+
         <Button x:Name="applyChangesBtn"
-                Width="100"
+                Width="65"
                 Height="30"
-                Margin="0,291,0,0"
-                Content="Apply Changes"
+                Margin="103,291,0,0"
+                Content="Apply"
                 Grid.Column="1"
                 Grid.Row="1"
                 VerticalAlignment="Top"
-                HorizontalAlignment="Center"/>
+                HorizontalAlignment="Left" Visibility="{c:Binding 'isChanged'}" Click="applyChangesBtn_Click"/>
+        <Button x:Name="applyChangesBtn_Copy"
+            Width="93"
+            Height="30"
+            Margin="5,291,0,0"
+            Content="Revert Changes"
+            Grid.Column="1"
+            Grid.Row="1"
+            VerticalAlignment="Top"
+            HorizontalAlignment="Left" Visibility="{c:Binding 'isChanged'}" Click="revertChanges_Click"/>
 
     </Grid>
 </Page>

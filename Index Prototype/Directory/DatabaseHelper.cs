@@ -47,7 +47,7 @@ namespace WpfApp2
         public static List<Subject> getSubjects() => getDocumentsInTable<Subject>("Subjects");
         public static List<User> getTeachers() => getDocumentsInTable<User>("Teachers");
         public static List<User> getStudents() => getDocumentsInTable<User>("Students");
-        public static List<Student> getStudentsInSubject(string subjectId) => getDocumentsInTable<Student>(new SqlCommand($"select Students.* from Students LEFT JOIN StudentSubjectData ON Students.uid = StudentSubjectData.uid where StudentSubjectData.subjectId = '{subjectId}'"));
+        public static List<Student> getStudentsInSubject(string subjectId) => getDocumentsInTable<Student>(new SqlCommand($"select Students.* from Students LEFT JOIN StudentSubjectData ON Students.uid = StudentSubjectData.uid where StudentSubjectData.subjectId = '{subjectId}' Order By lastName ASC"));
         public static User getStudent(string uid) => getDocument<User>(uid, "Students");
         public static Subject getSubject(string uid) => getDocument<Subject>(uid, "Subjects");
         public static User getTeacher(string uid) => getDocument<User>(uid, "Teachers");
@@ -100,7 +100,6 @@ namespace WpfApp2
                 if(!sdr.Read())return null;
                 return ConvertToObject<T>(sdr);
                 //user = new User() { firstName = sdr?["firstName"] as string, lastName = sdr?["lastName"] as string, middleName = sdr?["middleName"] as string, uid = sdr?["uid"] as string };
-
             }
             catch (Exception r)
             {
@@ -172,13 +171,19 @@ namespace WpfApp2
             public const int BadObject = 208;
             public const int DupKey = 2627;
         }
-        public static void AddStudent(Student student)
+        public static void PutStudent(Student student)
         {
             string table = "Students";
             try
             {
                 connection.Open();
-                SqlCommand sqlcmd = new SqlCommand() {Connection = connection, CommandText = $"insert into {table} (uid,firstName,lastName,middleName,section) values('{student.uid}','{student.firstName}','{student.lastName}','{student.middleName}','{student.section}')" };
+                SqlCommand sqlcmd = new SqlCommand() {Connection = connection, CommandText = $@"IF EXISTS (SELECT * FROM Students WHERE uid = '{student.uid}')
+ BEGIN
+     UPDATE Students SET firstName = '{student.firstName}', middleName = '{student.middleName}',lastName = '{student.lastName}', section = '{student.section}' WHERE uid = '{student.uid}';
+      RETURN
+ END
+INSERT INTO Students (uid,firstName,middleName,lastName,section) VALUES ('{student.uid}','{student.firstName}','{student.middleName}','{student.lastName}','{student.section}')
+" };
                 SqlDataReader sqlrdr = sqlcmd.ExecuteReader();
             }
             catch (SqlException r)
@@ -193,6 +198,43 @@ namespace WpfApp2
                         break;
                     default:
 
+                        MessageBox.Show("" + r);
+                        break;
+                }
+            }
+            finally
+            {
+
+                //insertData(myConn);
+                if (connection.State == ConnectionState.Open)
+                {
+                    connection.Close();
+                }
+
+            }
+        }
+        public static void PutSubject(Subject subject)
+        {
+            string table = "Subjects";
+            try
+            {
+                connection.Open();
+                SqlCommand sqlcmd = new SqlCommand() { Connection = connection, CommandText = $@"IF EXISTS (SELECT * FROM {table} WHERE id = '{subject.id}')
+      BEGIN UPDATE {table} SET title='{subject.title}',section='{subject.section}',defaultStudentSelection={subject.defaultStudentSelection},attendanceOnStart='{subject.attendanceOnStart}' WHERE id = '{subject.id}';
+      RETURN END INSERT INTO {table} (id,title,section,defaultStudentSelection,attendanceOnStart) VALUES ('{subject.id}','{subject.title}','{subject.section}','{subject.defaultStudentSelection}','{subject.attendanceOnStart}')" };
+                SqlDataReader sqlrdr = sqlcmd.ExecuteReader();
+            }
+            catch (SqlException r)
+            {
+                switch (r.Number)
+                {
+                    case SqllErrorNumbers.DupKey:
+                        MessageBox.Show("Duplicate Key");
+                        break;
+                    case SqllErrorNumbers.BadObject:
+                        MessageBox.Show("Bad Obj");
+                        break;
+                    default:
                         MessageBox.Show("" + r);
                         break;
                 }

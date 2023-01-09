@@ -1,4 +1,5 @@
 ﻿using ControlzEx.Theming;
+using Index_Prototype.Directory;
 using Index_Prototype.Pages.Home;
 using Newtonsoft.Json.Linq;
 using System;
@@ -27,7 +28,7 @@ namespace Index_Prototype.Pages.Subject_List
     /// </summary>
     public partial class SubjectList : Page, INotifyPropertyChanged
     {
-        public class SubjectVM : Subject.Subject, INotifyPropertyChanged
+        public class SubjectVM : DataTemplates.Subject, INotifyPropertyChanged
         {
             public bool isSelected { get; set; } = false;
 
@@ -51,15 +52,14 @@ namespace Index_Prototype.Pages.Subject_List
         }
         public SubjectList()
         {
-            InitializeComponent();
             DatabaseHelper.getSubjects().ForEach(subject =>
             {
                 if (subject == null) return;
                 subjects.Add(new SubjectVM() { attendanceOnStart = subject.attendanceOnStart,id = subject.id,defaultStudentSelection = subject.defaultStudentSelection,section = subject.section,title = subject.title});
             });
         }
-        Action<Subject.Subject> onSelectSubject;
-        public void OnSelectSubject(Action<Subject.Subject> action)
+        Action<DataTemplates.Subject> onSelectSubject;
+        public void OnSelectSubject(Action<DataTemplates.Subject> action)
         {
             onSelectSubject = action;
         }
@@ -70,7 +70,7 @@ namespace Index_Prototype.Pages.Subject_List
             SubjectVM selectedSubj = (sender as Border)?.Tag as SubjectVM;
             if (selectedSubj == null) return;
             //MainWindow.MainNavigationService.Navigate(new Subject.SubjectView(selectedSubj));
-            MainWindow.MainNavigationService.Navigate(new Uri($"Pages/Subject/SubjectView.xaml?id={selectedSubj.id}", UriKind.Relative));
+            MainWindow.MainNavigationService.Navigate(new Uri($"Pages/Subject/SubjectView.xaml?SubjectId={selectedSubj.id}", UriKind.Relative));
             //onSelectSubject?.Invoke(selectedSubj);
         }
 

@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:Index_Prototype.Pages.Home" xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
       mc:Ignorable="d" 
       Width="458" Height="450"
-      Title="Login">
+      Title="Login" FocusManager.FocusedElement="{Binding ElementName=passwordBox}">
 
     <Grid>
         <Border BorderBrush="Black" HorizontalAlignment="Center" Height="276" VerticalAlignment="Center" Width="290" CornerRadius="10,10,10,10" Background="#FFF0F0F0">
@@ -23,7 +23,7 @@
 
                 <StackPanel HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,121,0,0">
                     <Label Content="Password" FontSize="10" Padding="0,0,0,0"/>
-                    <PasswordBox x:Name="passwordBox" FontSize="14" Width="196" PasswordChanged="passwordBox_PasswordChanged" />
+                    <PasswordBox x:Name="passwordBox" FontSize="14" Width="196" PasswordChanged="passwordBox_PasswordChanged" KeyDown="OnKeyDown" />
                     <Label x:Name="wrongPasswordHint" Content="Inavlid Password!" FontSize="8" Padding="0,0,0,0" Foreground="Red" Visibility="Hidden"/>
                 </StackPanel>
                 <Button HorizontalAlignment="Center" Height="30" Width="72" Margin="0,194,0,52" Click="OnLogin" >

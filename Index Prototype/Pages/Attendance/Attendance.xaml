@@ -1,22 +1,23 @@
-﻿<Page x:Class="Index_Prototype.Pages.Subject.Attendance.Attendance"
-      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:Index_Prototype.Pages.Subject.Attendance"
-      mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
-      Title="Attendance">
-
-    <Grid>
-        <Border BorderBrush="Black" BorderThickness="1" Height="164" Margin="0,20,20,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="164" Background="White">
+﻿<Window x:Class="Index_Prototype.Pages.Attendance.Attendance"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Index_Prototype.Pages.Attendance"
+        mc:Ignorable="d"
+        Title="Attendance" Height="410" Width="620" Loaded="Window_Loaded" WindowStyle="ToolWindow" ResizeMode="NoResize" DataContext="{Binding RelativeSource={RelativeSource Self}}">
+    <Grid DataContext="{Binding student}">
+        <Border BorderBrush="Black" BorderThickness="1" Height="134" Width="134" VerticalAlignment="Top" HorizontalAlignment="Center"  Background="White" Margin="0,20,0,0">
             <Image Source="/Assets/Images/default-profile.png"/>
         </Border>
-        <StackPanel Margin="30,46,224,275">
-            <TextBlock TextWrapping="Wrap" FontSize="22" Margin="0,0,0,5"><Run FontWeight="Bold" Text="Student Name"/></TextBlock>
-            <TextBlock TextWrapping="Wrap" Text="Section" FontSize="16" Margin="0,0,0,5"/>
-            <TextBlock TextWrapping="Wrap" Text="Subject" FontSize="16"/>
+        <StackPanel Margin="127,174,127,120">
+            <TextBlock TextWrapping="Wrap" FontSize="36" Margin="0,0,0,5" HorizontalAlignment="Center"><Run FontWeight="Bold" Text="{Binding fullName,Mode=OneWay,FallbackValue='Student Name'}"/></TextBlock>
+            <TextBlock TextWrapping="Wrap" Text="{Binding section,FallbackValue='Section'}" FontSize="16" Margin="0,0,0,5" HorizontalAlignment="Center"/>
         </StackPanel>
 
+        <Button x:Name="AbsentBtn" Content="Absent" HorizontalAlignment="Left" Margin="372,329,0,0" VerticalAlignment="Top" Height="25" Width="93" FontSize="14" Click="AbsentBtn_Click"/>
+        <Button x:Name="PresentBtn" Content="Present" HorizontalAlignment="Left" Margin="487,329,0,0" VerticalAlignment="Top" Height="25" Width="93" FontSize="14" Click="PresentBtn_Click"/>
+        <Button x:Name="SkipBtn" Content="Skip" HorizontalAlignment="Left" Margin="21,329,0,0" VerticalAlignment="Top" Height="25" Width="92" FontSize="14" Click="SkipBtn_Click"/>
+
     </Grid>
-</Page>
+</Window>

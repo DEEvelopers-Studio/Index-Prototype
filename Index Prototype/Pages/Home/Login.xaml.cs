@@ -48,6 +48,12 @@ namespace Index_Prototype.Pages.Home
 
         private void OnLogin(object sender, RoutedEventArgs e)
         {
+            LoginAccount();
+
+
+        }
+        private void LoginAccount()
+        {
             AccountAuth.Login(teacher.uid, passwordBox.Password, (User account) =>
             {
                 onLoginSucess.Invoke();
@@ -59,21 +65,28 @@ namespace Index_Prototype.Pages.Home
                         wrongPasswordHint.Visibility = Visibility.Visible;
                         break;
                     case LoginExeption.UIDFAIL:
-                        MessageBox.Show("User does not Exist","ok");
+                        MessageBox.Show("User does not Exist", "ok");
                         break;
                     case LoginExeption.DBFAIL:
                         MessageBox.Show("Problem Authenticating, please try again", "ok");
                         break;
                 }
             });
-            /* verify account and passowrd to database*/
-            
-            
+
+
         }
 
         private void passwordBox_PasswordChanged(object sender, RoutedEventArgs e)
         {
             wrongPasswordHint.Visibility = Visibility.Hidden;
+        }
+
+        private void OnKeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Return)
+            {
+                LoginAccount();
+            }
         }
     }
 }
