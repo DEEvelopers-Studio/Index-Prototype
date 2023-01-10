@@ -3,17 +3,17 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:c="clr-namespace:CalcBinding;assembly=CalcBinding" 
              xmlns:local="clr-namespace:Index_Prototype.Pages.Student_Info" 
-             xmlns:iconPacks="clr-namespace:MahApps.Metro.IconPacks;assembly=MahApps.Metro.IconPacks.BoxIcons" 
-             xmlns:iconPacks1="http://metro.mahapps.com/winfx/xaml/iconpacks" 
-             xmlns:iconPacks2="clr-namespace:MahApps.Metro.IconPacks;assembly=MahApps.Metro.IconPacks"
-        xmlns:Index_Prototype="clr-namespace:Index_Prototype" x:Class="Index_Prototype.Pages.Student_Info.StudentInfo"
+        xmlns:Index_Prototype="clr-namespace:Index_Prototype" xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks" x:Class="Index_Prototype.Pages.Student_Info.StudentInfo"
         mc:Ignorable="d" DataContext="{Binding RelativeSource={RelativeSource Self}}"
         ResizeMode="NoResize"
              Height="450" Width="800" UseLayoutRounding="False" WindowStartupLocation="CenterScreen" Unloaded="Window_Unloaded" Loaded="Window_Loaded">
     <Window.Resources>
         <Index_Prototype:DatabaseDataSet x:Key="databaseDataSet"/>
         <CollectionViewSource x:Key="gradesViewSource" Source="{Binding Grades, Source={StaticResource databaseDataSet}}"/>
+        <Index_Prototype:DatabaseDataSet2 x:Key="databaseDataSet2"/>
+        <CollectionViewSource x:Key="attendanceViewSource" Source="{Binding Attendance, Source={StaticResource databaseDataSet2}}"/>
     </Window.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
@@ -31,17 +31,73 @@
             <Button Width="100" Height="30" Margin="5">
                 <StackPanel Orientation="Horizontal">
                     <TextBlock Text="Edit Info" HorizontalAlignment="Left" FontWeight="Medium" FontSize="14"/>
-                    <iconPacks1:PackIconBoxIcons Kind="{x:Static iconPacks1:PackIconBoxIconsKind.SolidEditAlt}" Margin="5 0 0 0"/>
+                    <iconPacks:PackIconBoxIcons Kind="SolidEditAlt" Margin="5 0 0 0"/>
                 </StackPanel>
             </Button>
         </StackPanel>
 
-        
-        <DataGrid x:Name="gradesDataGrid" EnableRowVirtualization="True" ItemsSource="{Binding Source={StaticResource gradesViewSource}}" RowDetailsVisibilityMode="VisibleWhenSelected" Grid.Column="1" Margin="10,10,10,10" AutoGenerateColumns="False" EnableColumnVirtualization="True">
-            <DataGrid.Columns>
-                <DataGridTextColumn x:Name="q1Column" Binding="{Binding Q1}" Header="Q 1" Width="SizeToHeader"/>
-            </DataGrid.Columns>
-        </DataGrid>
+
+
+        <TabControl Grid.Column="1">
+            <TabItem Header="Attendance">
+                <Grid Background="#FFE5E5E5">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition ></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <DataGrid IsReadOnly="True" x:Name="attendanceDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding Source={StaticResource attendanceViewSource}}" RowDetailsVisibilityMode="VisibleWhenSelected" Grid.Row="1">
+                        <DataGrid.Columns>
+                            <DataGridTemplateColumn x:Name="dateColumn" Header="date">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Margin="3" Text="{Binding date,StringFormat=D}"></TextBlock>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                                <DataGridTemplateColumn.CellEditingTemplate>
+                                    <DataTemplate>
+                                        <DatePicker Margin="3" SelectedDateFormat="Long" SelectedDate="{Binding date, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"/>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellEditingTemplate>
+                            </DataGridTemplateColumn>
+                            <DataGridTemplateColumn x:Name="statusColumn"  Header="status" Width="SizeToHeader">
+
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <StackPanel Margin="3" VerticalAlignment="Center" HorizontalAlignment="Center">
+                                            <iconPacks:PackIconFontisto Kind="Check" Foreground="Lime" Visibility="{c:Binding 'status == 0',FallbackValue=Collapsed, FalseToVisibility=Collapsed}" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Center" />
+                                            <iconPacks:PackIconMicrons Kind="Clock" Foreground="Orange" Visibility="{c:Binding 'status == 1',FallbackValue=Collapsed, FalseToVisibility=Collapsed}" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Center"  />
+                                            <iconPacks:PackIconMaterial Kind="AccountOff" Foreground="Red" Visibility="{c:Binding 'status == 2',FallbackValue=Hidden, FalseToVisibility=Collapsed}" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Center"  />
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                                <DataGridTemplateColumn.CellEditingTemplate>
+                                    <DataTemplate>
+                                        <ComboBox HorizontalAlignment="Left" VerticalAlignment="Center" Width="44" SelectedIndex="{Binding status,Mode=TwoWay}" VerticalContentAlignment="Center">
+                                            <iconPacks:PackIconFontisto Kind="Check" Foreground="Lime" />
+                                            <iconPacks:PackIconMicrons Kind="Clock" Foreground="Orange" />
+                                            <iconPacks:PackIconMaterial Kind="AccountOff" Foreground="Red" />
+                                        </ComboBox>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellEditingTemplate>
+                            </DataGridTemplateColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <ToolBar Height="30" VerticalAlignment="Top" Visibility="Collapsed">
+                        <Button x:Name="SaveBtn" Click="SaveBtn_Click">
+                            <iconPacks:PackIconMaterial Kind="ContentSave" />
+                        </Button>
+                    </ToolBar>
+                </Grid>
+
+            </TabItem>
+            <TabItem Header="Grades">
+                <DataGrid x:Name="gradesDataGrid" EnableRowVirtualization="True" ItemsSource="{Binding Source={StaticResource gradesViewSource}}" RowDetailsVisibilityMode="VisibleWhenSelected" Grid.Column="1" Margin="10,10,10,10" AutoGenerateColumns="False" EnableColumnVirtualization="True">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn x:Name="q1Column" Binding="{Binding Q1}" Header="Q 1" Width="SizeToHeader"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </TabItem>
+        </TabControl>
 
 
     </Grid>

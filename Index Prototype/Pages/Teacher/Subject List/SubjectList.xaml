@@ -28,7 +28,7 @@
                 </Button>
 
                 <Button x:Name="addSubjBtn"
-                    HorizontalAlignment="Right" Content="Add new Subject" Padding="7,5,7,5">
+                    HorizontalAlignment="Right" Content="Add new Subject" Padding="7,5,7,5" Click="addSubjBtn_Click">
                 </Button>
             </StackPanel>
         </DockPanel>

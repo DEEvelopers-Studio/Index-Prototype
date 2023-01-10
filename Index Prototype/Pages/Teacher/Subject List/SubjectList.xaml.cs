@@ -28,14 +28,16 @@ namespace Index_Prototype.Pages.Subject_List
     /// </summary>
     public partial class SubjectList : Page, INotifyPropertyChanged
     {
+
+        public event PropertyChangedEventHandler PropertyChanged;
+        public ObservableCollection<SubjectVM> subjects { get; set; } = new ObservableCollection<SubjectVM>();
+        private bool? _isAllSelected { get; set; } = false;
         public class SubjectVM : DataTemplates.Subject, INotifyPropertyChanged
         {
             public bool isSelected { get; set; } = false;
 
             public event PropertyChangedEventHandler PropertyChanged;
         }
-        public ObservableCollection<SubjectVM> subjects { get; set; } = new ObservableCollection<SubjectVM>();
-        private bool? _isAllSelected { get; set; } = false;
         public bool? isAllSelected
         {
             get { return _isAllSelected; }
@@ -63,7 +65,6 @@ namespace Index_Prototype.Pages.Subject_List
         {
             onSelectSubject = action;
         }
-        public event PropertyChangedEventHandler PropertyChanged;
 
         private void SelectedSubject(object sender, MouseButtonEventArgs e)
         {
@@ -73,7 +74,6 @@ namespace Index_Prototype.Pages.Subject_List
             MainWindow.MainNavigationService.Navigate(new Uri($"Pages/Subject/SubjectView.xaml?SubjectId={selectedSubj.id}", UriKind.Relative));
             //onSelectSubject?.Invoke(selectedSubj);
         }
-
         private void ItemToggle(object sender, RoutedEventArgs e)
         {
             int itemChecked = 0;
@@ -85,10 +85,16 @@ namespace Index_Prototype.Pages.Subject_List
             else if (itemChecked != 0) isAllSelected = null;
             else isAllSelected = false;
         }
-
         private void SearchChanged(object sender, TextChangedEventArgs e)
         {
 
+        }
+        private void addSubjBtn_Click(object sender, RoutedEventArgs e)
+        {
+            string newSubjectId = Guid.NewGuid().ToString();
+            DatabaseHelper.PutSubject(new DataTemplates.Subject() { title = "New Subject", id = newSubjectId, attendanceOnStart = true, defaultStudentSelection = 0 });
+            DatabaseHelper.AddTeachertoSubject(AccountAuth.account.uid, newSubjectId);
+            MainWindow.MainNavigationService.Navigate(new Uri($"Pages/Subject/SubjectView.xaml?SubjectId={newSubjectId}", UriKind.Relative));
         }
     }
 }

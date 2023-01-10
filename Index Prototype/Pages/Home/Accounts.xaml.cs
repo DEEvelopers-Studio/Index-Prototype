@@ -32,7 +32,7 @@ namespace Index_Prototype.Pages.Home
         }
         private void SelectedAccount(object sender, MouseButtonEventArgs e)
         {
-            onAccSelect(((sender as ListViewItem)?.Content as User));
+            onAccSelect((sender as System.Windows.Controls.ListViewItem)?.Content as User);
         }
 
 
@@ -43,16 +43,33 @@ namespace Index_Prototype.Pages.Home
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
-
+            LoadData();
+        }
+        public void LoadData()
+        {
+            accounts.Clear();
             DatabaseHelper.getTeachers().ForEach(teacher =>
             {
                 accounts.Add(teacher);
             });
-        }
 
+        }
         private void SignUpBtn_PreviewMouseUp(object sender, MouseButtonEventArgs e)
         {
-            accounts.Add(new User() { firstName = "Arvin John", lastName = "Suyat", middleName = "" });
+            Add_Teacher.AddTeacher teacher = new Add_Teacher.AddTeacher();
+            bool? dialogResult = teacher?.ShowDialog();
+            switch (dialogResult)
+            {
+                case true:
+                    LoadData();
+                    break;
+                case false:
+                    // User canceled dialog box
+                    break;
+                default:
+                    // Indeterminate
+                    break;
+            }
         }
     }
     

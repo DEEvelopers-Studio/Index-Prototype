@@ -35,6 +35,7 @@ namespace Index_Prototype.Directory
                 this.lastName = user.lastName;
                 this.middleName = user.middleName;
                 this.section = user.section;
+                this.attendanceStatus = user.attendanceStatus;
             }
         }
         public static String[] StuddentSelectStr { get; set; } = new String[] { "Next Student", "Random Student", "Next Random Student" };
@@ -49,9 +50,12 @@ namespace Index_Prototype.Directory
             public event PropertyChangedEventHandler PropertyChanged;
 
         }
+
+        public enum AttendanceStatus { PRESENT, LATE,ABSENT }
         public class Student : User
         {
             public string section { get; set; }
+            public int attendanceStatus { get; set; }
             public Student()
             {
 

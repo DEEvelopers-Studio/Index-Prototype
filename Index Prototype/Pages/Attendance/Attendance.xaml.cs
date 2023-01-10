@@ -55,14 +55,21 @@ namespace Index_Prototype.Pages.Attendance
             }
             student = students.Dequeue();
         }
+        public void MarkStudent(AttendanceStatus status)
+        {
+            student.attendanceStatus = (int)status;
+            DatabaseHelper.PutAttendance(student, subject.id);
+            NextStudent();
+        }
         private void AbsentBtn_Click(object sender, RoutedEventArgs e)
         {
-            NextStudent();
+            MarkStudent(AttendanceStatus.ABSENT);
         }
 
         private void PresentBtn_Click(object sender, RoutedEventArgs e)
         {
-            NextStudent();
+
+            MarkStudent(AttendanceStatus.PRESENT);
         }
 
         private void SkipBtn_Click(object sender, RoutedEventArgs e)

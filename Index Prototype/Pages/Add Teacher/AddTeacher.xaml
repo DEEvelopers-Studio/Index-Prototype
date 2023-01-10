@@ -3,29 +3,22 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Index_Prototype.Pages.Add_Teacher"
-        xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls" x:Class="Index_Prototype.Pages.Add_Teacher.AddTeacher"
-        mc:Ignorable="d"
-        Title="AddTeacher" Height="233" Width="393" WindowStyle="ToolWindow">
+        xmlns:local="clr-namespace:Index_Prototype.Pages.Add_Teacher" x:Class="Index_Prototype.Pages.Add_Teacher.AddTeacher"
+        mc:Ignorable="d" ScrollViewer.VerticalScrollBarVisibility="Disabled" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch" SizeToContent="WidthAndHeight" WindowStartupLocation="CenterOwner" 
+        Title="AddTeacher" Height="233" Width="393" DataContext="{Binding RelativeSource={RelativeSource Self}}" ResizeMode="NoResize" >
     <Grid>
-
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="4*"/>
-            <ColumnDefinition Width="9*"/>
-            <ColumnDefinition Width="118*"/>
-        </Grid.ColumnDefinitions>
-        <TextBlock Text="Sign Up" Margin="0,7,313,189" FontSize="18" Grid.Column="1" Grid.ColumnSpan="2" FontFamily="PT Sans" />
-        <TextBlock Text="Last Name" Margin="0,37,334,168" Grid.Column="1" Grid.ColumnSpan="2" FontFamily="PT Sans" FontSize="9" />
-        <TextBlock Text="First Name" Margin="0,70,334,135" Grid.Column="1" FontFamily="PT Sans" FontSize="9" Grid.ColumnSpan="2" />
-        <PasswordBox FontSize="14" Grid.ColumnSpan="2" Margin="0,47,274,152" Grid.Column="1"/>
-        <PasswordBox FontSize="14" Margin="0,84,177,115" Grid.Column="1" Grid.ColumnSpan="2"/>
-        <PasswordBox FontSize="14" Margin="85,47,177,152" Grid.Column="2"/>
-        <TextBlock Text="Middle Name" Margin="85,35,212,170" Grid.Column="2" FontFamily="PT Sans" FontSize="9" RenderTransformOrigin="0.643,0.614" />
-        <PasswordBox FontSize="14" Margin="0,118,177,81" Grid.Column="1" Grid.ColumnSpan="2"/>
-        <PasswordBox FontSize="14" Margin="0,151,177,48" Grid.Column="1" Grid.ColumnSpan="2"/>
-        <TextBlock Text="Password" Margin="0,108,341,97" Grid.Column="1" FontFamily="PT Sans" FontSize="9" Grid.ColumnSpan="2" />
-        <TextBlock Text="Confirm Password" Margin="0,140,306,65" FontFamily="PT Sans" FontSize="9" Grid.ColumnSpan="2" Grid.Column="1" />
-        <Button Grid.Column="2" Margin="281,182,18,13" >
+        <TextBlock Text="Sign Up" Margin="15,9,298,187" FontSize="18" FontFamily="PT Sans" />
+        <TextBlock Text="Last Name" Margin="15,36,319,169" FontFamily="PT Sans" FontSize="9" />
+        <TextBlock Text="First Name" Margin="15,69,319,136" FontFamily="PT Sans" FontSize="9" />
+        <TextBox x:Name="LNameBox" FontSize="14" Margin="14,47,246,152"/>
+        <TextBox x:Name="FNameBox" FontSize="14" Margin="14,84,129,115"/>
+        <TextBox x:Name="MNameBox" FontSize="14" Margin="154,47,129,152"/>
+        <TextBlock Text="Middle Name" Margin="157,36,140,169" FontFamily="PT Sans" FontSize="9" RenderTransformOrigin="0.643,0.614" />
+        <PasswordBox x:Name="PWBox" FontSize="14" Margin="14,118,129,81" KeyDown="PWBox_KeyDown"/>
+        <PasswordBox x:Name="PWConfirmBox" FontSize="14" Margin="14,151,129,48" KeyDown="PWBox_KeyDown"/>
+        <TextBlock Text="Password" Margin="15,107,326,98" FontFamily="PT Sans" FontSize="9" />
+        <TextBlock Text="Confirm Password" Margin="15,139,291,66" FontFamily="PT Sans" FontSize="9" />
+        <Button x:Name="SignUpBtn" Margin="302,185,10,10" Click="SignUpBtn_Click" >
             <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
                 <TextBlock Text="Sign Up" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="PT Sans"/>
             </StackPanel>
@@ -34,24 +27,12 @@
             <Grid>
                 <Image Source="/Assets/Images/default-profile.png" Stretch="UniformToFill"/>
 
-                <Button Content="Edit Picture" FontSize="11" Panel.ZIndex="1" HorizontalAlignment="Center" VerticalAlignment="Center" >
+                <Button Content="Edit Picture" FontSize="11" Panel.ZIndex="1" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="Hidden" >
                 </Button>
             </Grid>
         </Border>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        <TextBlock x:Name="PwNotMatchErrTxt" Text="Passwords do not match" Margin="15,174,279,33" FontFamily="PT Sans" FontSize="8" Foreground="Red" Visibility="Hidden" />
+        <TextBlock x:Name="PwMinErrTxt" Text="Password too short, Minimum length is 8" Margin="93,138,152,69" FontFamily="PT Sans" FontSize="8" Foreground="Red" Visibility="Hidden" />
+        <TextBlock x:Name="FillErrTxt" Text="Must fill up all boxes" Margin="15,186,279,21" FontFamily="PT Sans" FontSize="8" Foreground="Red" Visibility="Hidden"  />
     </Grid>
 </Window>

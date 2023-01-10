@@ -11,6 +11,8 @@ using FastMember;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Drawing;
+using static Index_Prototype.Pages.Subject.Teacher_List.TeacherList;
+using Index_Prototype.Directory;
 
 public enum LoginExeption { PASSWORDFAIL, UIDFAIL, DBFAIL }
 namespace WpfApp2
@@ -44,10 +46,11 @@ namespace WpfApp2
             }
         }
         public static bool BitToBool(int? num) => num == 1;
-        public static List<Subject> getSubjects() => getDocumentsInTable<Subject>("Subjects");
+        public static List<Subject> getSubjects() => getDocumentsInTable<Subject>(new SqlCommand($"select Subjects.* from Subjects LEFT JOIN TeacherSubjectData ON Subjects.id = TeacherSubjectData.subjectId where TeacherSubjectData.uid = '{AccountAuth.account.uid}'"));
         public static List<User> getTeachers() => getDocumentsInTable<User>("Teachers");
         public static List<User> getStudents() => getDocumentsInTable<User>("Students");
-        public static List<Student> getStudentsInSubject(string subjectId) => getDocumentsInTable<Student>(new SqlCommand($"select Students.* from Students LEFT JOIN StudentSubjectData ON Students.uid = StudentSubjectData.uid where StudentSubjectData.subjectId = '{subjectId}' Order By lastName ASC"));
+        public static List<Student> getStudentsInSubject(string subjectId) => getDocumentsInTable<Student>(new SqlCommand($"select Students.*,ISNULL(Attendance.status, -1) as attendanceStatus from Students LEFT JOIN StudentSubjectData ON Students.uid = StudentSubjectData.uid LEFT JOIN Attendance ON Students.uid=Attendance.studentId AND Attendance.date = CAST(GETDATE() as DATE) AND Attendance.subjectId = '{subjectId}'  where StudentSubjectData.subjectId = '{subjectId}'  Order By lastName ASC"));
+        public static List<Student> getTeachersInSubject(string subjectId) => getDocumentsInTable<Student>(new SqlCommand($"select Teachers.uid, Teachers.firstName,Teachers.lastName,Teachers.middleName,Teachers.lastName from Teachers LEFT JOIN TeacherSubjectData ON Teachers.uid = TeacherSubjectData.uid where TeacherSubjectData.subjectId = '{subjectId}' Order By Teachers.lastName ASC"));
         public static User getStudent(string uid) => getDocument<User>(uid, "Students");
         public static Subject getSubject(string uid) => getDocument<Subject>(uid, "Subjects");
         public static User getTeacher(string uid) => getDocument<User>(uid, "Teachers");
@@ -177,12 +180,95 @@ namespace WpfApp2
             try
             {
                 connection.Open();
-                SqlCommand sqlcmd = new SqlCommand() {Connection = connection, CommandText = $@"IF EXISTS (SELECT * FROM Students WHERE uid = '{student.uid}')
+                SqlCommand sqlcmd = new SqlCommand() {Connection = connection, CommandText = $@"IF EXISTS (SELECT * FROM {table} WHERE uid = '{student.uid}')
  BEGIN
-     UPDATE Students SET firstName = '{student.firstName}', middleName = '{student.middleName}',lastName = '{student.lastName}', section = '{student.section}' WHERE uid = '{student.uid}';
+     UPDATE {table} SET firstName = '{student.firstName}', middleName = '{student.middleName}',lastName = '{student.lastName}', section = '{student.section}' WHERE uid = '{student.uid}';
       RETURN
  END
-INSERT INTO Students (uid,firstName,middleName,lastName,section) VALUES ('{student.uid}','{student.firstName}','{student.middleName}','{student.lastName}','{student.section}')
+INSERT INTO {table} (uid,firstName,middleName,lastName,section) VALUES ('{student.uid}','{student.firstName}','{student.middleName}','{student.lastName}','{student.section}')
+" };
+                SqlDataReader sqlrdr = sqlcmd.ExecuteReader();
+            }
+            catch (SqlException r)
+            {
+                switch (r.Number)
+                {
+                    case SqllErrorNumbers.DupKey:
+                        MessageBox.Show("Duplicate Key");
+                        break;
+                    case SqllErrorNumbers.BadObject:
+                        MessageBox.Show("Bad Obj");
+                        break;
+                    default:
+
+                        MessageBox.Show("" + r);
+                        break;
+                }
+            }
+            finally
+            {
+
+                //insertData(myConn);
+                if (connection.State == ConnectionState.Open)
+                {
+                    connection.Close();
+                }
+
+            }
+        }
+        public static void PutAttendance(Student student,string subjectId)
+        {
+            string table = "Attendance";
+            try
+            {
+                connection.Open();
+                SqlCommand sqlcmd = new SqlCommand() { Connection = connection, CommandText = $@"IF EXISTS (SELECT * FROM {table} WHERE studentId = '{student.uid}' AND date = CAST(GETDATE() as DATE) AND subjectId = '{subjectId}')
+ BEGIN
+     UPDATE {table} SET subjectId = '{subjectId}', date = GETDATE() ,status = {(int)student.attendanceStatus}, studentId = '{student.uid}' WHERE studentId = '{student.uid}' AND date = CAST(GETDATE() as DATE) AND subjectId = '{subjectId}'
+      RETURN
+ END
+INSERT INTO {table} (studentId,date,status,subjectId) VALUES ('{student.uid}',GETDATE(),{(int)student.attendanceStatus},'{subjectId}')
+" };
+                SqlDataReader sqlrdr = sqlcmd.ExecuteReader();
+            }
+            catch (SqlException r)
+            {
+                switch (r.Number)
+                {
+                    case SqllErrorNumbers.DupKey:
+                        MessageBox.Show("Duplicate Key");
+                        break;
+                    case SqllErrorNumbers.BadObject:
+                        MessageBox.Show("Bad Obj");
+                        break;
+                    default:
+                        MessageBox.Show("" + r);
+                        break;
+                }
+            }
+            finally
+            {
+
+                //insertData(myConn);
+                if (connection.State == ConnectionState.Open)
+                {
+                    connection.Close();
+                }
+
+            }
+        }
+        public static void PutTeacher(User teacher,string password)
+        {
+            string table = "Teachers";
+            try
+            {
+                connection.Open();
+                SqlCommand sqlcmd = new SqlCommand() { Connection = connection, CommandText = $@"IF EXISTS (SELECT * FROM {table} WHERE uid = '{teacher.uid}')
+ BEGIN
+     UPDATE {table}  SET firstName = '{teacher.firstName}', middleName = '{teacher.middleName}',lastName = '{teacher.lastName}', password = '{password}' WHERE uid = '{teacher.uid}';
+      RETURN
+ END
+INSERT INTO {table}  (uid,firstName,middleName,lastName,password) VALUES ('{teacher.uid}','{teacher.firstName}','{teacher.middleName}','{teacher.lastName}','{password}')
 " };
                 SqlDataReader sqlrdr = sqlcmd.ExecuteReader();
             }
@@ -257,6 +343,41 @@ INSERT INTO Students (uid,firstName,middleName,lastName,section) VALUES ('{stude
             {
                 connection.Open();
                 SqlCommand sqlcmd = new SqlCommand() { Connection = connection, CommandText = $"insert into {table} (subjectId,uid) values('{studentUid}','{subjectUid}')" };
+                SqlDataReader sqlrdr = sqlcmd.ExecuteReader();
+            }
+            catch (SqlException r)
+            {
+                switch (r.Number)
+                {
+                    case SqllErrorNumbers.DupKey:
+                        MessageBox.Show("Duplicate Key");
+                        break;
+                    case SqllErrorNumbers.BadObject:
+                        MessageBox.Show("Bad Obj");
+                        break;
+                    default:
+
+                        MessageBox.Show("" + r);
+                        break;
+                }
+            }
+            finally
+            {
+
+                //insertData(myConn);
+                if (connection.State == ConnectionState.Open)
+                {
+                    connection.Close();
+                }
+
+            }
+        }public static void AddTeachertoSubject(string teacherUid,string subjectId)
+        {
+            string table = "TeacherSubjectData";
+            try
+            {
+                connection.Open();
+                SqlCommand sqlcmd = new SqlCommand() { Connection = connection, CommandText = $"insert into {table} (subjectId,uid) values('{subjectId}','{teacherUid}')" };
                 SqlDataReader sqlrdr = sqlcmd.ExecuteReader();
             }
             catch (SqlException r)
