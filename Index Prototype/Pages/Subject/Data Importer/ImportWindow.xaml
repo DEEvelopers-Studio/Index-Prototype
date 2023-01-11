@@ -4,21 +4,25 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Index_Prototype.Pages.Subject.Data_Importer"
-        mc:Ignorable="d"
-        Title="Import Excel Data" Height="203" Width="291" DataContext="{Binding RelativeSource={RelativeSource Self}}" ResizeMode="NoResize" WindowStartupLocation="CenterOwner">
+        mc:Ignorable="d" xmlns:c="clr-namespace:CalcBinding;assembly=CalcBinding"
+        Title="Import Excel Data" Height="211" Width="291" DataContext="{Binding RelativeSource={RelativeSource Self}}" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
     <Grid>
 
         <TextBlock HorizontalAlignment="Left" Margin="19,10,0,0" TextWrapping="Wrap" Text="Names Column" VerticalAlignment="Top"/>
         <TextBox x:Name="NameColumnTargetBox" HorizontalAlignment="Left" Margin="19,29,0,0" TextWrapping="Wrap" Text="A" VerticalAlignment="Top" Width="103"/>
         <TextBlock HorizontalAlignment="Left" Margin="132,10,0,0" TextWrapping="Wrap" Text="Student Id Column" VerticalAlignment="Top"/>
-        <TextBox x:Name="StudIDColumnTargetBox" HorizontalAlignment="Left" Margin="132,29,0,0" TextWrapping="Wrap" Text="A" VerticalAlignment="Top" Width="103"/>
+        <TextBox x:Name="StudIDColumnTargetBox" HorizontalAlignment="Left" Margin="132,29,0,0" TextWrapping="Wrap" Text="B" VerticalAlignment="Top" Width="103"/>
         <Grid Margin="10,0,10,40" Height="25" VerticalAlignment="Bottom">
             <TextBlock TextWrapping="Wrap" Text="{Binding filename}" VerticalAlignment="Center" TextTrimming="CharacterEllipsis" MaxWidth="281" Height="16" HorizontalAlignment="Left" Margin="10,0,0,0" Width="184" TextAlignment="Right"/>
             <Button x:Name="openFileDialogBtn" Content="Browse" HorizontalAlignment="Right" VerticalAlignment="Center" Height="25" Width="60" Click="openFileDialogBtn_Click"/>
         </Grid>
 
-        <Button x:Name="importBtn" Content="Import" HorizontalAlignment="Right" VerticalAlignment="Bottom" Height="25" Width="60" Click="importBtn_Click" Margin="0,0,10,10"/>
-        <TextBlock HorizontalAlignment="Left" Margin="19,52,0,0" TextWrapping="Wrap" Text="Start Reading at Row" VerticalAlignment="Top"/>
-        <TextBox x:Name="StartReadingRow" HorizontalAlignment="Left" Margin="19,71,0,0" TextWrapping="Wrap" Text="1" VerticalAlignment="Top" Width="103" PreviewTextInput="StartReadingRow_PreviewTextInput"/>
+        <Button x:Name="importBtn"  Content="Import" HorizontalAlignment="Right" VerticalAlignment="Bottom" Height="25" Width="60" Click="importBtn_Click" Margin="0,0,10,10" Visibility="Hidden"/>
+        <TextBlock HorizontalAlignment="Left" Margin="132,55,0,0" TextWrapping="Wrap" Text="Start Reading at Row" VerticalAlignment="Top"/>
+        <TextBox x:Name="StartReadingRow" HorizontalAlignment="Left" Margin="132,76,0,0" TextWrapping="Wrap" Text="1" VerticalAlignment="Top" Width="103" PreviewTextInput="StartReadingRow_PreviewTextInput"/>
+        <TextBlock HorizontalAlignment="Left" Margin="19,55,0,0" TextWrapping="Wrap" Text="Section Column" VerticalAlignment="Top"/>
+        <TextBox x:Name="SectionColBox" HorizontalAlignment="Left" Margin="19,76,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="103"/>
+        <TextBlock HorizontalAlignment="Left" Margin="103,51,0,0" TextWrapping="Wrap" Text="*" VerticalAlignment="Top" Foreground="Red"/>
+        <TextBlock HorizontalAlignment="Left" Margin="15,169,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Foreground="Red" Text="*Optional"/>
     </Grid>
 </Window>

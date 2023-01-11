@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Index_Prototype.Pages.Attendance"
         mc:Ignorable="d"
-        Title="Attendance" Height="410" Width="620" Loaded="Window_Loaded" WindowStyle="ToolWindow" ResizeMode="NoResize" DataContext="{Binding RelativeSource={RelativeSource Self}}">
+        Title="Attendance" Height="410" Width="620" Loaded="Window_Loaded" WindowStyle="ToolWindow" ResizeMode="NoResize" DataContext="{Binding RelativeSource={RelativeSource Self}}" WindowStartupLocation="CenterScreen">
     <Grid DataContext="{Binding student}">
         <Border BorderBrush="Black" BorderThickness="1" Height="134" Width="134" VerticalAlignment="Top" HorizontalAlignment="Center"  Background="White" Margin="0,20,0,0">
             <Image Source="/Assets/Images/default-profile.png"/>

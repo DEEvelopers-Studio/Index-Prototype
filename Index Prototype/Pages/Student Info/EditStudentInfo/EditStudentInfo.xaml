@@ -1,0 +1,43 @@
+﻿<Window x:Class="Index_Prototype.Pages.Student_Info.EditStudentInfo.EditStudentInfo"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Index_Prototype.Pages.Student_Info.EditStudentInfo"
+        mc:Ignorable="d"
+        Closing="Window_Closing"
+        SizeToContent="WidthAndHeight"
+        ResizeMode="NoResize"
+        Title="Student Info" Height="233" Width="393" WindowStyle="ToolWindow" WindowStartupLocation="CenterScreen"  DataContext="{Binding RelativeSource={RelativeSource Self}}">
+    <Grid DataContext="{Binding student}">
+        <TextBlock Text="Student Info" Margin="15,9,252,187" FontSize="18" FontFamily="PT Sans" />
+        <TextBlock Text="Last Name" Margin="15,36,319,169" FontFamily="PT Sans" FontSize="9" />
+        <TextBlock Text="First Name" Margin="15,69,319,136" FontFamily="PT Sans" FontSize="9" />
+        <TextBox x:Name="LNameBox" FontSize="14" Margin="14,47,246,152" Text="{Binding lastName}"/>
+        <TextBox x:Name="FNameBox" FontSize="14" Margin="14,84,129,115" Text="{Binding firstName}"/>
+        <TextBox x:Name="MNameBox" FontSize="14" Margin="154,47,129,152" Text="{Binding middleName}"/>
+        <TextBlock Text="Middle Name" Margin="157,36,140,169" FontFamily="PT Sans" FontSize="9" RenderTransformOrigin="0.643,0.614" />
+        <TextBox x:Name="SectionBox" FontSize="14" Margin="14,118,269,81" Text="{Binding section}"/>
+        <TextBlock Text="Section" Margin="15,107,326,98" FontFamily="PT Sans" FontSize="9" />
+        <TextBlock Text="*" Margin="44,106,297,99" FontFamily="PT Sans" FontSize="9" Foreground="Red" />
+        <Button x:Name="SignUpBtn" Margin="317,185,10,10" Click="SignUpBtn_Click" >
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+                <TextBlock Text="Apply" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="PT Sans"/>
+            </StackPanel>
+        </Button>
+        <Border Grid.Column="2" Height="100" Margin="0,10,10,0" VerticalAlignment="Top" BorderBrush="Black" BorderThickness="0.5" HorizontalAlignment="Right" Width="100">
+            <Grid>
+                <Image Source="/Assets/Images/default-profile.png" Stretch="UniformToFill"/>
+
+                <Button Content="Edit Picture" FontSize="11" Panel.ZIndex="1" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="Hidden" >
+                </Button>
+            </Grid>
+        </Border>
+        <TextBlock x:Name="UidMinErrTxt" Text="Invalid Uid Length, must be 11 digits long" Margin="93,138,152,69" FontFamily="PT Sans" FontSize="8" Foreground="Red" Visibility="Hidden" />
+        <TextBlock x:Name="FillErrTxt" Text="Must fill up all boxes" Margin="15,186,279,21" FontFamily="PT Sans" FontSize="8" Foreground="Red" Visibility="Hidden"  />
+        <TextBlock x:Name="UidExists" Text="Student Already Exists" Margin="129,138,165,69" FontFamily="PT Sans" FontSize="8" Foreground="Red" Visibility="Hidden"  />
+
+        <TextBlock Text="*Optional" Margin="14,200,280,7" FontFamily="PT Sans" FontSize="8" Foreground="Red" />
+        <TextBlock Text="*" Margin="212,34,129,171" FontFamily="PT Sans" FontSize="9" Foreground="Red" />
+    </Grid>
+</Window>

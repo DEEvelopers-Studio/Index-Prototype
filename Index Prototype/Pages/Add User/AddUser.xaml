@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Index_Prototype.Pages.Add_User" xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
         mc:Ignorable="d"
         xmlns:c="clr-namespace:CalcBinding;assembly=CalcBinding"
-        Title="AddUser" Height="358" Width="551" DataContext="{Binding RelativeSource={RelativeSource Self}}" WindowStartupLocation="CenterOwner">
+        Title="AddUser" Height="358" Width="551" DataContext="{Binding RelativeSource={RelativeSource Self}}" WindowStartupLocation="CenterScreen">
     <Grid>
         <DockPanel  VerticalAlignment="Top" Margin="10,10,10,0">
             <StackPanel Orientation="Horizontal">

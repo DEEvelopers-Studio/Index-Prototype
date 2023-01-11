@@ -52,7 +52,7 @@ namespace WpfApp2
         public static List<User> getStudents() => getDocumentsInTable<User>("Students");
         public static List<Student> getStudentsInSubject(string subjectId) => getDocumentsInTable<Student>(new SqlCommand($"select Students.*,ISNULL(Attendance.status, -1) as attendanceStatus from Students LEFT JOIN StudentSubjectData ON Students.uid = StudentSubjectData.uid LEFT JOIN Attendance ON Students.uid=Attendance.studentId AND Attendance.date = CAST(GETDATE() as DATE) AND Attendance.subjectId = '{subjectId}'  where StudentSubjectData.subjectId = '{subjectId}'  Order By lastName ASC"));
         public static List<Student> getTeachersInSubject(string subjectId) => getDocumentsInTable<Student>(new SqlCommand($"select Teachers.uid, Teachers.firstName,Teachers.lastName,Teachers.middleName,Teachers.lastName from Teachers LEFT JOIN TeacherSubjectData ON Teachers.uid = TeacherSubjectData.uid where TeacherSubjectData.subjectId = '{subjectId}' Order By Teachers.lastName ASC"));
-        public static User getStudent(string uid) => getDocument<User>(uid, "Students","uid");
+        public static Student getStudent(string uid) => getDocument<Student>(uid, "Students","uid");
         public static Subject getSubject(string uid) => getDocument<Subject>(uid, "Subjects");
         public static User getTeacher(string uid) => getDocument<User>(uid, "Teachers", "uid");
         public enum UserType { Teacher ,Student};

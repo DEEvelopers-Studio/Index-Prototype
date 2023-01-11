@@ -70,7 +70,7 @@ namespace Index_Prototype.Pages.Subject.Student_List
             StudentListVM selectedStudent = (sender as Border)?.Tag as StudentListVM;
             if (selectedStudent == null) return;
             //MainWindow.MainNavigationService.Navigate(new Subject.SubjectView(selectedSubj));
-            StudentInfo.ShowStudent(selectedStudent);
+            StudentInfo.ShowStudent(selectedStudent ,() => LoadData());
         }
         AddUser addUser;
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -126,11 +126,11 @@ namespace Index_Prototype.Pages.Subject.Student_List
         private void PickNextStudentBtn_Click(object sender, RoutedEventArgs e)
         {
             if (studentQueueModeBox.SelectedIndex == 1) {
-                StudentInfo.ShowStudent(students[gacha.Next(students.Count)]);
+                StudentInfo.ShowStudent(students[gacha.Next(students.Count)],()=>LoadData());
                 return;
             };
             if (studentQueue.Count == 0) FillUpQueue();
-            StudentInfo.ShowStudent(studentQueue.Dequeue());
+            StudentInfo.ShowStudent(studentQueue.Dequeue(),()=>LoadData());
         }
         private static Random gacha = new Random();
         public void FillUpQueue()

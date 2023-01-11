@@ -42,22 +42,22 @@
       </DataSource>
     </xs:appinfo>
   </xs:annotation>
-  <xs:element name="DatabaseDataSet1" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="True" msprop:Generator_UserDSName="DatabaseDataSet1" msprop:Generator_DataSetName="DatabaseDataSet1">
+  <xs:element name="DatabaseDataSet1" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:Generator_UserDSName="DatabaseDataSet1" msprop:EnableTableAdapterManager="True" msprop:Generator_DataSetName="DatabaseDataSet1">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element name="Attendance" msprop:Generator_RowEvHandlerName="AttendanceRowChangeEventHandler" msprop:Generator_RowDeletedName="AttendanceRowDeleted" msprop:Generator_RowDeletingName="AttendanceRowDeleting" msprop:Generator_RowEvArgName="AttendanceRowChangeEvent" msprop:Generator_TablePropName="Attendance" msprop:Generator_RowChangedName="AttendanceRowChanged" msprop:Generator_RowChangingName="AttendanceRowChanging" msprop:Generator_TableClassName="AttendanceDataTable" msprop:Generator_RowClassName="AttendanceRow" msprop:Generator_TableVarName="tableAttendance" msprop:Generator_UserTableName="Attendance">
+        <xs:element name="Attendance" msprop:Generator_RowClassName="AttendanceRow" msprop:Generator_RowEvHandlerName="AttendanceRowChangeEventHandler" msprop:Generator_RowDeletedName="AttendanceRowDeleted" msprop:Generator_RowDeletingName="AttendanceRowDeleting" msprop:Generator_RowEvArgName="AttendanceRowChangeEvent" msprop:Generator_TablePropName="Attendance" msprop:Generator_RowChangedName="AttendanceRowChanged" msprop:Generator_UserTableName="Attendance" msprop:Generator_RowChangingName="AttendanceRowChanging" msprop:Generator_TableClassName="AttendanceDataTable" msprop:Generator_TableVarName="tableAttendance">
           <xs:complexType>
             <xs:sequence>
-              <xs:element name="studentId" msprop:Generator_ColumnPropNameInRow="studentId" msprop:Generator_ColumnPropNameInTable="studentIdColumn" msprop:Generator_ColumnVarNameInTable="columnstudentId" msprop:Generator_UserColumnName="studentId">
+              <xs:element name="studentId" msprop:Generator_UserColumnName="studentId" msprop:Generator_ColumnPropNameInTable="studentIdColumn" msprop:Generator_ColumnPropNameInRow="studentId" msprop:Generator_ColumnVarNameInTable="columnstudentId">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="11" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="date" msprop:Generator_ColumnPropNameInRow="date" msprop:Generator_ColumnPropNameInTable="dateColumn" msprop:Generator_ColumnVarNameInTable="columndate" msprop:Generator_UserColumnName="date" type="xs:dateTime" />
-              <xs:element name="status" msprop:Generator_ColumnPropNameInRow="status" msprop:Generator_ColumnPropNameInTable="statusColumn" msprop:Generator_ColumnVarNameInTable="columnstatus" msprop:Generator_UserColumnName="status" type="xs:int" />
-              <xs:element name="subjectId" msprop:Generator_ColumnPropNameInRow="subjectId" msprop:Generator_ColumnPropNameInTable="subjectIdColumn" msprop:Generator_ColumnVarNameInTable="columnsubjectId" msprop:Generator_UserColumnName="subjectId" minOccurs="0">
+              <xs:element name="date" msprop:Generator_UserColumnName="date" msprop:Generator_ColumnPropNameInTable="dateColumn" msprop:Generator_ColumnPropNameInRow="date" msprop:Generator_ColumnVarNameInTable="columndate" type="xs:dateTime" />
+              <xs:element name="status" msprop:Generator_UserColumnName="status" msprop:Generator_ColumnPropNameInTable="statusColumn" msprop:Generator_ColumnPropNameInRow="status" msprop:Generator_ColumnVarNameInTable="columnstatus" type="xs:int" />
+              <xs:element name="subjectId" msprop:Generator_UserColumnName="subjectId" msprop:Generator_ColumnPropNameInTable="subjectIdColumn" msprop:Generator_ColumnPropNameInRow="subjectId" msprop:Generator_ColumnVarNameInTable="columnsubjectId" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="36" />

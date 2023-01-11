@@ -4,7 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Index_Prototype.Pages.Add_Teacher" x:Class="Index_Prototype.Pages.Add_Teacher.AddTeacher"
-        mc:Ignorable="d" ScrollViewer.VerticalScrollBarVisibility="Disabled" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch" SizeToContent="WidthAndHeight" WindowStartupLocation="CenterOwner" 
+        mc:Ignorable="d" ScrollViewer.VerticalScrollBarVisibility="Disabled" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch" SizeToContent="WidthAndHeight" WindowStartupLocation="CenterScreen" 
         Title="AddTeacher" Height="233" Width="393" DataContext="{Binding RelativeSource={RelativeSource Self}}" ResizeMode="NoResize" >
     <Grid>
         <TextBlock Text="Sign Up" Margin="15,9,298,187" FontSize="18" FontFamily="PT Sans" />
@@ -34,5 +34,7 @@
         <TextBlock x:Name="PwNotMatchErrTxt" Text="Passwords do not match" Margin="15,174,279,33" FontFamily="PT Sans" FontSize="8" Foreground="Red" Visibility="Hidden" />
         <TextBlock x:Name="PwMinErrTxt" Text="Password too short, Minimum length is 8" Margin="93,138,152,69" FontFamily="PT Sans" FontSize="8" Foreground="Red" Visibility="Hidden" />
         <TextBlock x:Name="FillErrTxt" Text="Must fill up all boxes" Margin="15,186,279,21" FontFamily="PT Sans" FontSize="8" Foreground="Red" Visibility="Hidden"  />
+        <TextBlock Text="*" Margin="215,36,82,169" FontFamily="PT Sans" FontSize="9" RenderTransformOrigin="0.643,0.614" Foreground="Red" />
+        <TextBlock Text="*Optional" Margin="15,205,282,0" FontFamily="PT Sans" FontSize="8" RenderTransformOrigin="0.643,0.614" Foreground="Red" />
     </Grid>
 </Window>

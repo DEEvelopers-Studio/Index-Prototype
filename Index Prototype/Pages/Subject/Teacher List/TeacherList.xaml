@@ -61,7 +61,7 @@
 
 
             <Grid>
-                <ListView x:Name="SubjListView"  ItemsSource="{Binding teachers}" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" ScrollViewer.VerticalScrollBarVisibility="Auto" DockPanel.Dock="Top" Margin="10,51,10,40" Background="{x:Null}" d:ItemsSource="{d:SampleData ItemCount=5}">
+                <ListView x:Name="SubjListView"  ItemsSource="{Binding teachers}" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch"  DockPanel.Dock="Top" Margin="10,51,10,40" Background="{x:Null}" d:ItemsSource="{d:SampleData ItemCount=5}">
                     <ListView.ItemContainerStyle>
                         <Style TargetType="ListViewItem">
                             <Setter Property="BorderBrush" Value="#FFC8C8C8"/>

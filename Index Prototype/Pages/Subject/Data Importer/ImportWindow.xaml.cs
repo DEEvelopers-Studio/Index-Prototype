@@ -16,7 +16,8 @@ namespace Index_Prototype.Pages.Subject.Data_Importer
     /// </summary>
     public partial class ImportWindow : System.Windows.Window, INotifyPropertyChanged
     {
-        public string filename { get; set; }
+        public string _filename { get; set; }
+        public string filename { get { return _filename; } set { _filename = value; importBtn.Visibility = !string.IsNullOrWhiteSpace(value) ? Visibility.Visible : Visibility.Hidden; } }
         public string subjectId { get; set; }
         public ImportWindow()
         {
@@ -24,6 +25,7 @@ namespace Index_Prototype.Pages.Subject.Data_Importer
         }
         public ImportWindow(string subjectId)
         {
+            
             this.subjectId = subjectId;
 
             InitializeComponent();
@@ -60,8 +62,11 @@ namespace Index_Prototype.Pages.Subject.Data_Importer
                 string tst = wb.Sheets[1].Name;
                 Range namesColumn = xlWorksheet.UsedRange.Columns[NameColumnTargetBox.Text];
                 Range uidColumn = xlWorksheet.UsedRange.Columns[StudIDColumnTargetBox.Text];
+                bool isSectionIncluded = !string.IsNullOrWhiteSpace(SectionColBox.Text);
+                Range sectionColumn = isSectionIncluded?xlWorksheet.UsedRange.Columns[SectionColBox.Text]:null;
                 string[] namesArray = ((System.Array)namesColumn.Cells.Value).OfType<object>().Select(o => o.ToString()).ToArray();
                 string[] uidArray = ((System.Array)uidColumn.Cells.Value).OfType<object>().Select(o => o.ToString()).ToArray();
+                string[] sectionArray = sectionColumn != null?((System.Array)sectionColumn.Cells.Value).OfType<object>().Select(o => o.ToString()).ToArray():null;
                 int shortestRow = uidArray.Length > namesArray.Length ? namesArray.Length : uidArray.Length;
                 int failedImports = 0;
                 int startReadingat = int.Parse(StartReadingRow.Text) -1;
@@ -70,12 +75,13 @@ namespace Index_Prototype.Pages.Subject.Data_Importer
                 {
                 string uid = uidArray[i];
                 string name = namesArray[i];
+                string seciton = i < (sectionArray?.Length??0) ? sectionArray?[i] : null ;
                     if (name == null || uid == null) { failedImports++; continue; }
                 if (uid.Length == 10) uid = "0"+uid;
                     if (uid.Length != 11) { failedImports++; continue; }
                 string[] parsedName = name.Split(new char[] {','}, 2);
                 if(parsedName.Length < 2) { failedImports++; continue; }
-                    DatabaseHelper.PutStudent(new Directory.DataTemplates.Student() { firstName = parsedName[1].Trim(),lastName = parsedName[0].Trim(), uid=uid });
+                    DatabaseHelper.PutStudent(new Directory.DataTemplates.Student() { firstName = parsedName[1].Trim(),lastName = parsedName[0].Trim(), uid=uid,section= seciton });
                     if(subjectId != null) DatabaseHelper.AddStudenttoSubject( uid, subjectId);
                 }
 

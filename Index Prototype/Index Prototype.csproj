@@ -8,7 +8,7 @@
     <ProjectGuid>{37AC3353-BFD3-4DF6-B811-9FA5FD05A092}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <RootNamespace>Index_Prototype</RootNamespace>
-    <AssemblyName>Index Prototype</AssemblyName>
+    <AssemblyName>Digital Marking System</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -51,6 +51,9 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>notes.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="CalcBinding, Version=2.5.2.0, Culture=neutral, processorArchitecture=MSIL">
@@ -216,6 +219,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DatabaseDataSet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="DatabaseDataSet1.cs">
+      <DependentUpon>DatabaseDataSet1.xsd</DependentUpon>
+    </Compile>
     <Compile Include="DatabaseDataSet1.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -225,6 +231,11 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>DatabaseDataSet2.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="DatabaseDataSet3.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DatabaseDataSet3.xsd</DependentUpon>
     </Compile>
     <Compile Include="Directory\AccountAuth.cs" />
     <Compile Include="Directory\Converters\NavActiveConverter.cs" />
@@ -246,6 +257,12 @@
     </Compile>
     <Compile Include="Pages\Home\Accounts.xaml.cs">
       <DependentUpon>Accounts.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\SplashScreen\SplashScreen.xaml.cs">
+      <DependentUpon>SplashScreen.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Student Info\EditStudentInfo\EditStudentInfo.xaml.cs">
+      <DependentUpon>EditStudentInfo.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\Student Info\StudentInfo.xaml.cs">
       <DependentUpon>StudentInfo.xaml</DependentUpon>
@@ -308,6 +325,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\Section List\SectionList.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\SplashScreen\SplashScreen.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Student Info\EditStudentInfo\EditStudentInfo.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -438,6 +463,17 @@
     <None Include="DatabaseDataSet2.xss">
       <DependentUpon>DatabaseDataSet2.xsd</DependentUpon>
     </None>
+    <None Include="DatabaseDataSet3.xsc">
+      <DependentUpon>DatabaseDataSet3.xsd</DependentUpon>
+    </None>
+    <None Include="DatabaseDataSet3.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DatabaseDataSet3.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="DatabaseDataSet3.xss">
+      <DependentUpon>DatabaseDataSet3.xsd</DependentUpon>
+    </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -448,6 +484,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <SplashScreen Include="Assets\Images\notesShadow.png" />
     <Content Include="Database.mdf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -455,6 +492,7 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DependentUpon>Database.mdf</DependentUpon>
     </Content>
+    <Resource Include="notes.ico" />
     <Content Include="SqlQueryTest.sql" />
     <Resource Include="FodyWeavers.xml" />
   </ItemGroup>

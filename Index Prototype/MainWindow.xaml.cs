@@ -25,8 +25,13 @@ namespace Index_Prototype
     {
         public MainWindow()
         {
-            DatabaseHelper.Initialize(connection =>
+            Load();
+        }
+        async void Load()
+        {
+            DatabaseHelper.Initialize(async connection =>
             {
+                await Task.Delay(1000);
                 InitializeComponent();
             });
         }

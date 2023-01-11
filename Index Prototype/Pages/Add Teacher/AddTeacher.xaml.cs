@@ -52,7 +52,6 @@ namespace Index_Prototype.Pages.Add_Teacher
             bool isAllFilled = true;
             if (String.IsNullOrWhiteSpace(FNameBox.Text)) isAllFilled = false; 
             if (String.IsNullOrWhiteSpace(LNameBox.Text)) isAllFilled = false; 
-            if (String.IsNullOrWhiteSpace(MNameBox.Text)) isAllFilled = false;
             if (String.IsNullOrWhiteSpace(PWBox.Password)) isAllFilled = false;
             if (String.IsNullOrWhiteSpace(PWConfirmBox.Password)) isAllFilled = false; 
             return isAllFilled;

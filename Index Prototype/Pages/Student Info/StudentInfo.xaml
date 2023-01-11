@@ -14,6 +14,8 @@
         <CollectionViewSource x:Key="gradesViewSource" Source="{Binding Grades, Source={StaticResource databaseDataSet}}"/>
         <Index_Prototype:DatabaseDataSet2 x:Key="databaseDataSet2"/>
         <CollectionViewSource x:Key="attendanceViewSource" Source="{Binding Attendance, Source={StaticResource databaseDataSet2}}"/>
+        <Index_Prototype:DatabaseDataSet3 x:Key="databaseDataSet3"/>
+        <CollectionViewSource x:Key="attendanceViewSource1" Source="{Binding Attendance, Source={StaticResource databaseDataSet3}}"/>
     </Window.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
@@ -23,81 +25,98 @@
 
 
         <StackPanel Orientation="Vertical" Grid.Column="0" DataContext="{Binding student}">
-            <Image Source="/Assets/Images/default-profile.png" Width="200" Height="200" Margin="0 20 0 0"/>
-            <TextBlock x:Name="studentName" Text="{Binding fullName, FallbackValue=Student Name}" HorizontalAlignment="Center" FontSize="20" FontWeight="Bold" Margin="0 10 0 0" TextWrapping="WrapWithOverflow"/>
-            <TextBlock x:Name="sudentNumber" Text="{Binding uid, FallbackValue=Student Number}" HorizontalAlignment="Center" FontSize="18" FontWeight="Medium"/>
-            <TextBlock x:Name="section" Text="{Binding section, FallbackValue=Section}" HorizontalAlignment="Center" FontSize="18" FontWeight="Medium"/>
+            <Image Source="/Assets/Images/default-profile.png" Width="150" Height="150" Margin="0 50 0 0"/>
+            <TextBlock x:Name="studentName" Text="{Binding fullName, FallbackValue=Student Name}" HorizontalAlignment="Center" FontSize="20" FontWeight="Bold" Margin="0 10 0 0"  Height="26" Width="281" TextAlignment="Center" TextTrimming="WordEllipsis" TextWrapping="WrapWithOverflow"/>
+            <TextBlock x:Name="sudentNumber" Text="{Binding uid, FallbackValue=Student Number}" HorizontalAlignment="Center" FontSize="18" FontWeight="Medium" Width="251" Height="23.94" TextAlignment="Center" TextTrimming="WordEllipsis" TextWrapping="WrapWithOverflow"/>
+            <TextBlock x:Name="section" Text="{Binding section, FallbackValue=Section}" HorizontalAlignment="Center" FontSize="18" FontWeight="Medium" Width="273" TextAlignment="Center" Height="23.94" TextTrimming="WordEllipsis" TextWrapping="WrapWithOverflow"/>
 
-            <Button Width="100" Height="30" Margin="5">
+            <Button Width="100" Height="30" Margin="5" Click="Button_Click_1">
                 <StackPanel Orientation="Horizontal">
                     <TextBlock Text="Edit Info" HorizontalAlignment="Left" FontWeight="Medium" FontSize="14"/>
                     <iconPacks:PackIconBoxIcons Kind="SolidEditAlt" Margin="5 0 0 0"/>
                 </StackPanel>
             </Button>
+            <Grid DataContext="{Binding Source={StaticResource attendanceViewSource1}}" Margin="0,10,0,0" Width="166">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <StackPanel Grid.Column="0" HorizontalAlignment="Center">
+                    <iconPacks:PackIconFontisto Kind="Check" Foreground="Lime" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Center" />
+                    
+                    <TextBlock Text="Present" TextAlignment="Center" Margin="0,0,0,10"></TextBlock>
+                    <TextBlock Text="{Binding PRESENT,FallbackValue=0}" TextAlignment="Center" FontSize="16" FontWeight="Bold"></TextBlock>
+                </StackPanel>
+                <StackPanel Grid.Column="1" HorizontalAlignment="Center">
+                    <iconPacks:PackIconMicrons Kind="Clock" Foreground="Orange" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Center"  />
+                    
+                    <TextBlock Text="Late" TextAlignment="Center" Margin="0,0,0,10"></TextBlock>
+                    <TextBlock Text="{Binding LATE,FallbackValue=0}" TextAlignment="Center" FontSize="16" FontWeight="Bold"></TextBlock>
+                </StackPanel>
+                <StackPanel Grid.Column="2" HorizontalAlignment="Center">
+                    <iconPacks:PackIconMaterial Kind="AccountOff" Foreground="Red" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Center"  />
+                    <TextBlock Text="Absent" TextAlignment="Center" Margin="0,0,0,10"></TextBlock>
+                    <TextBlock Text="{Binding ABSENT,FallbackValue=0}" TextAlignment="Center" FontSize="16" FontWeight="Bold"></TextBlock>
+                </StackPanel>
+            </Grid>
         </StackPanel>
 
 
 
-        <TabControl Grid.Column="1">
-            <TabItem Header="Attendance">
-                <Grid Background="#FFE5E5E5">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"></RowDefinition>
-                        <RowDefinition ></RowDefinition>
-                    </Grid.RowDefinitions>
-                    <DataGrid IsReadOnly="True" x:Name="attendanceDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding Source={StaticResource attendanceViewSource}}" RowDetailsVisibilityMode="VisibleWhenSelected" Grid.Row="1">
-                        <DataGrid.Columns>
-                            <DataGridTemplateColumn x:Name="dateColumn" Header="date">
-                                <DataGridTemplateColumn.CellTemplate>
-                                    <DataTemplate>
-                                        <TextBlock Margin="3" Text="{Binding date,StringFormat=D}"></TextBlock>
-                                    </DataTemplate>
-                                </DataGridTemplateColumn.CellTemplate>
-                                <DataGridTemplateColumn.CellEditingTemplate>
-                                    <DataTemplate>
-                                        <DatePicker Margin="3" SelectedDateFormat="Long" SelectedDate="{Binding date, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"/>
-                                    </DataTemplate>
-                                </DataGridTemplateColumn.CellEditingTemplate>
-                            </DataGridTemplateColumn>
-                            <DataGridTemplateColumn x:Name="statusColumn"  Header="status" Width="SizeToHeader">
 
-                                <DataGridTemplateColumn.CellTemplate>
-                                    <DataTemplate>
-                                        <StackPanel Margin="3" VerticalAlignment="Center" HorizontalAlignment="Center">
-                                            <iconPacks:PackIconFontisto Kind="Check" Foreground="Lime" Visibility="{c:Binding 'status == 0',FallbackValue=Collapsed, FalseToVisibility=Collapsed}" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Center" />
-                                            <iconPacks:PackIconMicrons Kind="Clock" Foreground="Orange" Visibility="{c:Binding 'status == 1',FallbackValue=Collapsed, FalseToVisibility=Collapsed}" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Center"  />
-                                            <iconPacks:PackIconMaterial Kind="AccountOff" Foreground="Red" Visibility="{c:Binding 'status == 2',FallbackValue=Hidden, FalseToVisibility=Collapsed}" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Center"  />
-                                        </StackPanel>
-                                    </DataTemplate>
-                                </DataGridTemplateColumn.CellTemplate>
-                                <DataGridTemplateColumn.CellEditingTemplate>
-                                    <DataTemplate>
-                                        <ComboBox HorizontalAlignment="Left" VerticalAlignment="Center" Width="44" SelectedIndex="{Binding status,Mode=TwoWay}" VerticalContentAlignment="Center">
-                                            <iconPacks:PackIconFontisto Kind="Check" Foreground="Lime" />
-                                            <iconPacks:PackIconMicrons Kind="Clock" Foreground="Orange" />
-                                            <iconPacks:PackIconMaterial Kind="AccountOff" Foreground="Red" />
-                                        </ComboBox>
-                                    </DataTemplate>
-                                </DataGridTemplateColumn.CellEditingTemplate>
-                            </DataGridTemplateColumn>
-                        </DataGrid.Columns>
-                    </DataGrid>
-                    <ToolBar Height="30" VerticalAlignment="Top" Visibility="Collapsed">
-                        <Button x:Name="SaveBtn" Click="SaveBtn_Click">
-                            <iconPacks:PackIconMaterial Kind="ContentSave" />
-                        </Button>
-                    </ToolBar>
-                </Grid>
+        <Grid Background="#FFE5E5E5" Grid.Column="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="101*"/>
+                <ColumnDefinition Width="388*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition ></RowDefinition>
+            </Grid.RowDefinitions>
+            <DataGrid IsReadOnly="True" x:Name="attendanceDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding Source={StaticResource attendanceViewSource}}" RowDetailsVisibilityMode="VisibleWhenSelected" Grid.Row="1" Grid.ColumnSpan="2">
+                <DataGrid.Columns>
+                    <DataGridTemplateColumn x:Name="dateColumn" Header="date">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Margin="3" Text="{Binding date,StringFormat=D}"></TextBlock>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                        <DataGridTemplateColumn.CellEditingTemplate>
+                            <DataTemplate>
+                                <DatePicker Margin="3" SelectedDateFormat="Long" SelectedDate="{Binding date, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellEditingTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn x:Name="statusColumn"  Header="status" Width="SizeToHeader">
 
-            </TabItem>
-            <TabItem Header="Grades">
-                <DataGrid x:Name="gradesDataGrid" EnableRowVirtualization="True" ItemsSource="{Binding Source={StaticResource gradesViewSource}}" RowDetailsVisibilityMode="VisibleWhenSelected" Grid.Column="1" Margin="10,10,10,10" AutoGenerateColumns="False" EnableColumnVirtualization="True">
-                    <DataGrid.Columns>
-                        <DataGridTextColumn x:Name="q1Column" Binding="{Binding Q1}" Header="Q 1" Width="SizeToHeader"/>
-                    </DataGrid.Columns>
-                </DataGrid>
-            </TabItem>
-        </TabControl>
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <StackPanel Margin="3" VerticalAlignment="Center" HorizontalAlignment="Center">
+                                    <iconPacks:PackIconFontisto Kind="Check" Foreground="Lime" Visibility="{c:Binding 'status == 0',FallbackValue=Collapsed, FalseToVisibility=Collapsed}" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Center" />
+                                    <iconPacks:PackIconMicrons Kind="Clock" Foreground="Orange" Visibility="{c:Binding 'status == 1',FallbackValue=Collapsed, FalseToVisibility=Collapsed}" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Center"  />
+                                    <iconPacks:PackIconMaterial Kind="AccountOff" Foreground="Red" Visibility="{c:Binding 'status == 2',FallbackValue=Hidden, FalseToVisibility=Collapsed}" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Center"  />
+                                </StackPanel>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                        <DataGridTemplateColumn.CellEditingTemplate>
+                            <DataTemplate>
+                                <ComboBox HorizontalAlignment="Left" VerticalAlignment="Center" Width="44" SelectedIndex="{Binding status,Mode=TwoWay}" VerticalContentAlignment="Center">
+                                    <iconPacks:PackIconFontisto Kind="Check" Foreground="Lime" />
+                                    <iconPacks:PackIconMicrons Kind="Clock" Foreground="Orange" />
+                                    <iconPacks:PackIconMaterial Kind="AccountOff" Foreground="Red" />
+                                </ComboBox>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellEditingTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+            <ToolBar Height="30" VerticalAlignment="Top" Visibility="Collapsed" Grid.ColumnSpan="2" Grid.RowSpan="2">
+                <Button x:Name="SaveBtn" Click="SaveBtn_Click">
+                    <iconPacks:PackIconMaterial Kind="ContentSave" />
+                </Button>
+            </ToolBar>
+        </Grid>
 
 
     </Grid>

@@ -8,7 +8,7 @@
         SizeToContent="WidthAndHeight"
         ResizeMode="NoResize"
         mc:Ignorable="d"
-        Title="AddStudent" Height="233" Width="393" WindowStyle="ToolWindow" WindowStartupLocation="CenterOwner">
+        Title="AddStudent" Height="233" Width="393" WindowStyle="ToolWindow" WindowStartupLocation="CenterScreen">
     <Grid>
         <TextBlock Text="Create Student" Margin="15,9,252,187" FontSize="18" FontFamily="PT Sans" />
         <TextBlock Text="Last Name" Margin="15,36,319,169" FontFamily="PT Sans" FontSize="9" />
