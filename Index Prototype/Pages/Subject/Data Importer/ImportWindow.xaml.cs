@@ -92,7 +92,6 @@ namespace Index_Prototype.Pages.Subject.Data_Importer
             catch (System.Exception)
             {
                 MessageBox.Show("Problem Reading the file");
-                throw;
             }
                 
 
