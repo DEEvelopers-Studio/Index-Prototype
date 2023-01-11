@@ -32,11 +32,9 @@ namespace Index_Prototype.Pages.Subject_List
         public event PropertyChangedEventHandler PropertyChanged;
         public ObservableCollection<SubjectVM> subjects { get; set; } = new ObservableCollection<SubjectVM>();
         private bool? _isAllSelected { get; set; } = false;
-        public class SubjectVM : DataTemplates.Subject, INotifyPropertyChanged
+        public class SubjectVM : DataTemplates.Subject
         {
-            public bool isSelected { get; set; } = false;
-
-            public event PropertyChangedEventHandler PropertyChanged;
+            public bool isSelected { get; set; }
         }
         public bool? isAllSelected
         {

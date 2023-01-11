@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:Index_Prototype.Pages.Subject.Teacher_List" xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="640"
-      Title="TeacherList" Loaded="Page_Loaded">
+      Title="TeacherList" Loaded="Page_Loaded" DataContext="{Binding RelativeSource={RelativeSource Self}}">
     <Page.Resources>
         <Style TargetType="{x:Type TextBox}" x:Key="ExpandingTextBox">
             <Setter Property="OverridesDefaultStyle" Value="True"/>
@@ -36,24 +36,24 @@
             <ColumnDefinition Width="45*"/>
             <ColumnDefinition Width="19*"/>
         </Grid.ColumnDefinitions>
-        <Button x:Name="AddNewStudentButton" Grid.Column="1" Width="120" Height="30" Content="Add New Student" Margin="60,10,10,74"/>
+        <Button x:Name="AddNewStudentButton" Grid.Column="1" Width="120" Height="30" Content="Invite Teacher" Margin="60,10,10,74" Click="AddNewStudentButton_Click"/>
         <Grid Grid.Row="2" Grid.ColumnSpan="2">
             <DockPanel  VerticalAlignment="Top" Margin="10,0,10,0">
                 <StackPanel Orientation="Horizontal">
 
-                    <CheckBox Margin="5 8 5 0" Content="Teachers" FontWeight="Bold"/>
+                    <CheckBox Margin="5 8 5 0" Content="Teachers" IsChecked="{Binding isAllSelected,Mode=TwoWay}" FontWeight="Bold"/>
                     <TextBox Tag="Search"
                            HorizontalAlignment="Center"
                            VerticalAlignment="Top"
                            Margin="10 0 0 0"
-                           Style="{Binding Mode=OneWay, Source={StaticResource TextBoxStyle}}" Height="30.4" BorderThickness="1,1,1,1"/>
+                           Style="{Binding Mode=OneWay, Source={StaticResource TextBoxStyle}}" Height="30.4" BorderThickness="1,1,1,1" Visibility="Hidden"/>
 
                 </StackPanel>
                 <Button x:Name="deleteBtn"
                     HorizontalAlignment="Right"
                     Width="30"
                     Height="30"
-                    VerticalAlignment="Top" DockPanel.Dock="Right">
+                    VerticalAlignment="Top" DockPanel.Dock="Right" Click="deleteBtn_Click" Visibility="Hidden">
                     <iconPacks:PackIconFontAwesome Kind="TrashSolid" />
                 </Button>
             </DockPanel>
@@ -88,14 +88,9 @@
                                             <ColumnDefinition Width="Auto"/>
                                         </Grid.ColumnDefinitions>
                                         <TextBlock Text="{Binding Path=name}" VerticalAlignment="Center" Margin="0,5,0,5"/>
-
-
                                     </Grid>
-
                                 </Border>
                             </Grid>
-
-
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>

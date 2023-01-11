@@ -1,0 +1,1 @@
+﻿DELETE FROM Teachers WHERE uid = '';

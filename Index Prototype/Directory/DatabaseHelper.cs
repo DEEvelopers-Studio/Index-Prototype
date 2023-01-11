@@ -13,6 +13,7 @@ using System.Security.Cryptography;
 using System.Drawing;
 using static Index_Prototype.Pages.Subject.Teacher_List.TeacherList;
 using Index_Prototype.Directory;
+using Microsoft.Win32;
 
 public enum LoginExeption { PASSWORDFAIL, UIDFAIL, DBFAIL }
 namespace WpfApp2
@@ -51,9 +52,9 @@ namespace WpfApp2
         public static List<User> getStudents() => getDocumentsInTable<User>("Students");
         public static List<Student> getStudentsInSubject(string subjectId) => getDocumentsInTable<Student>(new SqlCommand($"select Students.*,ISNULL(Attendance.status, -1) as attendanceStatus from Students LEFT JOIN StudentSubjectData ON Students.uid = StudentSubjectData.uid LEFT JOIN Attendance ON Students.uid=Attendance.studentId AND Attendance.date = CAST(GETDATE() as DATE) AND Attendance.subjectId = '{subjectId}'  where StudentSubjectData.subjectId = '{subjectId}'  Order By lastName ASC"));
         public static List<Student> getTeachersInSubject(string subjectId) => getDocumentsInTable<Student>(new SqlCommand($"select Teachers.uid, Teachers.firstName,Teachers.lastName,Teachers.middleName,Teachers.lastName from Teachers LEFT JOIN TeacherSubjectData ON Teachers.uid = TeacherSubjectData.uid where TeacherSubjectData.subjectId = '{subjectId}' Order By Teachers.lastName ASC"));
-        public static User getStudent(string uid) => getDocument<User>(uid, "Students");
+        public static User getStudent(string uid) => getDocument<User>(uid, "Students","uid");
         public static Subject getSubject(string uid) => getDocument<Subject>(uid, "Subjects");
-        public static User getTeacher(string uid) => getDocument<User>(uid, "Teachers");
+        public static User getTeacher(string uid) => getDocument<User>(uid, "Teachers", "uid");
         public enum UserType { Teacher ,Student};
         private static string[] _userType = { "Teachers", "Students" };
         public static User getUser(string uid,UserType userType) => getDocument<User>(uid, _userType[(int)userType]);
@@ -93,12 +94,12 @@ namespace WpfApp2
             }
             return null;
         }
-        public static T getDocument<T>(string id, string Table) where T : class, new()
+        public static T getDocument<T>(string id, string Table,string where = "id") where T : class, new()
         {
             try
             {
                 connection.Open();
-                SqlCommand cmd = new SqlCommand($"SELECT * from {Table} where id='{id}'", connection);
+                SqlCommand cmd = new SqlCommand($"SELECT * from {Table} where {where}='{id}'", connection);
                 SqlDataReader sdr = cmd.ExecuteReader();
                 if(!sdr.Read())return null;
                 return ConvertToObject<T>(sdr);
@@ -174,6 +175,59 @@ namespace WpfApp2
             public const int BadObject = 208;
             public const int DupKey = 2627;
         }
+        public static void ExportAttendance(Subject subject)
+        {  
+            SaveFileDialog saveFileDialog= new SaveFileDialog() { Filter="CSV File|*.csv",Title=$"Export {subject.title} Data",FileName = $"{subject.title}-{DateTime.Now:MMM-dd-yyyy}-{subject?.section}"};
+            if (saveFileDialog.ShowDialog() == false) return ;
+            SQLToCSV($@"select Students.*,ISNULL(PRESENT,0) AS PRESENT,ISNULL(LATE,0) AS LATE,ISNULL(ABSENT,0) AS ABSENT from Students 
+LEFT JOIN StudentSubjectData ON Students.uid = StudentSubjectData.uid Left Join (SELECT COUNT(CASE WHEN status = 0 THEN 1 END) as PRESENT,COUNT(CASE WHEN status = 1 THEN 1 END) as LATE,COUNT(CASE WHEN status = 2 THEN 1 END) as ABSENT, 
+studentId FROM Attendance WHERE subjectId = '{subject.id}' GROUP BY studentId) att on Students.uid = att.studentId", saveFileDialog.FileName);
+        }
+        private static void SQLToCSV(string query, string Filename)
+        {
+            try
+            {
+                connection.Open();
+                SqlCommand cmd = new SqlCommand(query, connection);
+                SqlDataReader dr = cmd.ExecuteReader();
+
+                using (System.IO.StreamWriter fs = new System.IO.StreamWriter(Filename))
+                {
+                    // Loop through the fields and add headers
+                    for (int i = 0; i < dr.FieldCount; i++)
+                    {
+                        string name = dr.GetName(i);
+                        if (name.Contains(","))
+                            name = "\"" + name + "\"";
+
+                        fs.Write(name + ",");
+                    }
+                    fs.WriteLine();
+
+                    // Loop through the rows and output the data
+                    while (dr.Read())
+                    {
+                        for (int i = 0; i < dr.FieldCount; i++)
+                        {
+                            string value = dr[i].ToString();
+                            if (value.Contains(","))
+                                value = " \"" + value + "\"";
+
+                            fs.Write($"=\"{value}\"" + ",");
+                        }
+                        fs.WriteLine();
+                    }
+
+                    fs.Close(); dr.Close(); connection.Close();
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            
+        }
         public static void PutStudent(Student student)
         {
             string table = "Students";
@@ -188,6 +242,7 @@ namespace WpfApp2
 INSERT INTO {table} (uid,firstName,middleName,lastName,section) VALUES ('{student.uid}','{student.firstName}','{student.middleName}','{student.lastName}','{student.section}')
 " };
                 SqlDataReader sqlrdr = sqlcmd.ExecuteReader();
+                sqlrdr.Close();
             }
             catch (SqlException r)
             {
@@ -230,6 +285,7 @@ INSERT INTO {table} (uid,firstName,middleName,lastName,section) VALUES ('{studen
 INSERT INTO {table} (studentId,date,status,subjectId) VALUES ('{student.uid}',GETDATE(),{(int)student.attendanceStatus},'{subjectId}')
 " };
                 SqlDataReader sqlrdr = sqlcmd.ExecuteReader();
+                sqlrdr.Close();
             }
             catch (SqlException r)
             {
@@ -271,6 +327,7 @@ INSERT INTO {table} (studentId,date,status,subjectId) VALUES ('{student.uid}',GE
 INSERT INTO {table}  (uid,firstName,middleName,lastName,password) VALUES ('{teacher.uid}','{teacher.firstName}','{teacher.middleName}','{teacher.lastName}','{password}')
 " };
                 SqlDataReader sqlrdr = sqlcmd.ExecuteReader();
+                sqlrdr.Close();
             }
             catch (SqlException r)
             {
@@ -309,6 +366,7 @@ INSERT INTO {table}  (uid,firstName,middleName,lastName,password) VALUES ('{teac
       BEGIN UPDATE {table} SET title='{subject.title}',section='{subject.section}',defaultStudentSelection={subject.defaultStudentSelection},attendanceOnStart='{subject.attendanceOnStart}' WHERE id = '{subject.id}';
       RETURN END INSERT INTO {table} (id,title,section,defaultStudentSelection,attendanceOnStart) VALUES ('{subject.id}','{subject.title}','{subject.section}','{subject.defaultStudentSelection}','{subject.attendanceOnStart}')" };
                 SqlDataReader sqlrdr = sqlcmd.ExecuteReader();
+                sqlrdr.Close();
             }
             catch (SqlException r)
             {
@@ -342,8 +400,9 @@ INSERT INTO {table}  (uid,firstName,middleName,lastName,password) VALUES ('{teac
             try
             {
                 connection.Open();
-                SqlCommand sqlcmd = new SqlCommand() { Connection = connection, CommandText = $"insert into {table} (subjectId,uid) values('{studentUid}','{subjectUid}')" };
+                SqlCommand sqlcmd = new SqlCommand() { Connection = connection, CommandText = $"IF EXISTS (SELECT * FROM {table} WHERE uid = '{studentUid}') BEGIN RETURN END insert into {table} (subjectId,uid) values('{subjectUid}','{studentUid}')" };
                 SqlDataReader sqlrdr = sqlcmd.ExecuteReader();
+                sqlrdr.Close();
             }
             catch (SqlException r)
             {
@@ -371,7 +430,8 @@ INSERT INTO {table}  (uid,firstName,middleName,lastName,password) VALUES ('{teac
                 }
 
             }
-        }public static void AddTeachertoSubject(string teacherUid,string subjectId)
+        }
+        public static void AddTeachertoSubject(string teacherUid,string subjectId)
         {
             string table = "TeacherSubjectData";
             try
@@ -379,6 +439,82 @@ INSERT INTO {table}  (uid,firstName,middleName,lastName,password) VALUES ('{teac
                 connection.Open();
                 SqlCommand sqlcmd = new SqlCommand() { Connection = connection, CommandText = $"insert into {table} (subjectId,uid) values('{subjectId}','{teacherUid}')" };
                 SqlDataReader sqlrdr = sqlcmd.ExecuteReader();
+                sqlrdr.Close();
+            }
+            catch (SqlException r)
+            {
+                switch (r.Number)
+                {
+                    case SqllErrorNumbers.DupKey:
+                        MessageBox.Show("Duplicate Key");
+                        break;
+                    case SqllErrorNumbers.BadObject:
+                        MessageBox.Show("Bad Obj");
+                        break;
+                    default:
+
+                        MessageBox.Show("" + r);
+                        break;
+                }
+            }
+            finally
+            {
+
+                //insertData(myConn);
+                if (connection.State == ConnectionState.Open)
+                {
+                    connection.Close();
+                }
+
+            }
+        }
+
+        public static void RemoveTeachertoSubject(string teacherUid, string subjectId)
+        {
+            string table = "TeacherSubjectData";
+            try
+            {
+                connection.Open();
+                SqlCommand sqlcmd = new SqlCommand() { Connection = connection, CommandText = $"DELETE FROM {table} WHERE uid = '{teacherUid}' AND subjectId = '{subjectId}'" };
+                SqlDataReader sqlrdr = sqlcmd.ExecuteReader();
+                sqlrdr.Close();
+            }
+            catch (SqlException r)
+            {
+                switch (r.Number)
+                {
+                    case SqllErrorNumbers.DupKey:
+                        MessageBox.Show("Duplicate Key");
+                        break;
+                    case SqllErrorNumbers.BadObject:
+                        MessageBox.Show("Bad Obj");
+                        break;
+                    default:
+
+                        MessageBox.Show("" + r);
+                        break;
+                }
+            }
+            finally
+            {
+
+                //insertData(myConn);
+                if (connection.State == ConnectionState.Open)
+                {
+                    connection.Close();
+                }
+
+            }
+        }
+        public static void RemoveStudenttoSubject(string studentUid, string subjectId)
+        {
+            string table = "StudentSubjectData";
+            try
+            {
+                connection.Open();
+                SqlCommand sqlcmd = new SqlCommand() { Connection = connection, CommandText = $"DELETE FROM {table} WHERE uid = '{studentUid}' AND subjectId = '{subjectId}'" };
+                SqlDataReader sqlrdr = sqlcmd.ExecuteReader();
+                sqlrdr.Close();
             }
             catch (SqlException r)
             {

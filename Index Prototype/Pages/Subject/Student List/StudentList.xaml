@@ -282,20 +282,20 @@
             <DockPanel  VerticalAlignment="Top" Margin="10,0,10,0">
                 <StackPanel Orientation="Horizontal">
 
-                    <CheckBox Margin="5 8 5 0" Content="Students" FontWeight="Bold"/>
+                    <CheckBox Margin="5 8 5 0" Content="Students" IsChecked="{Binding isAllSelected,Mode=TwoWay}" FontWeight="Bold"/>
                     <TextBox Tag="Search"
                            HorizontalAlignment="Center"
                            VerticalAlignment="Top"
                            Margin="10 0 0 0"
-                           Style="{Binding Mode=OneWay, Source={StaticResource TextBoxStyle}}" Height="30.4" BorderThickness="1,1,1,1"/>
+                           Style="{Binding Mode=OneWay, Source={StaticResource TextBoxStyle}}" Height="30.4" BorderThickness="1,1,1,1" Visibility="Hidden"/>
 
                 </StackPanel>
                 <Button x:Name="deleteBtn"
                     HorizontalAlignment="Right"
                     Width="30"
                     Height="30"
-                    VerticalAlignment="Top" DockPanel.Dock="Right">
-                    <iconPacks:PackIconFontAwesome Kind="TrashSolid" />
+                    VerticalAlignment="Top" DockPanel.Dock="Right" Visibility="Hidden" Click="deleteBtn_Click">
+                    <iconPacks:PackIconFontAwesome Kind="TrashSolid"/>
                 </Button>
             </DockPanel>
 
@@ -346,8 +346,8 @@
                     </ListView.ItemTemplate>
                 </ListView>
                 <StackPanel Margin="448,298,10,7" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Right">
-                    <Button x:Name="PickNextStudentBtn" Width="148" Height="30" VerticalAlignment="Bottom" BorderThickness="1,1,0,1" Content="{Binding SelectedItem, ElementName=comboBox}" Click="PickNextStudentBtn_Click" />
-                    <ComboBox x:Name="comboBox" Style="{DynamicResource ComboBoxGroup}" ItemsSource="{Binding mode}" Width="21" Height="30" VerticalAlignment="Bottom"  Text="test" SelectedIndex="{Binding subject.defaultStudentSelection}" BorderThickness="1,1,1,1"/>
+                    <Button x:Name="PickNextStudentBtn" Width="148" Height="30" VerticalAlignment="Bottom" BorderThickness="1,1,0,1" Content="{Binding SelectedItem, ElementName=studentQueueModeBox}" Click="PickNextStudentBtn_Click" />
+                    <ComboBox x:Name="studentQueueModeBox" Style="{DynamicResource ComboBoxGroup}" ItemsSource="{Binding mode}" Width="21" Height="30" VerticalAlignment="Bottom"  Text="test" SelectedIndex="{Binding subject.defaultStudentSelection}" BorderThickness="1,1,1,1"/>
                 </StackPanel>
                 <Label Content="Attendance" HorizontalAlignment="Left" Margin="566,34,0,0" VerticalAlignment="Top" Height="17" Width="54" Padding="0,0,0,0" FontSize="10"/>
 

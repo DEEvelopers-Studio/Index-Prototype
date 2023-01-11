@@ -8,12 +8,37 @@
         SizeToContent="WidthAndHeight"
         ResizeMode="NoResize"
         mc:Ignorable="d"
-        Title="AddStudent" Height="233" Width="393" WindowStyle="ToolWindow">
+        Title="AddStudent" Height="233" Width="393" WindowStyle="ToolWindow" WindowStartupLocation="CenterOwner">
     <Grid>
-        <TextBox HorizontalAlignment="Left" Margin="21,29,0,0" TextWrapping="Wrap" Text="FirstName" VerticalAlignment="Top" Width="120"/>
-        <Button x:Name="AddStudentBtn" Content="Add Student" HorizontalAlignment="Left" Margin="312,187,0,0" VerticalAlignment="Top" Click="AddStudentBtn_Click"/>
-        <TextBox HorizontalAlignment="Left" Margin="21,52,0,0" TextWrapping="Wrap" Text="LastName" VerticalAlignment="Top" Width="120"/>
-        <TextBox HorizontalAlignment="Left" Margin="21,75,0,0" TextWrapping="Wrap" Text="MiddleName" VerticalAlignment="Top" Width="120"/>
+        <TextBlock Text="Create Student" Margin="15,9,252,187" FontSize="18" FontFamily="PT Sans" />
+        <TextBlock Text="Last Name" Margin="15,36,319,169" FontFamily="PT Sans" FontSize="9" />
+        <TextBlock Text="First Name" Margin="15,69,319,136" FontFamily="PT Sans" FontSize="9" />
+        <TextBox x:Name="LNameBox" FontSize="14" Margin="14,47,246,152"/>
+        <TextBox x:Name="FNameBox" FontSize="14" Margin="14,84,129,115"/>
+        <TextBox x:Name="MNameBox" FontSize="14" Margin="154,47,129,152"/>
+        <TextBlock Text="Middle Name" Margin="157,36,140,169" FontFamily="PT Sans" FontSize="9" RenderTransformOrigin="0.643,0.614" />
+        <TextBox x:Name="SectionBox" FontSize="14" Margin="14,118,269,81"/>
+        <TextBox x:Name="StudUidBox" FontSize="14" Margin="129,118,129,81" KeyDown="StudUidBox_KeyDown" MaxLength="11" MaxLines="1" InputScope="Number" PreviewTextInput="StudUidBox_PreviewTextInput"/>
+        <TextBlock Text="Section" Margin="15,107,326,98" FontFamily="PT Sans" FontSize="9" />
+        <TextBlock Text="*" Margin="44,106,297,99" FontFamily="PT Sans" FontSize="9" Foreground="Red" />
+        <TextBlock Text="Student Id" Margin="129,107,177,98" FontFamily="PT Sans" FontSize="9" />
+        <Button x:Name="SignUpBtn" Margin="302,185,10,10" Click="SignUpBtn_Click" >
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+                <TextBlock Text="Add Student" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="PT Sans"/>
+            </StackPanel>
+        </Button>
+        <Border Grid.Column="2" Height="100" Margin="0,10,10,0" VerticalAlignment="Top" BorderBrush="Black" BorderThickness="0.5" HorizontalAlignment="Right" Width="100">
+            <Grid>
+                <Image Source="/Assets/Images/default-profile.png" Stretch="UniformToFill"/>
 
+                <Button Content="Edit Picture" FontSize="11" Panel.ZIndex="1" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="Hidden" >
+                </Button>
+            </Grid>
+        </Border>
+        <TextBlock x:Name="UidMinErrTxt" Text="Invalid Uid Length, must be 11 digits long" Margin="93,138,152,69" FontFamily="PT Sans" FontSize="8" Foreground="Red" Visibility="Hidden" />
+        <TextBlock x:Name="FillErrTxt" Text="Must fill up all boxes" Margin="15,186,279,21" FontFamily="PT Sans" FontSize="8" Foreground="Red" Visibility="Hidden"  />
+        <TextBlock x:Name="UidExists" Text="Student Already Exists" Margin="129,138,165,69" FontFamily="PT Sans" FontSize="8" Foreground="Red" Visibility="Hidden"  />
+
+        <TextBlock Text="*Optional" Margin="14,200,280,7" FontFamily="PT Sans" FontSize="8" Foreground="Red" />
     </Grid>
 </Window>

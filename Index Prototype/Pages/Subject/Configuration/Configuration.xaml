@@ -57,7 +57,7 @@
                 <ComboBox x:Name="defaultStdntSlctnBox" ItemsSource="{Binding Path=mode}" SelectedIndex="{Binding subject.defaultStudentSelection,UpdateSourceTrigger=PropertyChanged}" Height="30" VerticalAlignment="Center"  Text="test" BorderThickness="1,1,1,1" Margin="15,0,10,0" VerticalContentAlignment="Center"/>
 
                 <CheckBox DataContext="{Binding Path=subject,UpdateSourceTrigger=PropertyChanged}"
-                    x:Name="attendanceCheckBox"
+                    x:Name="attendanceCheckBox" Visibility="Hidden"
                     Content="Attendance on Start" FontWeight="DemiBold" Width="129" VerticalAlignment="Center" Grid.Column="1" HorizontalAlignment="Left" Height="16" />
             </Grid>
 
@@ -69,13 +69,13 @@
                     Width="100"
                     Height="30"
                     Margin="15"
-                    Content="Import Data"/>
+                    Content="Import Data" Click="importBtn_Click"/>
 
             <Button x:Name="exportBtn"
                     Width="100"
                     Height="30"
                     Margin="1"
-                    Content="Export Data"/>
+                    Content="Export Data" Click="exportBtn_Click"/>
 
         </StackPanel>
 

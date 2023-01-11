@@ -1,8 +1,10 @@
 ﻿using Index_Prototype.Directory;
+using Index_Prototype.Pages.Add_User;
 using Index_Prototype.Pages.Student_Info;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -24,11 +26,38 @@ namespace Index_Prototype.Pages.Subject.Teacher_List
     /// Interaction logic for TeacherList.xaml
     /// </summary>
     /// 
-    public partial class TeacherList : Page
+    public partial class TeacherList : Page, INotifyPropertyChanged
     {
+        private bool? _isAllSelected { get; set; } = false;
+        public bool? isAllSelected
+        {
+            get { return _isAllSelected; }
+            set
+            {
+                _isAllSelected = value;
+                deleteBtn.Visibility = value != false ? Visibility.Visible : Visibility.Hidden;
+                if (value == null) return;
+                for (int i = 0; i < teachers.Count; i++)
+                {
+                    teachers[i].isSelected = (bool)value;
+                }
+            }
+        }
 
+        private void ItemToggle(object sender, RoutedEventArgs e)
+        {
+            int itemChecked = 0;
+            foreach (var item in teachers)
+            {
+                if (item.isSelected) itemChecked++;
+            }
+            if (itemChecked == teachers.Count) isAllSelected = true;
+            else if (itemChecked != 0) isAllSelected = null;
+            else isAllSelected = false;
+        }
+        public event PropertyChangedEventHandler PropertyChanged;
         public DataTemplates.Subject subject { get; set; }
-        public ObservableCollection<User> students { get; set; } = new ObservableCollection<User>();
+        public ObservableCollection<UserListVM> teachers { get; set; } = new ObservableCollection<UserListVM>();
         public class Teacher
         {
             public string name;
@@ -46,7 +75,6 @@ namespace Index_Prototype.Pages.Subject.Teacher_List
                 this.teacher = teacher;
             }
         }
-        public static TeacherItem[] teacherList = { new TeacherItem(new Teacher("Carl")) };
         public TeacherList()
         {
             InitializeComponent();
@@ -62,11 +90,12 @@ namespace Index_Prototype.Pages.Subject.Teacher_List
         public void LoadData()
         {
             subject = DatabaseHelper.getSubject(NavigationHelper.getParams(MainWindow.MainNavigationService)["SubjectId"]);
-            students.Clear();
+            teachers.Clear();
             DatabaseHelper.getTeachersInSubject(subject.id).ForEach((teacher) =>
             {
-                students.Add(teacher);
+                teachers.Add(new UserListVM(teacher));
             });
+            ItemToggle(null, null);
         }
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
@@ -74,9 +103,35 @@ namespace Index_Prototype.Pages.Subject.Teacher_List
             LoadData();
         }
 
-        private void ItemToggle(object sender, RoutedEventArgs e)
+        private void AddNewStudentButton_Click(object sender, RoutedEventArgs e)
         {
+            AddUser addUser = new AddUser("Teacher",DatabaseHelper.getTeachers(),new List<User>(teachers));
+            bool? state = addUser.ShowDialog();
+            if (state != null && state == true)
+            {
+                addUser.selectedUsers.ForEach((user) =>
+                {
+                    DatabaseHelper.AddTeachertoSubject(user.uid, subject.id);
+                });
+                LoadData();
+            }
+        }
 
+        private void deleteBtn_Click(object sender, RoutedEventArgs e)
+        {
+            List<User> selectedTeachers = new List<User>();
+            foreach (UserListVM teacher in teachers)
+            {
+                if (teacher.isSelected) selectedTeachers.Add(teacher);
+            }
+            if (teachers.Count - selectedTeachers.Count < 1) { MessageBox.Show("Must have atleast 1 Teacher or else the Subject will cease to exist!"); return; }
+            MessageBoxResult messageBoxResult = MessageBox.Show($"Are you sure you want to delete {selectedTeachers.Count} Teachers?", "Removing Teacher", System.Windows.MessageBoxButton.YesNo);
+            if (messageBoxResult == MessageBoxResult.No) return;
+            selectedTeachers.ForEach((teacher) =>
+            {
+                DatabaseHelper.RemoveTeachertoSubject(teacher.uid, subject.id);
+            });
+            LoadData();
         }
     }
 }

@@ -1,0 +1,24 @@
+﻿<Window x:Class="Index_Prototype.Pages.Subject.Data_Importer.ImportWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Index_Prototype.Pages.Subject.Data_Importer"
+        mc:Ignorable="d"
+        Title="Import Excel Data" Height="203" Width="291" DataContext="{Binding RelativeSource={RelativeSource Self}}" ResizeMode="NoResize" WindowStartupLocation="CenterOwner">
+    <Grid>
+
+        <TextBlock HorizontalAlignment="Left" Margin="19,10,0,0" TextWrapping="Wrap" Text="Names Column" VerticalAlignment="Top"/>
+        <TextBox x:Name="NameColumnTargetBox" HorizontalAlignment="Left" Margin="19,29,0,0" TextWrapping="Wrap" Text="A" VerticalAlignment="Top" Width="103"/>
+        <TextBlock HorizontalAlignment="Left" Margin="132,10,0,0" TextWrapping="Wrap" Text="Student Id Column" VerticalAlignment="Top"/>
+        <TextBox x:Name="StudIDColumnTargetBox" HorizontalAlignment="Left" Margin="132,29,0,0" TextWrapping="Wrap" Text="A" VerticalAlignment="Top" Width="103"/>
+        <Grid Margin="10,0,10,40" Height="25" VerticalAlignment="Bottom">
+            <TextBlock TextWrapping="Wrap" Text="{Binding filename}" VerticalAlignment="Center" TextTrimming="CharacterEllipsis" MaxWidth="281" Height="16" HorizontalAlignment="Left" Margin="10,0,0,0" Width="184" TextAlignment="Right"/>
+            <Button x:Name="openFileDialogBtn" Content="Browse" HorizontalAlignment="Right" VerticalAlignment="Center" Height="25" Width="60" Click="openFileDialogBtn_Click"/>
+        </Grid>
+
+        <Button x:Name="importBtn" Content="Import" HorizontalAlignment="Right" VerticalAlignment="Bottom" Height="25" Width="60" Click="importBtn_Click" Margin="0,0,10,10"/>
+        <TextBlock HorizontalAlignment="Left" Margin="19,52,0,0" TextWrapping="Wrap" Text="Start Reading at Row" VerticalAlignment="Top"/>
+        <TextBox x:Name="StartReadingRow" HorizontalAlignment="Left" Margin="19,71,0,0" TextWrapping="Wrap" Text="1" VerticalAlignment="Top" Width="103" PreviewTextInput="StartReadingRow_PreviewTextInput"/>
+    </Grid>
+</Window>

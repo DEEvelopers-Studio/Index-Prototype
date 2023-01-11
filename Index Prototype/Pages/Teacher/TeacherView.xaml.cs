@@ -32,7 +32,7 @@ namespace Index_Prototype.Pages.Teacher
             InitializeComponent();
             //button route check if active
             SubjectNavButton.navigationService = routerView.NavigationService;
-            SettingsNavButton.navigationService = routerView.NavigationService;
+            //SettingsNavButton.navigationService = routerView.NavigationService;
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

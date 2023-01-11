@@ -1,0 +1,1 @@
+﻿select Teachers.uid, Teachers.firstName,Teachers.lastName,Teachers.middleName,Teachers.lastName from Teachers LEFT JOIN TeacherSubjectData ON Teachers.uid = TeacherSubjectData.uid where TeacherSubjectData.subjectId = '84cd2e3a-f898-4bbf-ade4-921ee59abe37' Order By Teachers.lastName ASC

@@ -28,12 +28,19 @@ namespace Index_Prototype.Pages.Student_Info
         public event PropertyChangedEventHandler PropertyChanged;
         public static void ShowStudent(DataTemplates.Student student)
         {
-            if (Instance == null) { Instance = new StudentInfo(student); Instance.Show(); }
+            if (Instance == null) { 
+                Instance = new StudentInfo(); 
+            }
+            Instance.student = student;
+            Instance.Show();
+            Instance.Focus();
         }
-        public DataTemplates.Student student { get; set; }
-        public StudentInfo(DataTemplates.Student student)
+        public DataTemplates.Student _student { get; set; }
+        public DataTemplates.Student student { get { return _student; } set { _student = value;if(value!=null)
+                    LoadData();
+            }}
+        public StudentInfo()
         {
-            this.student = student;
             InitializeComponent();
         }
 
@@ -45,8 +52,11 @@ namespace Index_Prototype.Pages.Student_Info
         Index_Prototype.DatabaseDataSet2 databaseDataSet2;
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-
             Instance.Focus();
+        }
+        public void LoadData()
+        {
+
             Index_Prototype.DatabaseDataSet databaseDataSet = ((Index_Prototype.DatabaseDataSet)(this.FindResource("databaseDataSet")));
             // Load data into the table Grades. You can modify this code as needed.
             Index_Prototype.DatabaseDataSetTableAdapters.GradesTableAdapter databaseDataSetGradesTableAdapter = new Index_Prototype.DatabaseDataSetTableAdapters.GradesTableAdapter();
@@ -61,8 +71,8 @@ namespace Index_Prototype.Pages.Student_Info
             databaseDataSet2AttendanceTableAdapter.Fill(databaseDataSet2.Attendance, student.uid, NavigationHelper.getParams(MainWindow.MainNavigationService)["SubjectId"]);
             System.Windows.Data.CollectionViewSource attendanceViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("attendanceViewSource")));
             attendanceViewSource.View.MoveCurrentToFirst();
+            Instance.Focus();
         }
-
         private void Button_Click(object sender, RoutedEventArgs e)
         {
 

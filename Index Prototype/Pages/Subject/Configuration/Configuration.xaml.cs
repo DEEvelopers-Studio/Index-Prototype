@@ -1,4 +1,5 @@
 ﻿using Index_Prototype.Directory;
+using Index_Prototype.Pages.Subject.Data_Importer;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -65,6 +66,21 @@ namespace Index_Prototype.Pages.Subject.Configuration
         {
             LoadSubject();
             isChanged = false;
+        }
+
+        private void importBtn_Click(object sender, RoutedEventArgs e)
+        {
+            ImportWindow import = new ImportWindow(subject.id);
+            import.ShowDialog();
+        }
+
+        private void exportBtn_Click(object sender, RoutedEventArgs e)
+        {
+            DatabaseHelper.ExportAttendance(subject);
+        }
+        public void ExportData()
+        {
+            
         }
     }
 }
