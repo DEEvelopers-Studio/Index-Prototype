@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Navigation;
@@ -24,6 +25,14 @@ namespace Index_Prototype.Directory
             {
                 AccountAuth.account = account;
                 OnSuccess.Invoke(account);
+            }, OnFailure);
+        }
+        public static void ChangePassword(string oldPassword,string newPassword,Action OnSuccess,Action<LoginExeption> OnFailure)
+        {
+            DatabaseHelper.Login(account.uid, oldPassword, (account) =>
+            {
+                UpdatePassword(AccountAuth.account.uid, newPassword);
+                OnSuccess?.Invoke();
             }, OnFailure);
         }
         public static void Logout()

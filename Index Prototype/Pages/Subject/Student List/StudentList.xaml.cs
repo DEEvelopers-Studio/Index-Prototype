@@ -13,9 +13,6 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using WpfApp2;
 using static Index_Prototype.Directory.DataTemplates;
-using static Index_Prototype.Pages.Subject.Teacher_List.TeacherList;
-using static Index_Prototype.Pages.Subject_List.SubjectList;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.TextBox;
 
 namespace Index_Prototype.Pages.Subject.Student_List
 {
@@ -125,6 +122,8 @@ namespace Index_Prototype.Pages.Subject.Student_List
         Queue<Student> studentQueue = new Queue<Student>();
         private void PickNextStudentBtn_Click(object sender, RoutedEventArgs e)
         {
+            if (students == null) return;
+            if (students.Count <= 0) return;
             if (studentQueueModeBox.SelectedIndex == 1) {
                 StudentInfo.ShowStudent(students[gacha.Next(students.Count)],()=>LoadData());
                 return;

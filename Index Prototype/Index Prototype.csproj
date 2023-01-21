@@ -282,6 +282,12 @@
     <Compile Include="Pages\Subject\Teacher List\TeacherList.xaml.cs">
       <DependentUpon>TeacherList.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\Teacher\ChangePassword\ChangePassword.xaml.cs">
+      <DependentUpon>ChangePassword.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Teacher\Teacher Config\TeacherProfile.xaml.cs">
+      <DependentUpon>TeacherProfile.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\Teacher\TeacherView.xaml.cs">
       <DependentUpon>TeacherView.xaml</DependentUpon>
     </Compile>
@@ -344,6 +350,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Pages\Teacher\ChangePassword\ChangePassword.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\Teacher\Subject List\SubjectList.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -373,6 +383,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\Home\Home.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Teacher\Teacher Config\TeacherProfile.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -27,8 +27,14 @@
                             <TextBlock>Subjects</TextBlock>
                         </StackPanel>
                     </ViewModels:NavButton>
+					<ViewModels:NavButton x:Name="ConfigBtn" Style="{Binding Mode=OneWay, Source={StaticResource SidebarToggleBtn}}" Navlink="/Pages/Teacher/Teacher Config/TeacherProfile.xaml" >
+						<StackPanel Orientation="Horizontal">
+							<iconPacks:PackIconMaterial Kind="Cog" Margin="0,0,5,0" />
+							<TextBlock>Configuration</TextBlock>
+						</StackPanel>
+					</ViewModels:NavButton>
 
-                </StackPanel>
+				</StackPanel>
                 <Border Padding="0,3" DockPanel.Dock="Bottom" BorderBrush="#FF676767" VerticalAlignment="Bottom" BorderThickness="0,0.3,0,0">
                     <StackPanel DockPanel.Dock="Bottom">
                         <Button x:Name="LogoutButton" VerticalAlignment="Center" Style="{Binding Mode=OneWay, Source={StaticResource SidebarBtn}}" Click="LogoutButton_Click">

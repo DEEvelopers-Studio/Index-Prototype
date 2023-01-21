@@ -121,7 +121,6 @@ namespace WpfApp2
             }
             return null;
         }
-        
         public static void Login(string uid, string password,Action<User> OnSuccess,Action<LoginExeption> OnFailure = null)
         {
             try
@@ -130,8 +129,11 @@ namespace WpfApp2
                 SqlCommand cmd = new SqlCommand("Select * from Teachers where uid = '" + uid + "'", connection);
                 SqlDataReader sdr = cmd.ExecuteReader();
                 if (!sdr.Read()) OnFailure?.Invoke(LoginExeption.UIDFAIL);
-                if (!(sdr["password"] as string).Equals(password.ToString())){ OnFailure?.Invoke(LoginExeption.PASSWORDFAIL);return; }
-                OnSuccess.Invoke(new User() { firstName = sdr?["firstName"] as string, lastName = sdr?["lastName"] as string, middleName = sdr?["middleName"] as string, uid = sdr?["uid"] as string });
+                if (!(sdr["password"] as string).Equals(password)){ OnFailure?.Invoke(LoginExeption.PASSWORDFAIL);return; }
+                User usr = ConvertToObject<User>(sdr);
+                connection.Close();
+              
+                OnSuccess?.Invoke(usr);
             }
             catch (Exception r)
             {
@@ -180,9 +182,11 @@ namespace WpfApp2
             SaveFileDialog saveFileDialog= new SaveFileDialog() { Filter="CSV File|*.csv",Title=$"Export {subject.title} Data",FileName = $"{subject.title}-{DateTime.Now:MMM-dd-yyyy}-{subject?.section}"};
             if (saveFileDialog.ShowDialog() == false) return ;
             SQLToCSV($@"select Students.*,ISNULL(PRESENT,0) AS PRESENT,ISNULL(LATE,0) AS LATE,ISNULL(ABSENT,0) AS ABSENT from Students 
-LEFT JOIN StudentSubjectData ON Students.uid = StudentSubjectData.uid Left Join (SELECT COUNT(CASE WHEN status = 0 THEN 1 END) as PRESENT,COUNT(CASE WHEN status = 1 THEN 1 END) as LATE,COUNT(CASE WHEN status = 2 THEN 1 END) as ABSENT, 
-studentId FROM Attendance WHERE subjectId = '{subject.id}' GROUP BY studentId) att on Students.uid = att.studentId", saveFileDialog.FileName);
+LEFT JOIN (select uid from StudentSubjectData WHERE subjectId = '{subject.id}') stusbjdta ON Students.uid = stusbjdta.uid Left Join (SELECT COUNT(CASE WHEN status = 0 THEN 1 END) as PRESENT,COUNT(CASE WHEN status = 1 THEN 1 END) as LATE,COUNT(CASE WHEN status = 2 THEN 1 END) as ABSENT, 
+studentId FROM Attendance WHERE subjectId = '{subject.id}' GROUP BY studentId) att on Students.uid = att.studentId"
+, saveFileDialog.FileName);
         }
+
         private static void SQLToCSV(string query, string Filename)
         {
             try
@@ -190,7 +194,6 @@ studentId FROM Attendance WHERE subjectId = '{subject.id}' GROUP BY studentId) a
                 connection.Open();
                 SqlCommand cmd = new SqlCommand(query, connection);
                 SqlDataReader dr = cmd.ExecuteReader();
-
                 using (System.IO.StreamWriter fs = new System.IO.StreamWriter(Filename))
                 {
                     // Loop through the fields and add headers
@@ -228,6 +231,7 @@ studentId FROM Attendance WHERE subjectId = '{subject.id}' GROUP BY studentId) a
             }
             
         }
+
         public static void PutStudent(Student student)
         {
             string table = "Students";
@@ -313,6 +317,48 @@ INSERT INTO {table} (studentId,date,status,subjectId) VALUES ('{student.uid}',GE
 
             }
         }
+        public static void UpdatePassword(string userId,string password)
+        {
+            string table = "Teachers";
+            try
+            {
+                connection.Open();
+                SqlCommand sqlcmd = new SqlCommand() { Connection = connection, CommandText = $@"
+     UPDATE {table} SET password = '{password}' WHERE uid = '{userId}'" };
+                SqlDataReader sqlrdr = sqlcmd.ExecuteReader();
+                sqlrdr.Close();
+            }
+            catch(Exception e)
+            {
+                MessageBox.Show(e.Message);
+            }
+            //catch (SqlException r)
+            //{
+            //    switch (r.Number)
+            //    {
+            //        case SqllErrorNumbers.DupKey:
+            //            MessageBox.Show("Duplicate Key");
+            //            break;
+            //        case SqllErrorNumbers.BadObject:
+            //            MessageBox.Show("Bad Obj");
+            //            break;
+            //        default:
+
+            //            MessageBox.Show("" + r);
+            //            break;
+            //    }
+            //}
+            finally
+            {
+
+                //insertData(myConn);
+                if (connection.State == ConnectionState.Open)
+                {
+                    connection.Close();
+                }
+
+            }
+        }
         public static void PutTeacher(User teacher,string password)
         {
             string table = "Teachers";
@@ -321,10 +367,46 @@ INSERT INTO {table} (studentId,date,status,subjectId) VALUES ('{student.uid}',GE
                 connection.Open();
                 SqlCommand sqlcmd = new SqlCommand() { Connection = connection, CommandText = $@"IF EXISTS (SELECT * FROM {table} WHERE uid = '{teacher.uid}')
  BEGIN
-     UPDATE {table}  SET firstName = '{teacher.firstName}', middleName = '{teacher.middleName}',lastName = '{teacher.lastName}', password = '{password}' WHERE uid = '{teacher.uid}';
-      RETURN
- END
+     UPDATE {table}  SET firstName = '{teacher.firstName}', middleName = '{teacher.middleName}',lastName = '{teacher.lastName}', password = '{password}' WHERE uid = '{teacher.uid}'
+      RETURN END
 INSERT INTO {table}  (uid,firstName,middleName,lastName,password) VALUES ('{teacher.uid}','{teacher.firstName}','{teacher.middleName}','{teacher.lastName}','{password}')
+" };
+                SqlDataReader sqlrdr = sqlcmd.ExecuteReader();
+                sqlrdr.Close();
+            }
+            catch (SqlException r)
+            {
+                switch (r.Number)
+                {
+                    case SqllErrorNumbers.DupKey:
+                        MessageBox.Show("Duplicate Key");
+                        break;
+                    case SqllErrorNumbers.BadObject:
+                        MessageBox.Show("Bad Obj");
+                        break;
+                    default:
+
+                        MessageBox.Show("" + r);
+                        break;
+                }
+            }
+            finally
+            {
+
+                //insertData(myConn);
+                if (connection.State == ConnectionState.Open)
+                {
+                    connection.Close();
+                }
+
+            }
+        }public static void UpdateTeacher(User teacher)
+        {
+            string table = "Teachers";
+            try
+            {
+                connection.Open();
+                SqlCommand sqlcmd = new SqlCommand() { Connection = connection, CommandText = $@"UPDATE {table}  SET firstName = '{teacher.firstName}', middleName = '{teacher.middleName}',lastName = '{teacher.lastName}' WHERE uid = '{teacher.uid}'
 " };
                 SqlDataReader sqlrdr = sqlcmd.ExecuteReader();
                 sqlrdr.Close();
@@ -400,7 +482,7 @@ INSERT INTO {table}  (uid,firstName,middleName,lastName,password) VALUES ('{teac
             try
             {
                 connection.Open();
-                SqlCommand sqlcmd = new SqlCommand() { Connection = connection, CommandText = $"IF EXISTS (SELECT * FROM {table} WHERE uid = '{studentUid}') BEGIN RETURN END insert into {table} (subjectId,uid) values('{subjectUid}','{studentUid}')" };
+                SqlCommand sqlcmd = new SqlCommand() { Connection = connection, CommandText = $"IF EXISTS (SELECT * FROM {table} WHERE uid = '{studentUid}' AND subjectId = '{subjectUid}') BEGIN RETURN END insert into {table} (subjectId,uid) values('{subjectUid}','{studentUid}')" };
                 SqlDataReader sqlrdr = sqlcmd.ExecuteReader();
                 sqlrdr.Close();
             }
